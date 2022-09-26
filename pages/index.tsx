@@ -1,10 +1,12 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import type { NextPage } from "next";
+import React from "react";
+import MainLayout from "../components/mainLayout";
+
 
 const Home: NextPage = () => {
- 
-  return (<div></div>)
-}
 
-export default Home
+
+  return <>app</>;
+};
+
+export default Home;
