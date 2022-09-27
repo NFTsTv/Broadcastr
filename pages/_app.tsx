@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import Head from "next/head";
 import type { AppProps } from "next/app";
 import "@rainbow-me/rainbowkit/styles.css";
 
@@ -26,8 +27,9 @@ const wagmiClient = createClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
+    <WagmiConfig client={wagmiClient} >
+      <Head> NFTsTv </Head>
+      <RainbowKitProvider chains={chains} >
         <MainLayout>
           <Component {...pageProps} />
         </MainLayout>
