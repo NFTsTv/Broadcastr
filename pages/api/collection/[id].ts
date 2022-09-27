@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // return lnfts with 
 
 
-        return res.status(200).json({"data": lnfts});
+        return res.status(200).json({ "data": lnfts });
       } catch (e: any) {
         console.log('Unable to fetch lnft', e)
         return res.status(e.statusCode).json(e)

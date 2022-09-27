@@ -2,13 +2,13 @@ import React, { useEffect, useRef } from 'react'
 import { Client } from '@livepeer/webrtmp-sdk'
 
 function App() {
-  const inputEl   = useRef<HTMLInputElement>(null)
+  const inputEl = useRef<HTMLInputElement>(null)
   const videoEl = useRef<HTMLVideoElement>(null)
   const stream = useRef<MediaStream>(null)
 
   useEffect(() => {
 
-    ;(async () => {
+    ; (async () => {
       if (!inputEl.current || !videoEl.current) {
         return
       }
@@ -66,7 +66,7 @@ function App() {
         type="text"
         placeholder="streamKey"
       />
-      <video className="App-video" ref={videoEl} width={"100%"} height={"100%"}  />
+      <video className="App-video" ref={videoEl} width={"100%"} height={"100%"} />
       <button className="App-button" onClick={onButtonClick}>
         Start
       </button>

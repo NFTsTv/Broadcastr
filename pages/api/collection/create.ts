@@ -9,7 +9,7 @@ export default async function handler(
     try {
       // return res.status(200).json(stream);
     } catch (e: any) {
-     //  console.log("Unable to fetch stream", id);
+      // console.log("Unable to fetch stream", id);
       return res.status(e.statusCode).json(e);
     }
   } else {
