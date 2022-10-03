@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Client } from "@livepeer/webrtmp-sdk";
+import { Client, WebSocketError } from "@livepeer/webrtmp-sdk";
 import { authenticate } from "../services/collections";
 import { useAccount } from "wagmi";
 
@@ -17,7 +17,7 @@ function App() {
       videoEl.current.volume = 0;
       stream.current = await navigator.mediaDevices.getUserMedia({
         video: true,
-        audio: true,
+        audio: { echoCancellation: true, noiseSuppression: true },
       });
 
       videoEl.current.srcObject = stream.current;
@@ -43,11 +43,21 @@ function App() {
       return;
     }
 
-    const streamKey = "213b-z858-x4jm-4xmf";
+    const streamKey = "ef61-25e7-nhu2-bb6r";
 
-    const client = new Client();
-
+    const transport = "auto";
+    const client = new Client({ transport });
     const session = client.cast(stream.current, streamKey);
+
+    session.on("error", (err) => {
+      let isTransient: boolean = false;
+      if (err instanceof WebSocketError) {
+        const { code } = err;
+        isTransient = code === 106;
+      }
+
+      setStatus(isTransient ? "Reconnecting..." : "Disconnected");
+    });
 
     session.on("open", () => {
       console.log("Stream started.");
@@ -56,11 +66,6 @@ function App() {
 
     session.on("close", () => {
       console.log("Stream stopped.");
-    });
-
-    session.on("error", (err) => {
-      console.log("Stream error.", err.message);
-      setStatus(err.message);
     });
   };
 
