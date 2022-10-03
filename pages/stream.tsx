@@ -6,6 +6,7 @@ import { useAccount } from "wagmi";
 function App() {
   const videoEl = useRef<HTMLVideoElement | null>(null);
   const stream = useRef<MediaStream | null>(null);
+  const [status, setStatus] = React.useState("");
   const { address } = useAccount();
 
   useEffect(() => {
@@ -25,6 +26,7 @@ function App() {
   });
 
   const onButtonClick = async () => {
+    setStatus("Connecting...");
     if (!videoEl.current || address === undefined) {
       alert("Please connect your wallet");
       return;
@@ -49,7 +51,7 @@ function App() {
 
     session.on("open", () => {
       console.log("Stream started.");
-      alert("Stream started; visit Livepeer Dashboard.");
+      setStatus("Stream started; visit Livepeer Dashboard.");
     });
 
     session.on("close", () => {
@@ -58,12 +60,14 @@ function App() {
 
     session.on("error", (err) => {
       console.log("Stream error.", err.message);
+      setStatus(err.message);
     });
   };
 
   return (
     <div className="w-full h-screen">
       <video
+        playsInline
         className="App-video"
         ref={videoEl}
         width={"100%"}
@@ -72,6 +76,7 @@ function App() {
       <button className="btn btn-circle" onClick={onButtonClick}>
         Start
       </button>
+      {status}
     </div>
   );
 }

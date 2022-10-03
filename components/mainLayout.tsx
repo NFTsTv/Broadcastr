@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 import Container from "./container";
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <div className="max-w-md h-screen mx-auto">
-    <div className="flex justify-center h-full md:border-2 rounded-xl drop-shadow-md overflow-y-auto ">
+    <div className="flex justify-center h-full md:border-2 md:rounded-xl drop-shadow-md overflow-y-auto ">
       {children}
     </div>
   </div>

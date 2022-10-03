@@ -7,9 +7,9 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 
 const Home: NextPage = () => {
-  const { isConnected, address } = useAccount();
   return (
     <Container>
+      
       <div className="mb-4">
         <h1 className="text-4xl font-bold mb-2">NFTS are live</h1>
         <ConnectButton />
