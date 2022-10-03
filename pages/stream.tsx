@@ -32,11 +32,11 @@ function App() {
       return;
     }
 
-    const allowed = await authenticate(address);
-    if (!allowed) {
-      alert("You are not allowed to stream");
-      return;
-    }
+    // //const allowed = await authenticate(address);
+    // if (!allowed) {
+    //   alert("You are not allowed to stream");
+    //   return;
+    // }
 
     if (!stream.current) {
       alert("Video stream was not started.");
