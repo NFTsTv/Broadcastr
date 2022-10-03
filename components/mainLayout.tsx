@@ -3,8 +3,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import Container from "./container";
 const Layout = ({ children }: { children: React.ReactNode }) => (
-  <div className="max-w-md h-screen overflow-y-auto mx-auto">
-    <div className="flex justify-center h-full p-5 md:border-2 rounded-xl drop-shadow-md">
+  <div className="max-w-md h-screen mx-auto">
+    <div className="flex justify-center h-full p-5 md:border-2 rounded-xl drop-shadow-md overflow-y-auto ">
       {children}
     </div>
   </div>

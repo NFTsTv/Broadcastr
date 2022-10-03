@@ -9,6 +9,7 @@ export default class AlchemyNFT {
   async getNFTs(id: string): Promise<lnft[]> {
     console.log(id)
     const lnfts = await get(`${baseApiUrl}/getNFTs?withMetadata=true&owner=${id}`);
+    console.log(lnfts)  
     return lnfts.ownedNfts;
   }
 }

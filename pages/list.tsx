@@ -26,9 +26,9 @@ const List: NextPage = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid grid-cols-1 gap-4">
+        <div className="flex flex-col overflow-y">
           {data.map((nft) => (
-            <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card w-96 bg-base-90 shadow-xl">
               <div className="card-body">
                 <h2 className="text-2xl font-bold">{nft.metadata.name}</h2>
                 <p className="text-xl">{nft.metadata.description}</p>
