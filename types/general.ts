@@ -11,7 +11,9 @@ export type lnft = {
     tokenId: string;
   }
   balance: number;
-  contractAddress: string;
+  contract: {
+    address: string;
+  },
   contractMetadata: {
     name: string;
     symbol: string;

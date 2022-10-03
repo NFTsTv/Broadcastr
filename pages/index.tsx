@@ -15,12 +15,18 @@ const Home: NextPage = () => {
         <ConnectButton />
       </div>
       <Link href="/create">
-        <button className="btn btn-wide btn-primary">Create LNFT</button>
+        <button className="btn btn-wide btn-primary" disabled>
+          Create LNFT
+        </button>
       </Link>
       <Link href="/list">
-        <button className="btn btn-wide btn-secondary">View collection</button>
+        <button className="btn btn-wide btn-secondary" disabled>
+          View collection
+        </button>
       </Link>
-      <button className="btn btn-wide btn-accent">Explore</button>
+      <Link href="/stream">
+        <button className="btn btn-wide btn-accent">Live stream</button>
+      </Link>
     </Container>
   );
 };
