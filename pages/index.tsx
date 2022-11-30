@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <ConnectButton />
       </div>
       <Link href="/create">
-        <button className="btn btn-wide btn-primary" disabled>
+        <button className="btn btn-wide btn-primary">
           Create LNFT
         </button>
       </Link>

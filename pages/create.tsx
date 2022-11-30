@@ -17,9 +17,6 @@ const Create: NextPage = () => {
     return (
         <Container>
             <CreateForm/>
-            <Link href="/create">
-                <button className="btn btn-wide btn-primary">Create LNFT</button>
-            </Link>
         </Container>
     );
 };

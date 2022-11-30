@@ -11,7 +11,7 @@ import MainLayout from "../components/mainLayout";
 
 const { chains, provider } = configureChains(
   [chain.goerli],
-  [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
+  [alchemyProvider({ apiKey: "1B8PyIUIB7qGLgDJIutm60tI4TGOmDsN" }), publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
