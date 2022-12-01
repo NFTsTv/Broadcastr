@@ -9,7 +9,7 @@ import {
 import { post } from "../utils/requests";
 
 interface Props {
-  onSuccessfulCreation: () => void;
+  onSuccessfulCreation: (baseUri: string) => void;
 }
 
 const CreateLNFT = ({ ...props }: Props) => {
@@ -33,8 +33,7 @@ const CreateLNFT = ({ ...props }: Props) => {
         playbackId: assetData?.playbackId || "",
       });
       post("/api/collection/uploadMetadata", metadata).then((res) => {
-        console.log(res);
-        props.onSuccessfulCreation();
+        props.onSuccessfulCreation(res?.url);
       });
     }
   }, [createStreamStatus]);

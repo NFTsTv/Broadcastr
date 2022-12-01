@@ -5,6 +5,14 @@ export interface FactoryContractParameters {
   price?: number;
   maxMintNumber?: number;
 }
+export interface LNFTContractAttributes {
+  currentTokenId: number;
+  baseTokenURI: string;
+  LNFTname: string;
+  description: string;
+  totalSupply: number;
+  mintPrice: number;
+}
 
 export interface LNFTMetadata {
   name: string;
@@ -18,19 +26,3 @@ export interface LNFTMetadata {
   };
 }
 
-export interface LNFTContractAttributes {
-  currentTokenId: number;
-  baseTokenURI: string;
-  LNFTname: string;
-  description: string;
-  totalSupply: number;
-  mintPrice: number;
-}
-
-
-
-
-
-export type user = {
-  id: string;
-}

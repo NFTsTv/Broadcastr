@@ -18,3 +18,12 @@ export const createMetadata = ({
     LNFTId: "",
   },
 });
+
+export const parseStringToNumber = (value: string) => {
+  // allow floats and integers
+  const regex = /^-?\d*(\.\d+)?$/;
+  if (regex.test(value)) {
+    return Number(value);
+  }
+  return 0;
+};
