@@ -2,8 +2,6 @@ import type { NextPage } from "next";
 import React from "react";
 import Container from "../components/container";
 import { useAccount, useContractRead } from "wagmi";
-import { getNFTs } from "../services/collections";
-import { Lnft } from "../types/general";
 import NftCard from "../components/NftCard";
 
 import contractInterface from "../contract-abi.json";

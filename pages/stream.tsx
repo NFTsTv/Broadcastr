@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Client, WebSocketError } from "@livepeer/webrtmp-sdk";
-import { authenticate } from "../services/collections";
 import { useAccount } from "wagmi";
 
 function App() {

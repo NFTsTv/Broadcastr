@@ -1,4 +1,4 @@
-export type lnftContractParameters = {
+export interface FactoryContractParameters {
   owner: string;
   contractAddress: string;
   name: string;
@@ -6,7 +6,19 @@ export type lnftContractParameters = {
   maxMintNumber?: number;
 }
 
-export interface Lnft {
+export interface LNFTMetadata {
+  name: string;
+  description: string;
+  image: string;
+  external_url: string;
+  animation_url?: string;
+  properties: {
+    creator_address: string;
+    LNFTId: string;
+  };
+}
+
+export interface LNFTContractAttributes {
   currentTokenId: number;
   baseTokenURI: string;
   LNFTname: string;
@@ -16,31 +28,7 @@ export interface Lnft {
 }
 
 
-// export type lnft = {
-//   id: {
-//     tokenId: string;
-//   }
-//   balance: number;
-//   contract: {
-//     address: string;
-//   },
-//   contractMetadata: {
-//     name: string;
-//     symbol: string;
-//     tokenType: string;
-//     description: string;
-//   }
-//   metadata: {
-//     name: string;
-//     description: string;
-//     image: string;
-//     animation_url: string;
-//     external_url: string;
-//   }
-//   timeLastUpdated: number;
-//   title: string;
-//   tokenURI: string;
-// }
+
 
 
 export type user = {

@@ -1,5 +1,5 @@
+import axios from 'axios'
 import { stringify } from 'query-string'
-import axios from 'axios';
 interface RequestOptions {
   method: 'get' | 'post' | 'put'
   headers?: HeadersInit
@@ -28,4 +28,10 @@ const request = async (url: string, options: RequestOptions) => {
 export const get = async (url: string, params?: any) => {
   const query = params ? `?${stringify(params)}` : ''
   return request(`${url}${query}`, { method: 'get' })
+}
+
+export const post = async (url: string, body?: any) => {
+  // axios post
+  const response = await axios.post(url, body)
+  return response.data
 }

@@ -1,24 +1,19 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import React, { useState } from "react";
 import Container from "../components/container";
 import CreateForm from "../components/CreateForm";
-
-import {
-    useAccount,
-} from "wagmi";
-
-
-
-
+import { useAsset, useUpdateAsset } from "@livepeer/react";
+import { useAccount } from "wagmi";
+import CreateLNFT from "../components/CreateLNFT";
 const Create: NextPage = () => {
-    const { isConnected, address } = useAccount();
+  const { isConnected, address } = useAccount();
 
-    return (
-        <Container>
-            <CreateForm/>
-        </Container>
-    );
+
+  return (
+    <Container> 
+      <CreateLNFT onSuccessfulCreation={() => {}} />
+    </Container>
+  );
 };
 
 export default Create;

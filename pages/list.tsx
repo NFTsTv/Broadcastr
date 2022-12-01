@@ -2,23 +2,21 @@ import type { NextPage } from "next";
 import React from "react";
 import Container from "../components/container";
 import { useAccount } from "wagmi";
-import { getNFTs } from "../services/collections";
-import { lnft } from "../types/general";
 
 const List: NextPage = () => {
-  const [data, setData] = React.useState<lnft[]>([]);
+  const [data, setData] = React.useState<any[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const { address } = useAccount();
 
-  React.useEffect(() => {
-    if (address) {
-      getNFTs(address).then((res) => {
-        console.log([...data]);
-        setData(res);
-        setIsLoading(false);
-      });
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if (address) {
+  //     getNFTs(address).then((res) => {
+  //       console.log([...data]);
+  //       setData(res);
+  //       setIsLoading(false);
+  //     });
+  //   }
+  // }, []);
 
   return (
     <Container>
