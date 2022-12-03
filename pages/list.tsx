@@ -1,44 +1,34 @@
 import type { NextPage } from "next";
 import React from "react";
 import Container from "../components/container";
-import { useAccount } from "wagmi";
+import { useAccount, useContractRead } from "wagmi";
+import NftCard from "../components/NftCard";
 
+import contractInterface from "../contract-abi.json";
+const contractAddress = "0x7278AE17fdb96f8033F8625f201107Ed0C173c24";
 const List: NextPage = () => {
-  const [data, setData] = React.useState<any[]>([]);
-  const [isLoading, setIsLoading] = React.useState(true);
   const { address } = useAccount();
 
-  // React.useEffect(() => {
-  //   if (address) {
-  //     getNFTs(address).then((res) => {
-  //       console.log([...data]);
-  //       setData(res);
-  //       setIsLoading(false);
-  //     });
-  //   }
-  // }, []);
+  const { data, error, isError, isLoading, status } = useContractRead({
+    addressOrName: contractAddress,
+    contractInterface: contractInterface,
+    functionName: "getCreatorChannels",
+    args: [address],
+  });
 
   return (
-    <Container>
-      <h1 className="text-4xl font-bold">NFTS are live</h1>
+    <div className="p-5 space-y-4 flex flex-col w-full max-w-sm">
+      <span className="text-4xl bold mb-4">NFTS are live!</span>
       {isLoading ? (
         <p>Loading...</p>
-      ) : (
-        <div className="flex flex-col overflow-y">
-          {data.map((nft) => (
-            <div className="card w-96 bg-base-90 shadow-xl">
-              <div className="card-body">
-                <h2 className="text-2xl font-bold">{nft.metadata.name}</h2>
-                <p className="text-xl">{nft.metadata.description}</p>
-              </div>
-              <figure>
-                <iframe src={nft.metadata.animation_url} />
-              </figure>
-            </div>
+      ) : ( 
+        <div className="flex flex-col w-full space-y-5">
+          {data?.map((address: string) => (
+            <NftCard address={address} />
           ))}
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

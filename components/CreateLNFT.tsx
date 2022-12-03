@@ -47,7 +47,7 @@ const CreateLNFT = ({ ...props }: Props) => {
   return (
     <div className="flex flex-col">
       <span className="text-4xl bold mb-4">Create your Live NFT!</span>
-      <div className="form-control w-full max-w-xs m-auto">
+      <div className="form-control">
         <label className="label">
           <span className="label-text">Whats the channel name?</span>
         </label>
