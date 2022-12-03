@@ -30,7 +30,7 @@ const VideoCapture = ({ streamKey }: Props) => {
       return;
     }
 
-    const transport = "wrtc";
+    const transport = "auto";
     const client = new Client({ transport });
     const session = client.cast(stream, streamKey);
     console.log(session);
