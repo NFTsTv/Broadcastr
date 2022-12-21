@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
 import React from "react";
-import Container from "../components/container";
 import { useAccount, useContractRead } from "wagmi";
 import NftCard from "../components/NftCard";
 
-import contractInterface from "../contract-abi.json";
+import contractInterface from "contracts/contract-abi.json";
 const contractAddress = "0x7278AE17fdb96f8033F8625f201107Ed0C173c24";
+
+
 const List: NextPage = () => {
   const { address } = useAccount();
 

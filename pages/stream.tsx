@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
 import VideoView, { VideoViewHanlde } from "components/VideoView";
 import { CastSession, Client } from "@livepeer/webrtmp-sdk";
-
+import { useRouter } from "next/router";
+import { useLivenft } from "hooks/useLivenft";
 type State = {
   state: "loading" | "error" | "live" | "idle";
 };
@@ -30,6 +31,9 @@ const LiveStreamState = () => {
   const [session, setSession] = React.useState<CastSession | null>(null);
   const videoView = useRef<VideoViewHanlde | null>(null);
   const client = new Client({ transport: "auto" });
+  const router = useRouter();
+  const { address } = router.query;
+  const {data} = useLivenft(address);
 
   React.useEffect(() => {
     if (session) {
@@ -55,6 +59,10 @@ const LiveStreamState = () => {
       }
     };
   }, [session]);
+
+  if (!address) {
+    return <div>loading</div>;
+  }
 
   const onStart = () => {
     // Start livestreaming code here...

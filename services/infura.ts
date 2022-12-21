@@ -1,17 +1,15 @@
 import { create } from "ipfs-http-client";
 import { LNFTMetadata } from "../types/general";
 
-
-
 export default class Infura {
   public ipfsClient;
   private readonly projectId = process.env.INFURA_IPFS_PROJECT_ID;
   private readonly projectSecret = process.env.INFURA_IPFS_PROJECT_SECRET;
-  
-  constructor() {
 
+  constructor() {
     const auth =
-    "Basic " + Buffer.from(this.projectId + ":" + this.projectSecret).toString("base64");
+      "Basic " +
+      Buffer.from(this.projectId + ":" + this.projectSecret).toString("base64");
     this.ipfsClient = create({
       host: "ipfs.infura.io",
       port: 5001,
