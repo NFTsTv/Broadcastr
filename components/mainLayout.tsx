@@ -31,19 +31,19 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     );
   }
 
-  if (!isLoggedIn) {
-    return (
-      <Layout>
-        <Container>
-          <h1 className="text-4xl font-bold">NFTS are live</h1>
-          <p className="text-xl text-center">
-            Welcome to NFTs are live! Connect your wallet to get started
-          </p>
-          <ConnectButton />
-        </Container>
-      </Layout>
-    );
-  }
+  // if (!isLoggedIn) {
+  //   return (
+  //     <Layout>
+  //       <Container>
+  //         <h1 className="text-4xl font-bold">NFTS are live</h1>
+  //         <p className="text-xl text-center">
+  //           Welcome to NFTs are live! Connect your wallet to get started
+  //         </p>
+  //         <ConnectButton />
+  //       </Container>
+  //     </Layout>
+  //   );
+  // }
 
   return <Layout>{children}</Layout>;
 };

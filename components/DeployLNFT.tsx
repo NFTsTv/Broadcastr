@@ -55,7 +55,7 @@ const DeployLNFT = ({ ...props }: Props) => {
         <label className="input-group mb-4 max-w-xs w-full">
           <input
             type="text"
-            placeholder="0.08"
+            placeholder="0.08"  
             className="input input-bordered"
           />
           <span>ETH</span>
