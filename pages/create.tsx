@@ -12,7 +12,6 @@ const Create: NextPage = () => {
   const [liveNFT, setLiveNFT] = React.useState<LiveNFT>({
     name: "",
     description: "",
-    price: "",
   });
 
   const onExit = () => {

@@ -3,8 +3,8 @@ import React from "react";
 import { useAccount, useContractRead } from "wagmi";
 import NftCard from "../components/NftCard";
 
-import contractInterface from "contracts/contract-abi.json";
-const contractAddress = "0x7278AE17fdb96f8033F8625f201107Ed0C173c24";
+import factoryContract from "contracts/factory-abi";
+const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
 
 const List: NextPage = () => {
@@ -12,7 +12,7 @@ const List: NextPage = () => {
 
   const { data, error, isError, isLoading, status } = useContractRead({
     addressOrName: contractAddress,
-    contractInterface: contractInterface,
+    contractInterface: factoryContract,
     functionName: "getCreatorChannels",
     args: [address],
   });

@@ -10,9 +10,9 @@ export const createMetadata = ({
 }) => ({
   name: name,
   description: description,
-  animation_url: "",
+  animation_url: "https://lvpr.tv/?muted=0&v=" + playbackId,
   external_url: "https://lvpr.tv/?muted=0&v=" + playbackId,
-  image: "",
+  image: "https://lvpr.tv/?muted=0&v=" + playbackId,
   properties: {
     creator_address: "",
     LNFTId: "",

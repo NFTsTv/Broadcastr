@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import Infura from "../../../services/infura";
+import Infura from "services/infura";
 
 export default async function handler(
   req: NextApiRequest,

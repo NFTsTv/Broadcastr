@@ -8,7 +8,7 @@ import {
   useContractReads,
 } from "wagmi";
 
-import contractInterface from "../LNFTcontract-abi.json";
+import LNFTcontractABI from "contracts/LNFTcontract-abi";
 import Link from "next/link";
 const contractAddress = "0xbc77b332d56d54A0454De880bDFf7e1df28ea450";
 
@@ -19,7 +19,7 @@ interface Props {
 const NftCard = ({ ...props }: Props) => {
   const { data, error, isError, isLoading, status } = useContractRead({
     addressOrName: props.address,
-    contractInterface: contractInterface,
+    contractInterface: LNFTcontractABI,
     functionName: "baseTokenURI",
   });
 

@@ -3,7 +3,7 @@ import React, { createContext, ReactNode } from "react";
 export type LiveNFT = {
   name: string;
   description: string;
-  price: string;
+  price?: BigInt;
   baseUri?: undefined;
 };
 

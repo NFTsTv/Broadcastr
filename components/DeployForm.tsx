@@ -23,7 +23,7 @@ const DeployLNFT = () => {
           />
           <span>ETH</span>
         </label>
-        <button onClick={() => deployContract?.()} className="btn btn-primary">
+        <button onClick={deployContract} className="btn btn-primary">
           {isLoading ? "Loading..." : "Deploy"}
         </button>
         {error && (
