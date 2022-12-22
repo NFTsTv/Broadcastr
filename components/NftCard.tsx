@@ -10,11 +10,12 @@ const NftCard = ({ ...props }: Props) => {
   const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS;
   if (!contractAddress || !props.address) return null;
   const { lnftData } = useLivenft(props.address);
-
+  const color = getRandomTailwindColor()
+  console.log(color)
   return (
     <div
       key={props.address}
-      className={`card w-full bg-${getRandomTailwindColor()} text-primary-content box-border`}
+      className={`card w-full bg-red-400 text-primary-content box-border`}
     >
       <div className="card-body">
         <p className="ml-auto">{props.address.slice(0, 10)}</p>

@@ -1,8 +1,9 @@
 import React from "react";
 import useCreateLiveNFT from "hooks/useCreateLiveNFT";
-
+import Button from "components/Button";
 const CreateLNFT = () => {
-  const { handleSetData, handleCreateStream, error } = useCreateLiveNFT();
+  const { handleSetData, handleCreateStream, error, isLoading } =
+    useCreateLiveNFT();
 
   return (
     <div className="flex flex-col">
@@ -26,9 +27,10 @@ const CreateLNFT = () => {
           className="input input-bordered w-full mb-8"
           onChange={(e) => handleSetData("description", e.target.value)}
         />
-        <button onClick={handleCreateStream} className="btn btn-primary">
-          Next step
-        </button>
+        <Button onClick={handleCreateStream} isLoading={isLoading}>
+            Create LNFT
+        </Button>
+
         {error && <span className="text-red-500">{error}</span>}
       </div>
     </div>

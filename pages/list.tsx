@@ -18,7 +18,7 @@ const List: NextPage = () => {
   });
 
   return (
-    <div className="p-5 space-y-4 flex flex-col w-full max-w-sm">
+    <div className="p-5 space-y-4 flex flex-col w-full">
       <span className="text-4xl bold mb-4">NFTS are live!</span>
       {isLoading ? (
         <p>Loading...</p>

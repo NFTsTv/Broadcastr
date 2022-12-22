@@ -47,9 +47,8 @@ export function getRandomTailwindColor(): string {
   ];
 
   const randomIndex = Math.floor(Math.random() * tailwindColors.length);
-  return tailwindColors[randomIndex];
+  return tailwindColors[randomIndex ];
 }
-
 
 export const parseStringToNumber = (value: string) => {
   // allow floats and integers

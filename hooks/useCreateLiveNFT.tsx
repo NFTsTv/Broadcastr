@@ -21,13 +21,14 @@ import factoryContract from "contracts/factory-abi";
 const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
 const useCreateLiveNFT = () => {
-  const {address} = useAccount();
+  const { address } = useAccount();
   const context = React.useContext(CreateContext);
   if (!context) {
     throw "context requred to use this hook";
   }
   const [contractWriteEnabled, setContractWriteEnabled] = React.useState(false);
   const { liveNFT, setLiveNFT } = context;
+  const [isLoadingRequest, setIsLoadingRequest] = React.useState(false);
   const [error, setError] = React.useState<string | undefined>();
   const {
     data: assetData,
@@ -74,15 +75,17 @@ const useCreateLiveNFT = () => {
   React.useEffect(() => {
     if (createStreamStatus === "success") {
       if (!assetData) return;
+      setIsLoadingRequest(true);
       const metadata = createMetadata({
         name: liveNFT.name,
         description: liveNFT.description,
         LNFTId: assetData.id,
         playbackUrl: assetData?.playbackUrl,
-        address: address ?? ""
+        address: address ?? "",
       });
       post("/api/collection/uploadMetadata", metadata).then((res) => {
         setLiveNFT({ ...liveNFT, baseUri: res?.url });
+        setIsLoadingRequest(false);
       });
     }
     if (writeTransactionStatus === "success") {
@@ -144,7 +147,8 @@ const useCreateLiveNFT = () => {
     isLoading:
       isLoading ||
       createStreamStatus === "loading" ||
-      writeTransactionStatus === "loading",
+      writeTransactionStatus === "loading" ||
+      isLoadingRequest,
   };
 };
 

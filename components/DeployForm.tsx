@@ -1,11 +1,10 @@
 import React from "react";
 import useCreateLiveNFT from "hooks/useCreateLiveNFT";
-
-
+import Button from "components/Button";
 
 const DeployLNFT = () => {
-  const { handleSetData, deployContract, error, isLoading } = useCreateLiveNFT();
-
+  const { handleSetData, deployContract, error, isLoading } =
+    useCreateLiveNFT();
 
   return (
     <>
@@ -17,20 +16,27 @@ const DeployLNFT = () => {
         <label className="input-group mb-4 max-w-xs w-full">
           <input
             type="text"
-            placeholder="0.08"  
-            className="input input-bordered"
-            onChange={(e) => handleSetData("price", e.target.value)}
+            placeholder="0.08"
+            className="input input-bordered w-3/4"
+            value="0"
+            // onChange={(e) => handleSetData("price", e.target.value)}
           />
-          <span>ETH</span>
+          <span className="w-1/4">ETH</span>
         </label>
-        <button onClick={deployContract} className="btn btn-primary">
-          {isLoading ? "Loading..." : "Deploy"}
-        </button>
-        {error && (
-          <div>
-            An error occurred: {error}
-          </div>
-        )}
+        <label className="label">
+          <span className="label-text">Price of your LNFT</span>
+        </label>
+          <input
+            type="text"
+            placeholder="0.08"
+            className="input input-bordered w-full mb-4"
+            value="0"
+            // onChange={(e) => handleSetData("price", e.target.value)}
+          />
+        <Button onClick={deployContract} isLoading={isLoading}>
+          Deploy
+        </Button> 
+        {error && <div>An error occurred: {error}</div>}
       </div>
     </>
   );
