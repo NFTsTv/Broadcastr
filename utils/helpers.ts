@@ -1,23 +1,37 @@
 
+import { LiveNFT } from "context/createContext";
+
 export const createMetadata = ({
   name,
   description,
-  playbackId,
+  LNFTId,
+  playbackUrl,
+  address
 }: {
   name: string;
   description: string;
-  playbackId: string;
+  LNFTId: string;
+  playbackUrl: string;
+  address: string
 }) => ({
   name: name,
   description: description,
-  animation_url: "https://player-generator.vercel.app/iframe?sources=" + playbackId,
-  external_url: "https://player-generator.vercel.app/iframe?sources=" + playbackId,
-  image: "https://player-generator.vercel.app/iframe?sources=" + playbackId,
+  animation_url: "https://player-generator.vercel.app/iframe?sources=" + playbackUrl,
+  external_url: "https://player-generator.vercel.app/iframe?sources=" + playbackUrl,
+  image: "https://player-generator.vercel.app/iframe?sources=" + playbackUrl,
   properties: {
-    creator_address: "",
-    LNFTId: "",
+    creator_address: address,
+    LNFTId: LNFTId,
   },
 });
+
+export const parseParams = (params: Array<string>): LiveNFT => {
+  return {
+    baseUri: params[0],
+    name: params[1],
+    description: params[2],
+  };
+};
 
 export function getRandomTailwindColor(): string {
   const tailwindColors = [

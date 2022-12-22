@@ -9,7 +9,6 @@ export type VideoViewHanlde = {
 const VideoView = forwardRef<VideoViewHanlde>((props, ref) => {
   const videoEl = useRef<HTMLVideoElement | null>(null);
   const stream = useRef<MediaStream | null>(null);
-  console.log(stream);
   React.useEffect(() => {
     (async () => {
       if (!videoEl.current) {
@@ -31,7 +30,6 @@ const VideoView = forwardRef<VideoViewHanlde>((props, ref) => {
   // Expose the methods to the parent component using useImperativeHandle
   React.useImperativeHandle(ref, () => ({
     getMediaStream: () => {
-      console.log(stream.current?.getVideoTracks());
       return stream.current;
     },
     switchCamera: () => {

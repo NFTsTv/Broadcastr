@@ -4,7 +4,6 @@ import { CastSession, Client } from "@livepeer/webrtmp-sdk";
 import { useRouter } from "next/router";
 import { useLivenft } from "hooks/useLiveNFT";
 
-
 type State = {
   state: "loading" | "error" | "live" | "idle";
 };
@@ -35,9 +34,10 @@ const LiveStreamState = () => {
   const client = new Client({ transport: "auto" });
   const router = useRouter();
   const { address } = router.query;
-  const { stream } = useLivenft("4edafnkh8kxqsbo4");
+  const { stream } = useLivenft(address as string);
 
   React.useEffect(() => {
+    
     if (session) {
       session.on("open", () => {
         console.log("Stream started; visit Livepeer Dashboard.");
@@ -80,12 +80,14 @@ const LiveStreamState = () => {
       return;
     }
 
-    // if (!streamKey) {
-    //   alert('Invalid streamKey.')
-    //   return
-    // }
+    if (!stream?.streamKey) {
+      alert("Video stream was not started.");
 
-    const session = client.cast(mediaStream, "213b-z858-x4jm-4xmf");
+      return;
+    }
+
+    const session = client.cast(mediaStream, stream.streamKey);
+    console.log(session)
     setSession(session);
   };
 
