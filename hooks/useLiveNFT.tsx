@@ -37,7 +37,8 @@ export const useLivenft = (address: string) => {
         return;
       }
       get(item.baseUri).then((response) => {
-        if (response) {
+        console.log(response)
+        if (response?.properties) {
           setProperties({
             streamId: response.properties.LNFTId,
             ownerAddress: response.properties.creator_address,

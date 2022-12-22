@@ -25,7 +25,7 @@ const List: NextPage = () => {
       ) : ( 
         <div className="flex flex-col w-full space-y-5">
           {data?.map((address: string) => (
-            <NftCard address={address} />
+            <NftCard  address={address} />
           ))}
         </div>
       )}
