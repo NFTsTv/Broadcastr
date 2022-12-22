@@ -18,9 +18,6 @@ const Home: NextPage = () => {
       <Link href="/list">
         <button className="btn w-full btn-secondary">View collection</button>
       </Link>
-      <Link href="/stream">
-        <button className="btn w-full btn-accent">Live stream</button>
-      </Link>
     </Container>
   );
 };

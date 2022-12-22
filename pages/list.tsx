@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import React from "react";
 import { useAccount, useContractRead } from "wagmi";
-import NftCard from "../components/NftCard";
+import NftCard from "components/NftCard";
 
 import factoryContract from "contracts/factory-abi";
 const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";

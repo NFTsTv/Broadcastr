@@ -64,10 +64,11 @@ const useCreateLiveNFT = () => {
 
   React.useEffect(() => {
     if (createStreamStatus === "success") {
+      if (!assetData) return
       const metadata = createMetadata({
         name: liveNFT.name,
         description: liveNFT.description,
-        playbackId: assetData?.playbackId || "",
+        playbackId: assetData?.playbackUrl
       });
       post("/api/collection/uploadMetadata", metadata).then((res) => {
         setLiveNFT({ ...liveNFT, baseUri: res?.url });

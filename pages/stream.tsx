@@ -35,7 +35,7 @@ const LiveStreamState = () => {
   const client = new Client({ transport: "auto" });
   const router = useRouter();
   const { address } = router.query;
-  const { data } = useLivenft(address);
+  const { stream } = useLivenft("4edafnkh8kxqsbo4");
 
   React.useEffect(() => {
     if (session) {

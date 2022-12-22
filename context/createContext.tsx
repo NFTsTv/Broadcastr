@@ -4,7 +4,7 @@ export type LiveNFT = {
   name: string;
   description: string;
   price?: BigInt;
-  baseUri?: undefined;
+  baseUri?: string;
 };
 
 interface ContextType {

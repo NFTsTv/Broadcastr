@@ -13,14 +13,13 @@ import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
 import MainLayout from "../components/mainLayout";
 
-console.log(process.env.LIVEPEER_API_KEY)
 const { chains, provider } = configureChains(
   [chain.goerli],
-  [infuraProvider({ apiKey: "3fd19f06b5f642e18ec3efee24f1799e" }), publicProvider()]
+  [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY }), publicProvider()]
 );
 
 const client = createReactClient({
-  provider: studioProvider({ apiKey: process.env.NEXT_LIVEPEER_API_KEY }),
+  provider: studioProvider({ apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY }),
 });
 
 const { connectors } = getDefaultWallets({
