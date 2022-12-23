@@ -15,3 +15,30 @@ a {
   @apply text-blue-600 underline;
 }
 
+.swiper-slide-prev {
+  @apply bg-primary card text-primary-content box-border shadow-2xl;
+  visibility: visible !important;
+
+}
+
+.swiper-slide-next {
+  @apply bg-primary card text-primary-content box-border shadow-2xl;
+  visibility: visible !important;
+
+}
+
+.swiper-slide-active {
+  @apply bg-primary card text-primary-content box-border shadow-2xl;
+  visibility: visible !important;
+
+
+}
+
+.swiper-slide {
+  height: 16rem !important;
+  visibility: hidden;
+}
+
+.swiper-slide-shadow {
+  display: none;
+}
