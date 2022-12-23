@@ -39,7 +39,8 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           <p className="text-xl text-center">
             Welcome to NFTs are live! Connect your wallet to get started
           </p>
-          <ConnectButton />
+          <div className="w-40 m-auto"><ConnectButton /></div>
+          
         </Container>
       </Layout>
     );
