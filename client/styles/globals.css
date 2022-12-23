@@ -16,19 +16,19 @@ a {
 }
 
 .swiper-slide-prev {
-  @apply bg-primary card text-primary-content box-border shadow-2xl;
+  @apply bg-base-300 card text-primary-content box-border shadow-2xl;
   visibility: visible !important;
 
 }
 
 .swiper-slide-next {
-  @apply bg-primary card text-primary-content box-border shadow-2xl;
+  @apply bg-base-300 card text-primary-content box-border shadow-2xl;
   visibility: visible !important;
 
 }
 
 .swiper-slide-active {
-  @apply bg-primary card text-primary-content box-border shadow-2xl;
+  @apply bg-base-300 card text-primary-content box-border shadow-2xl;
   visibility: visible !important;
 
 

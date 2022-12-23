@@ -2,7 +2,7 @@ import React from "react";
 import Link from 'next/link';
 const Menu = () => {
   return (
-    <ul className="menu menu-horizontal bg-base-100 m-auto mb-4 rounded-box">
+    <ul className="menu menu-horizontal bg-base-100 m-auto rounded-box">
       <Link href="/">
         <li>
           <a>

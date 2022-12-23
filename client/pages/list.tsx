@@ -36,7 +36,7 @@ const List: NextPage = () => {
   return (
     <Container>
       <Menu />
-      <h1>All you LNFTs</h1>
+      <h1>All your LNFTs</h1>
 
       <div className="relative h-full">
         <Swiper
@@ -57,12 +57,12 @@ const List: NextPage = () => {
               </SwiperSlide>
             );
           })}
-
           <input
             type="range"
             min="0"
+            defaultValue={0}
             max={data.length -1}
-            className="range range-xs mt-4"
+            className="range range-xs mt-8"
             onChange={(e) => handleScroll(e.target.value)}
           />
         </Swiper>

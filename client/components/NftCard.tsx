@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { getRandomTailwindColor } from "utils/helpers";
 import { useLivenft } from "hooks/useLiveNFT";
 interface Props {
   address: string;
@@ -16,15 +15,15 @@ const NftCard = ({ ...props }: Props) => {
       <h2 className="card-title">{lnftData?.name}</h2>
       <p>{lnftData?.description}</p>
       <div className="card-actions justify-end mt-auto">
-        <Link href={`/stream?address=${props.address}`}>
-          <button className="btn btn-sm border-red-700 bg-red-700 text-white">
+        <Link href={`/golive?address=${props.address}`}>
+          <button className="btn btn-sm btn-primary text-white">
             Go Live
           </button>
         </Link>
         <Link
           href={`https://testnets.opensea.io/assets/goerli/${props.address}/1`}
         >
-          <button className="btn btn-sm border-pink-700 bg-pink-700 text-white">
+          <button className="btn btn-sm btn-secondary text-white">
             Preview
           </button>
         </Link>
