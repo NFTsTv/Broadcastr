@@ -8,20 +8,29 @@ contract LNFTFactory {
     address[] public livenfts;
     mapping(address => address[]) contentCreatorsChannels;
 
-
     function createLiveNFT(
         string memory _uri,
         string memory _name,
         string memory _description,
         uint256 _totalSupply,
         uint256 _mintPrice
-    ) public returns (address){
+    ) public {
         LiveNFT contractInstance = new LiveNFT();
         address contractAddress = address(contractInstance);
-        LiveNFT(contractAddress).init(_uri, _name, _description, _totalSupply, _mintPrice);
+        LiveNFT(contractAddress).init(
+            _uri,
+            _name,
+            _description,
+            _totalSupply,
+            _mintPrice
+        );
         livenfts.push(contractAddress);
+        // if (contentCreatorsChannels[msg.sender] == address[].length) {
+        //     contentCreatorsChannels[msg.sender] = new address[](1);
+        // }
         contentCreatorsChannels[msg.sender].push(contractAddress);
-        return contractAddress;
+        contractInstance.freeMint(msg.sender);
+        contractInstance.transferOwnership(msg.sender);
     }
 
     function getCreatorChannels(
@@ -30,7 +39,13 @@ contract LNFTFactory {
         return contentCreatorsChannels[_creatorAddress];
     }
 
-    function getMetadata(address _liveNftAddress) public view returns (string memory, string memory, string memory, uint256, uint256) {
+    function getMetadata(
+        address _liveNftAddress
+    )
+        public
+        view
+        returns (string memory, string memory, string memory, uint256, uint256)
+    {
         return LiveNFT(_liveNftAddress).getMetadata();
     }
 }

@@ -58,6 +58,11 @@ contract LiveNFT is ERC721, Ownable {
         return baseTokenURI;
     }
 
+function freeMint(address recipient) public onlyOwner {
+    uint256 newTokenId = ++currentTokenId;
+    _safeMint(recipient, newTokenId);
+}
+
     function mintTo(address recipient) public payable returns (uint256) {
         if (msg.value != mintPrice) {
             revert MintPriceNotPaid();
