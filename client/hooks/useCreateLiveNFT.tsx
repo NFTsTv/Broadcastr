@@ -50,7 +50,7 @@ const useCreateLiveNFT = () => {
       liveNFT.name,
       liveNFT.description,
       10,
-      liveNFT.price,
+      0,
     ],
     enabled: contractWriteEnabled,
   });

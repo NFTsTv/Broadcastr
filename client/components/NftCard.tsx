@@ -15,7 +15,6 @@ const NftCard = ({ ...props }: Props) => {
   return (
     <div
       key={props.address}
-      className={`card w-full bg-red-400 text-primary-content box-border`}
     >
       <div className="card-body">
         <p className="ml-auto">{props.address.slice(0, 10)}</p>

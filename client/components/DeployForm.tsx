@@ -8,7 +8,7 @@ const DeployLNFT = () => {
 
   return (
     <>
-      <span className="text-4xl bold mb-4">Deploy your Live NFT!</span>
+      <h1>Deploy your Live NFT</h1>
       <div className="form-control w-full max-w-xs m-auto">
         <label className="label">
           <span className="label-text">Price of your LNFT</span>
@@ -26,16 +26,16 @@ const DeployLNFT = () => {
         <label className="label">
           <span className="label-text">Price of your LNFT</span>
         </label>
-          <input
-            type="text"
-            placeholder="0.08"
-            className="input input-bordered w-full mb-4"
-            value="0"
-            // onChange={(e) => handleSetData("price", e.target.value)}
-          />
+        <input
+          type="text"
+          placeholder="0.08"
+          className="input input-bordered w-full mb-4"
+          value="0"
+          // onChange={(e) => handleSetData("price", e.target.value)}
+        />
         <Button onClick={deployContract} isLoading={isLoading}>
           Deploy
-        </Button> 
+        </Button>
         {error && <div>An error occurred: {error}</div>}
       </div>
     </>

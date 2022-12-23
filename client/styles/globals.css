@@ -2,3 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+h1 {
+  @apply text-2xl font-bold text-center;
+}
+h2 {
+  @apply text-xl;
+}
+h3 {
+  @apply text-lg;
+}
+a {
+  @apply text-blue-600 underline;
+}
+

@@ -11,7 +11,7 @@ const Button = ({ ...props }: props) => {
     return (
       <button
         type="button"
-        className="btn btn-primary font-semibold leading-6 text-sm shadow rounded-md text-white hover:bg-indigo-600 transition ease-in-out duration-150 cursor-not-allowed"
+        className="btn btn-primary transition ease-in-out duration-150 cursor-not-allowed"
       >
         <svg
           className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -39,7 +39,7 @@ const Button = ({ ...props }: props) => {
   }
 
   return (
-    <button onClick={props.onClick} className="btn btn-primary hover:bg-indigo-600">
+    <button onClick={props.onClick} className="btn btn-primary">
       {props.children}
     </button>
   );

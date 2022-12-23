@@ -2,14 +2,22 @@ import type { NextPage } from "next";
 import React from "react";
 import { useAccount, useContractRead } from "wagmi";
 import NftCard from "components/NftCard";
-
+import Container from "components/container";
 import factoryContract from "contracts/factory-abi";
-const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
+import Menu from "components/Menu";
+import { Swiper, SwiperSlide,  } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-cards";
 
+// import required modules
+import { EffectCards } from "swiper";
+
+const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
 const List: NextPage = () => {
   const { address } = useAccount();
-
+  const [currentIndex, setCurrentIndex] = React.useState(0);
   const { data, error, isError, isLoading, status } = useContractRead({
     addressOrName: contractAddress,
     contractInterface: factoryContract,
@@ -17,19 +25,40 @@ const List: NextPage = () => {
     args: [address],
   });
 
+  if (isLoading || data === undefined) {
+    return <div>loading</div>;
+  }
+
   return (
-    <div className="p-5 space-y-4 flex flex-col w-full">
-      <span className="text-4xl bold mb-4">NFTS are live!</span>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : ( 
-        <div className="flex flex-col w-full space-y-5">
-          {data?.map((address: string) => (
-            <NftCard  address={address} />
-          ))}
-        </div>
-      )}
-    </div>
+    <Container>
+      <Menu />
+      <h1>All you LNFTs</h1>
+
+      <div className="relative h-full">
+        <Swiper
+          effect={"cards"}
+          grabCursor={true}
+          modules={[EffectCards]}
+          cardsEffect={slideShadows: false}
+        >
+          {data.map((data, index) => {
+            return (
+              <SwiperSlide>
+                <div className="bg-red-400 card text-primary-content box-border shadow-xl">
+                  <NftCard address={data} />
+                </div>
+              </SwiperSlide>
+            );
+          })}
+
+          {/* <SwiperSlide>
+          <div className="mt-10 ml-10 bg-red-200 card text-primary-content box-border">
+            <NftCard address={data[1]} />
+          </div>
+          </SwiperSlide> */}
+        </Swiper>
+      </div>
+    </Container>
   );
 };
 

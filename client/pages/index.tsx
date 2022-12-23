@@ -7,9 +7,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 const Home: NextPage = () => {
   return (
     <Container>
-      <span className="text-4xl bold mb-4">NFTS are live!</span>
-
-      <div className=" m-auto">
+      <span className="mx-auto text-2xl">Welcome</span>
+      <div className="mx-auto">
         <ConnectButton />
       </div>
       <Link href="/create">
