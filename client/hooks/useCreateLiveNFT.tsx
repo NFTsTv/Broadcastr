@@ -62,7 +62,6 @@ const useCreateLiveNFT = () => {
   const {
     status: writeTransactionStatus,
     error: txError,
-    data: transactionData,
   } = useWaitForTransaction({
     hash: data?.hash,
   });
@@ -85,7 +84,6 @@ const useCreateLiveNFT = () => {
     }
     if (writeTransactionStatus === "success") {
       alert("success");
-      console.log(transactionData);
       window.location.href = "/list";
     }
   }, [createStreamStatus, writeTransactionStatus]);
@@ -126,6 +124,9 @@ const useCreateLiveNFT = () => {
   };
 
   const handleSetData = (key: keyof LiveNFT, value: string) => {
+    if(key === "price" && value == ""){
+      value = "0"
+    }
     setLiveNFT({ ...liveNFT, [key]: value });
   };
 
