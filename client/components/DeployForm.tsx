@@ -27,7 +27,7 @@ const DeployLNFT = () => {
         </label>
         <input
           type="text"
-          placeholder="0.08"
+          placeholder="100"
           className="input input-bordered w-full mb-4"
           onChange={(e) => handleSetData("totalSupply", e.target.value)}
         />
