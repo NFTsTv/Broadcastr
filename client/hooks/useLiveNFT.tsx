@@ -48,7 +48,6 @@ export const useLivenft = (address: string) => {
   const { data: stream } = useStream({
     streamId: properties.streamId,
   });
-
   return {
     stream,
     lnftData,
