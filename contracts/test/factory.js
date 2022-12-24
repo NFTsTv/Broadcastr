@@ -19,7 +19,7 @@ describe("LNFTFactory", function () {
     uri = "https://example.com/my-nft";
     name = "My NFT";
     description = "This is my NFT";
-    totalSupply = 100;
+    totalSupply = 2;
     mintPrice = BigInt(1)
 
     // Call the createLiveNFT function
@@ -37,7 +37,6 @@ describe("LNFTFactory", function () {
     const liveNFTAddress = await lnftFactory.livenfts(0)
     // Load the LiveNFT contract at the given address
     liveNFT = await ethers.getContractAt("LiveNFT", liveNFTAddress);
-    console.log(liveNFT)
 
   })
 
@@ -63,6 +62,24 @@ describe("LNFTFactory", function () {
     expect(retrievedOwner).to.equal(alice.address);
   });
 
+  it("should not allow Alice to mint new tokens due to price", async function () {
+    // Define the parameters for the mint function
+    const to = alice.address;
+    const value = 0;  // set the value of the NFT token
+    // Call the buy function
+    try {
+      // Call the mintTo function
+      const tx = await liveNFT.mintTo(to, { value: value });
+      // Wait for the transaction to be mined
+      await tx.wait();
+      expect.fail();
+    } catch (error) {
+      console.log(error.message)
+      // Check that the error is the expected one (revert)
+      expect(error.message).to.include("revert");
+    }
+  })
+
   it("should allow Alice to mint new tokens", async function () {
     // Define the parameters for the mint function
     const to = alice.address;
@@ -80,20 +97,25 @@ describe("LNFTFactory", function () {
     expect(retrievedOwner).to.equal(alice.address);
   });
 
-  it("should not allow Alice to mint new tokens", async function () {
+
+
+  it("should not allow Alice to mint new tokens due to supply limit", async function () {
     // Define the parameters for the mint function
     const to = alice.address;
-    const value = 0;  // set the value of the NFT token
+    const value = 1;  // set the value of the NFT token
     // Call the buy function
     try {
       // Call the mintTo function
       const tx = await liveNFT.mintTo(to, { value: value });
       // Wait for the transaction to be mined
-      await tx.wait();              
+      await tx.wait();
       expect.fail();
     } catch (error) {
+      console.log(error.message)
+
       // Check that the error is the expected one (revert)
       expect(error.message).to.include("revert");
     }
+  })
 
-  })});
+});

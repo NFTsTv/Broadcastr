@@ -61,6 +61,11 @@ contract LiveNFT is ERC721, Ownable {
     }
 
     function mintTo(address recipient) public payable returns (uint256) {
+        require(
+            totalSupply == 0 || currentTokenId < totalSupply,
+            "Total supply is already reached"
+        );
+
         if (msg.value != mintPrice) {
             revert MintPriceNotPaid();
         }
