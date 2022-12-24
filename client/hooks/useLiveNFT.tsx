@@ -1,15 +1,12 @@
 import React from "react";
 import {
-  useAsset,
-  useUpdateAsset,
-  useCreateStream,
   useStream,
 } from "@livepeer/react";
 import { useAccount, useContractRead } from "wagmi";
 import LNFTcontractABI from "contracts/factory-abi";
 import { get } from "utils/requests";
 import { parseParams } from "utils/helpers";
-import { LiveNFT } from "context/createContext";
+import { LiveNFT } from "types/general";
 
 export const useLivenft = (address: string) => {
   const contractAddress =
@@ -37,7 +34,7 @@ export const useLivenft = (address: string) => {
         return;
       }
       get(item.baseUri).then((response) => {
-        console.log(response)
+        console.log(response);
         if (response?.properties) {
           setProperties({
             streamId: response.properties.LNFTId,
@@ -51,7 +48,6 @@ export const useLivenft = (address: string) => {
   const { data: stream } = useStream({
     streamId: properties.streamId,
   });
-
 
   return {
     stream,

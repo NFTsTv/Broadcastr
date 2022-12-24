@@ -1,10 +1,7 @@
 import { CreateContext } from "context/createContext";
 import React from "react";
 import {
-  useAsset,
-  useUpdateAsset,
   useCreateStream,
-  Stream,
 } from "@livepeer/react";
 import {
   useContractWrite,
@@ -15,7 +12,7 @@ import {
 import { parseEther } from "ethers/lib/utils";
 import { createMetadata } from "utils/helpers";
 import { post } from "utils/requests";
-import { LiveNFT } from "context/createContext";
+import { LiveNFT } from "types/general";
 import factoryContract from "contracts/factory-abi";
 
 const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
@@ -49,8 +46,8 @@ const useCreateLiveNFT = () => {
       liveNFT.baseUri,
       liveNFT.name,
       liveNFT.description,
-      10,
-      0,
+      parseEther(liveNFT.price),
+      Number(liveNFT.totalSupply),
     ],
     enabled: contractWriteEnabled,
   });
@@ -59,8 +56,6 @@ const useCreateLiveNFT = () => {
     data,
     write,
     isLoading,
-    isSuccess,
-    status,
     error: contractWriteError,
   } = useContractWrite(config);
 
@@ -117,18 +112,21 @@ const useCreateLiveNFT = () => {
   }, [txError, prepareContractWriteError, createStreamError]);
 
   const deployContract = () => {
+    try {
+      parseEther(liveNFT.price);
+    } catch {
+      setError("Price field has an invalid value");
+      return;
+    }
+    if (isNaN(Number(liveNFT.totalSupply))) {
+      setError("Total supply must be a valid number");
+      return;
+    }
     setContractWriteEnabled(true);
-    // write?.()
   };
 
   const handleSetData = (key: keyof LiveNFT, value: string) => {
-    let parsedValue;
-    if (key === "price") {
-      parsedValue = parseEther(value);
-    } else {
-      parsedValue = value;
-    }
-    setLiveNFT({ ...liveNFT, [key]: parsedValue });
+    setLiveNFT({ ...liveNFT, [key]: value });
   };
 
   const handleCreateStream = () => {

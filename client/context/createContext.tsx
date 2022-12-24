@@ -1,26 +1,33 @@
 import React, { createContext, ReactNode } from "react";
 
-export type LiveNFT = {
+export interface liveNFTFormControl {
   name: string;
   description: string;
-  price?: BigInt;
+  price: string;
+  totalSupply: string;
   baseUri?: string;
-};
-
-interface ContextType {
-  liveNFT: LiveNFT;
-  setLiveNFT: (data: LiveNFT) => void;
 }
 
-interface Props extends ContextType {
+interface ContextType {
+  liveNFT: liveNFTFormControl;
+  setLiveNFT: (data: liveNFTFormControl) => void;
+}
+
+interface Props {
   children: ReactNode;
 }
 
 export const CreateContext = createContext<ContextType | undefined>(undefined);
 
 export function CreateContextProvider(props: Props) {
+  const [liveNFT, setLiveNFT] = React.useState({
+    name: "",
+    description: "",
+    price: "0",
+    totalSupply: "0",
+  });
   return (
-    <CreateContext.Provider value={{ ...props }}>
+    <CreateContext.Provider value={{ liveNFT, setLiveNFT }}>
       {props.children}
     </CreateContext.Provider>
   );

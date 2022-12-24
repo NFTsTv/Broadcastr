@@ -12,7 +12,8 @@ error WithdrawTransfer();
 contract LiveNFT is ERC721, Ownable {
     using Strings for uint256;
     uint256 public currentTokenId;
-
+    bool isInitialized = false;
+    
     string public LNFTname;
     string public baseTokenURI;
     string public description;
@@ -30,6 +31,8 @@ contract LiveNFT is ERC721, Ownable {
         uint256 _totalSupply,
         uint256 _mintPrice
     ) external {
+        require(!isInitialized, "Contract is already initialized!");
+        isInitialized = true;
         baseTokenURI = _baseTokenURI;
         LNFTname = _name;
         description = _description;

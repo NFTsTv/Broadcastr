@@ -18,20 +18,18 @@ const DeployLNFT = () => {
             type="text"
             placeholder="0.08"
             className="input input-bordered w-3/4"
-            value="0"
-            // onChange={(e) => handleSetData("price", e.target.value)}
+            onChange={(e) => handleSetData("price", e.target.value)}
           />
           <span className="w-1/4">ETH</span>
         </label>
         <label className="label">
-          <span className="label-text">Price of your LNFT</span>
+          <span className="label-text">Total supply</span>
         </label>
         <input
           type="text"
           placeholder="0.08"
           className="input input-bordered w-full mb-4"
-          value="0"
-          // onChange={(e) => handleSetData("price", e.target.value)}
+          onChange={(e) => handleSetData("totalSupply", e.target.value)}
         />
         <Button onClick={deployContract} isLoading={isLoading}>
           Deploy

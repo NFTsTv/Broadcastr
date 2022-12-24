@@ -1,25 +1,27 @@
 import type { NextPage } from "next";
-import React, { useState } from "react";
+import React from "react";
 import DeployLNFT from "components/DeployForm";
 import CreateLNFT from "components/CreateForm";
-import { CreateContextProvider } from "context/createContext";
-import { LiveNFT } from "context/createContext";
+import { CreateContextProvider, CreateContext } from "context/createContext";
 import Container from "components/container";
 import Menu from "components/Menu";
 
+const CreateComponent = () => {
+  const context = React.useContext(CreateContext);
+  if(!context) return <>missing context</>
+  const { liveNFT } = context;
+  return (
+    <Container>
+      <Menu />
+      {liveNFT?.baseUri ? <DeployLNFT /> : <CreateLNFT />}
+    </Container>
+  );
+};
 
 const Create: NextPage = () => {
-  const [liveNFT, setLiveNFT] = React.useState<LiveNFT>({
-    name: "",
-    description: "",
-  });
-
   return (
-    <CreateContextProvider liveNFT={liveNFT} setLiveNFT={setLiveNFT}>
-      <Container>
-        <Menu />
-        {liveNFT.baseUri ? <DeployLNFT /> : <CreateLNFT />}
-      </Container>
+    <CreateContextProvider>
+      <CreateComponent />
     </CreateContextProvider>
   );
 };
