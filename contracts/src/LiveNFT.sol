@@ -45,12 +45,9 @@ contract LiveNFT is ERC721, Ownable {
         baseTokenURI = _baseTokenURI;
     }
 
-     function tokenURI(uint256 tokenId)
-        public
-        view
-        override
-        returns (string memory)
-    {
+    function tokenURI(
+        uint256 tokenId
+    ) public view override returns (string memory) {
         require(
             _exists(tokenId),
             "ERC721Metadata: URI query for nonexistent token"
@@ -58,10 +55,10 @@ contract LiveNFT is ERC721, Ownable {
         return baseTokenURI;
     }
 
-function freeMint(address recipient) public onlyOwner {
-    uint256 newTokenId = ++currentTokenId;
-    _safeMint(recipient, newTokenId);
-}
+    function freeMint(address recipient) public onlyOwner {
+        uint256 newTokenId = ++currentTokenId;
+        _safeMint(recipient, newTokenId);
+    }
 
     function mintTo(address recipient) public payable returns (uint256) {
         if (msg.value != mintPrice) {

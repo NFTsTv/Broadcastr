@@ -14,7 +14,7 @@ contract LNFTFactory {
         string memory _description,
         uint256 _totalSupply,
         uint256 _mintPrice
-    ) public {
+    ) public returns (address) {
         LiveNFT contractInstance = new LiveNFT();
         address contractAddress = address(contractInstance);
         LiveNFT(contractAddress).init(
@@ -25,12 +25,10 @@ contract LNFTFactory {
             _mintPrice
         );
         livenfts.push(contractAddress);
-        // if (contentCreatorsChannels[msg.sender] == address[].length) {
-        //     contentCreatorsChannels[msg.sender] = new address[](1);
-        // }
         contentCreatorsChannels[msg.sender].push(contractAddress);
         contractInstance.freeMint(msg.sender);
         contractInstance.transferOwnership(msg.sender);
+        return contractAddress;
     }
 
     function getCreatorChannels(
