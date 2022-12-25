@@ -16,10 +16,10 @@ export const createMetadata = ({
   name: name,
   description: description,
   animation_url:
-    "https://player-generator.vercel.app/iframe?sources=" + playbackUrl,
+    "https://player-generator.vercel.app/iframe?sources=" + playbackUrl +"&poster=https://streameth.tv/social.png",
   external_url:
-    "https://player-generator.vercel.app/iframe?sources=" + playbackUrl,
-  image: "https://player-generator.vercel.app/iframe?sources=" + playbackUrl,
+    "https://player-generator.vercel.app/iframe?sources=" + playbackUrl + "&poster=https://streameth.tv/social.png",
+  image: "https://player-generator.vercel.app/iframe?sources=" + playbackUrl + "&poster=https://streameth.tv/social.png",
   properties: {
     creator_address: address,
     LNFTId: LNFTId,
