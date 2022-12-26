@@ -55,7 +55,7 @@ const Create: NextPage = () => {
           type="text"
           placeholder="Type here"
           className="input input-bordered w-full"
-          value={stream?.rtmpIngestUrl}
+          value="rtmp://rtmp.livepeer.com/live"
           onClick={(e) => {
             console.log(stream);
           }}
