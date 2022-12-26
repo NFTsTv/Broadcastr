@@ -17,9 +17,9 @@ export interface LNFTContractAttributes {
 export type LiveNFT = {
   name: string;
   description: string;
-  price?: BigInt;
+  price: BigInt;
   totalSupply: Number;
-  baseUri?: string;
+  baseUri: string;
 };
 
 export interface LNFTMetadata {

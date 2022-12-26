@@ -12,19 +12,22 @@ export const createMetadata = ({
   LNFTId: string;
   playbackUrl: string;
   address: string;
-}) => ({
-  name: name,
-  description: description,
-  animation_url:
-    "https://player-generator.vercel.app/iframe?sources=" + playbackUrl +"&poster=https://streameth.tv/social.png",
-  external_url:
-    "https://player-generator.vercel.app/iframe?sources=" + playbackUrl + "&poster=https://streameth.tv/social.png",
-  image: "https://player-generator.vercel.app/iframe?sources=" + playbackUrl + "&poster=https://streameth.tv/social.png",
-  properties: {
-    creator_address: address,
-    LNFTId: LNFTId,
-  },
-});
+}) => {
+  const url =
+    "https://player-generator.vercel.app/iframe?poster=https://streameth.tv/social.png&sources=" +
+    playbackUrl;
+  return {
+    name: name,
+    description: description,
+    animation_url: url,
+    external_url: url,
+    image: url,
+    properties: {
+      creator_address: address,
+      LNFTId: LNFTId,
+    },
+  };
+};
 
 export const parseParams = (params: Array<string>): LiveNFT => {
   return {

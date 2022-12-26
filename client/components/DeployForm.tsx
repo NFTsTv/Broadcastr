@@ -1,10 +1,15 @@
 import React from "react";
 import useCreateLiveNFT from "hooks/useCreateLiveNFT";
 import Button from "components/Button";
-
+import { CreateContext } from "context/createContext";
 const DeployLNFT = () => {
-  const { handleSetData, deployContract, error, isLoading } =
-    useCreateLiveNFT();
+  const context = React.useContext(CreateContext);
+  if (!context) {
+    throw "context requred to use this hook";
+  }
+  const { liveNFT, handleSetData, formError } = context;
+
+  const { deployContract, error, isLoading } = useCreateLiveNFT();
 
   return (
     <>
@@ -17,6 +22,7 @@ const DeployLNFT = () => {
           <input
             type="text"
             placeholder="0.08"
+            value={liveNFT.price}
             className="input input-bordered w-3/4"
             onChange={(e) => handleSetData("price", e.target.value)}
           />
@@ -29,12 +35,14 @@ const DeployLNFT = () => {
           type="text"
           placeholder="100"
           className="input input-bordered w-full mb-4"
+          value={liveNFT.totalSupply}
           onChange={(e) => handleSetData("totalSupply", e.target.value)}
         />
         <Button onClick={deployContract} isLoading={isLoading}>
           Deploy
         </Button>
-        {error && <div>An error occurred: {error}</div>}
+        {formError && <div>An error occurred: {formError}</div>}
+        {error && <div>{error}</div>}
       </div>
     </>
   );

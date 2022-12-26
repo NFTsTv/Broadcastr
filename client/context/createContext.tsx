@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode } from "react";
-
+import { parseEther } from "ethers/lib/utils";
 export interface liveNFTFormControl {
   name: string;
   description: string;
@@ -10,7 +10,9 @@ export interface liveNFTFormControl {
 
 interface ContextType {
   liveNFT: liveNFTFormControl;
-  setLiveNFT: (data: liveNFTFormControl) => void;
+  handleSetData: (key: keyof liveNFTFormControl, value: string) => void;
+  formError: string | undefined;
+  validateFormData: () => boolean;
 }
 
 interface Props {
@@ -20,14 +22,46 @@ interface Props {
 export const CreateContext = createContext<ContextType | undefined>(undefined);
 
 export function CreateContextProvider(props: Props) {
-  const [liveNFT, setLiveNFT] = React.useState({
+  const [formError, setError] = React.useState<string | undefined>();
+
+  const [liveNFT, setLiveNFT] = React.useState<liveNFTFormControl>({
     name: "",
     description: "",
-    price: "0",
-    totalSupply: "0",
+    price: "",
+    totalSupply: "",
   });
+
+  const handleSetData = (key: keyof liveNFTFormControl, value: string) => {
+    setLiveNFT({ ...liveNFT, [key]: value });
+  };
+
+  function validateFormData(): boolean {
+    console.log(liveNFT);
+    if (!liveNFT.name || typeof liveNFT.name !== "string") {
+      return false;
+    }
+    if (!liveNFT.description || typeof liveNFT.description !== "string") {
+      return false;
+    }
+    try {
+      parseEther(liveNFT.price);
+    } catch {
+      return false;
+    }
+    if (!liveNFT.totalSupply || isNaN(Number(liveNFT.totalSupply))) {
+      return false;
+    }
+    if (!liveNFT.baseUri || typeof liveNFT.baseUri !== "string") {
+      return false;
+    }
+    setError(undefined);
+    return true;
+  }
+
   return (
-    <CreateContext.Provider value={{ liveNFT, setLiveNFT }}>
+    <CreateContext.Provider
+      value={{ liveNFT, handleSetData, formError, validateFormData }}
+    >
       {props.children}
     </CreateContext.Provider>
   );

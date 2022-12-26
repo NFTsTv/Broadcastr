@@ -1,32 +1,30 @@
 import { CreateContext } from "context/createContext";
 import React from "react";
-import {
-  useCreateStream,
-} from "@livepeer/react";
+import { useCreateStream } from "@livepeer/react";
 import {
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
   useAccount,
 } from "wagmi";
-import { parseEther } from "ethers/lib/utils";
+
 import { createMetadata } from "utils/helpers";
 import { post } from "utils/requests";
-import { LiveNFT } from "types/general";
 import factoryContract from "contracts/factory-abi";
+import { parseEther } from "ethers/lib/utils";
 
 const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
 const useCreateLiveNFT = () => {
   const { address } = useAccount();
   const context = React.useContext(CreateContext);
+  const [createError, setError] = React.useState<string | undefined>();
   if (!context) {
     throw "context requred to use this hook";
   }
-  const [contractWriteEnabled, setContractWriteEnabled] = React.useState(false);
-  const { liveNFT, setLiveNFT } = context;
+  const { liveNFT, handleSetData, validateFormData } = context;
   const [isLoadingRequest, setIsLoadingRequest] = React.useState(false);
-  const [error, setError] = React.useState<string | undefined>();
+
   const {
     data: assetData,
     mutate: createStream,
@@ -36,20 +34,20 @@ const useCreateLiveNFT = () => {
 
   const {
     config,
-    error: prepareContractWriteError,
     isSuccess: prepareContractWriteSuccess,
   } = usePrepareContractWrite({
     addressOrName: contractAddress,
     contractInterface: [...factoryContract],
     functionName: "createLiveNFT",
-    args: [
-      liveNFT.baseUri,
-      liveNFT.name,
-      liveNFT.description,
-      parseEther(liveNFT.price),
-      Number(liveNFT.totalSupply),
-    ],
-    enabled: contractWriteEnabled,
+    args: validateFormData()
+      ? [
+          liveNFT.name,
+          liveNFT.description,
+          liveNFT.baseUri,
+          parseEther(liveNFT.price),
+          Number(liveNFT.totalSupply),
+        ]
+      : [],
   });
 
   const {
@@ -59,12 +57,10 @@ const useCreateLiveNFT = () => {
     error: contractWriteError,
   } = useContractWrite(config);
 
-  const {
-    status: writeTransactionStatus,
-    error: txError,
-  } = useWaitForTransaction({
-    hash: data?.hash,
-  });
+  const { status: writeTransactionStatus, error: txError } =
+    useWaitForTransaction({
+      hash: data?.hash,
+    });
 
   React.useEffect(() => {
     if (createStreamStatus === "success") {
@@ -78,7 +74,7 @@ const useCreateLiveNFT = () => {
         address: address ?? "",
       });
       post("/api/collection/uploadMetadata", metadata).then((res) => {
-        setLiveNFT({ ...liveNFT, baseUri: res?.url });
+        handleSetData("baseUri", res?.url);
         setIsLoadingRequest(false);
       });
     }
@@ -87,19 +83,10 @@ const useCreateLiveNFT = () => {
       window.location.href = "/list";
     }
   }, [createStreamStatus, writeTransactionStatus]);
-
-  React.useEffect(() => {
-    if (prepareContractWriteSuccess) {
-      write?.();
-    }
-  }, [prepareContractWriteSuccess]);
-
+  
   React.useEffect(() => {
     if (txError) {
       setError(txError.message);
-    }
-    if (prepareContractWriteError) {
-      setError(prepareContractWriteError.message);
     }
     if (createStreamError) {
       setError(createStreamError.message);
@@ -107,28 +94,8 @@ const useCreateLiveNFT = () => {
     if (contractWriteError) {
       setError(contractWriteError.message);
     }
-  }, [txError, prepareContractWriteError, createStreamError]);
+  }, [txError, contractWriteError, createStreamError]);
 
-  const deployContract = () => {
-    try {
-      parseEther(liveNFT.price);
-    } catch {
-      setError("Price field has an invalid value");
-      return;
-    }
-    if (isNaN(Number(liveNFT.totalSupply))) {
-      setError("Total supply must be a valid number");
-      return;
-    }
-    setContractWriteEnabled(true);
-  };
-
-  const handleSetData = (key: keyof LiveNFT, value: string) => {
-    if(key === "price" && value == ""){
-      value = "0"
-    }
-    setLiveNFT({ ...liveNFT, [key]: value });
-  };
 
   const handleCreateStream = () => {
     if (liveNFT.name !== "" && liveNFT.description !== "") {
@@ -138,11 +105,19 @@ const useCreateLiveNFT = () => {
     }
   };
 
+  const deployContract = () => {
+    if (validateFormData()) {
+      write?.();
+    } else {
+      setError("wrong formdata");
+    }
+  };
+
   return {
-    handleSetData,
+    prepareContractWriteSuccess,
     handleCreateStream,
     deployContract,
-    error,
+    error: createError,
     isLoading:
       isLoading ||
       createStreamStatus === "loading" ||
