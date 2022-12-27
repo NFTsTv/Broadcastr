@@ -30,25 +30,23 @@ const useCreateLiveNFT = () => {
     mutate: createStream,
     status: createStreamStatus,
     error: createStreamError,
-  } = useCreateStream({ name: liveNFT.name });
+  } = useCreateStream({ name: liveNFT.name, record: true });
 
-  const {
-    config,
-    isSuccess: prepareContractWriteSuccess,
-  } = usePrepareContractWrite({
-    addressOrName: contractAddress,
-    contractInterface: [...factoryContract],
-    functionName: "createLiveNFT",
-    args: validateFormData()
-      ? [
-          liveNFT.baseUri,
-          liveNFT.name,
-          liveNFT.description,
-          parseEther(liveNFT.price),
-          Number(liveNFT.totalSupply),
-        ]
-      : [],
-  });
+  const { config, isSuccess: prepareContractWriteSuccess } =
+    usePrepareContractWrite({
+      addressOrName: contractAddress,
+      contractInterface: [...factoryContract],
+      functionName: "createLiveNFT",
+      args: validateFormData()
+        ? [
+            liveNFT.baseUri,
+            liveNFT.name,
+            liveNFT.description,
+            parseEther(liveNFT.price),
+            Number(liveNFT.totalSupply),
+          ]
+        : [],
+    });
 
   const {
     data,
@@ -70,6 +68,7 @@ const useCreateLiveNFT = () => {
         name: liveNFT.name,
         description: liveNFT.description,
         LNFTId: assetData.id,
+        streamId: assetData?.id,
         playbackUrl: assetData?.playbackUrl,
         address: address ?? "",
       });
@@ -83,7 +82,7 @@ const useCreateLiveNFT = () => {
       window.location.href = "/list";
     }
   }, [createStreamStatus, writeTransactionStatus]);
-  
+
   React.useEffect(() => {
     if (txError) {
       setError(txError.message);
@@ -95,7 +94,6 @@ const useCreateLiveNFT = () => {
       setError(contractWriteError.message);
     }
   }, [txError, contractWriteError, createStreamError]);
-
 
   const handleCreateStream = () => {
     if (liveNFT.name !== "" && liveNFT.description !== "") {

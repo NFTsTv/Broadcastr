@@ -6,16 +6,18 @@ export const createMetadata = ({
   LNFTId,
   playbackUrl,
   address,
+  streamId,
 }: {
   name: string;
   description: string;
   LNFTId: string;
   playbackUrl: string;
   address: string;
+  streamId: string;
 }) => {
   const url =
-    "https://player-generator.vercel.app/iframe?poster=https://streameth.tv/social.png&sources=" +
-    playbackUrl;
+    "https://player-generator.vercel.app/iframe?poster=https://streameth.tv/social.png&streamid=" +
+    streamId;
   return {
     name: name,
     description: description,
