@@ -9,6 +9,7 @@ export type VideoViewHanlde = {
 const VideoView = forwardRef<VideoViewHanlde>((props, ref) => {
   const videoEl = useRef<HTMLVideoElement | null>(null);
   const stream = useRef<MediaStream | null>(null);
+
   React.useEffect(() => {
     (async () => {
       if (!videoEl.current) {
@@ -51,6 +52,7 @@ const VideoView = forwardRef<VideoViewHanlde>((props, ref) => {
         facingMode: settings.facingMode === "user" ? "environment" : "user",
       });
     },
+    
     disableVideo: () => {
       if (!stream.current) {
         return;
