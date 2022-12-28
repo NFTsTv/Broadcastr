@@ -16,14 +16,13 @@ export const createMetadata = ({
   streamId: string;
 }) => {
   const url =
-    "https://player-generator.vercel.app/iframe?poster=https://streameth.tv/social.png&streamid=" +
-    streamId;
+    "https://player-generator.vercel.app/iframe?&streamid=" + streamId;
   return {
     name: name,
     description: description,
     animation_url: url,
     external_url: url,
-    image: url,
+    image: "https://player-generator.vercel.app/default.png",
     properties: {
       creator_address: address,
       LNFTId: LNFTId,
