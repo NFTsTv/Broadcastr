@@ -4,40 +4,31 @@ import { useRouter } from "next/router";
 import { useLivenft } from "hooks/useLiveNFT";
 import WebcamControl from "components/webCamControl";
 import useWebRtmp from "hooks/useWebRtmp";
+import {
+  AgoraVideoPlayer,
+  createClient,
+  createMicrophoneAndCameraTracks,
+} from "agora-rtc-react";
 
 const LiveStreamState = () => {
   const videoView = useRef<VideoViewHanlde | null>(null);
   const router = useRouter();
-  const { address } = router.query;
-  const { stream } = useLivenft(address as string);
-  const { onStart, state } = useWebRtmp(videoView, stream?.streamKey);
+  
+  const config = { mode: "rtc", codec: "vp8" };
 
-  if (!address) {
-    return <div>loading</div>;
-  }
+  const useClient = createClient(config);
+  const useMicrophoneAndCameraTracks = createMicrophoneAndCameraTracks();
 
-  const disableVideo = () => {
-    if(videoView.current){
-      videoView.current.disableVideo()
-    }
-  }
-
-  const switchCamera = () => {
-    if(videoView.current){
-      videoView.current.switchCamera()
-    }
-  }
+  const client = useClient();
+  const { ready, tracks } = useMicrophoneAndCameraTracks();
 
   return (
-    <div className="flex flex-col h-screen">
-      <VideoView ref={videoView} />
-      <WebcamControl
-        goLive={onStart}
-        disableVideo={disableVideo}
-        switchCamera={switchCamera}
-        status={state.state}
+    ready && (
+      <AgoraVideoPlayer
+        videoTrack={tracks[1]}
+        style={{ height: "100%", width: "100%" }}
       />
-    </div>
+    )
   );
 };
 
