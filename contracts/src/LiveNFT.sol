@@ -13,7 +13,6 @@ contract LiveNFT is ERC721, Ownable {
     using Strings for uint256;
     uint256 public currentTokenId;
     bool isInitialized = false;
-    
     string public LNFTname;
     string public baseTokenURI;
     string public description;
@@ -55,7 +54,10 @@ contract LiveNFT is ERC721, Ownable {
             _exists(tokenId),
             "ERC721Metadata: URI query for nonexistent token"
         );
-        return baseTokenURI;
+
+        string memory addressToString = toString(address(this));
+
+        return string(abi.encodePacked(baseTokenURI, addressToString));
     }
 
     function freeMint(address recipient) public onlyOwner {
@@ -95,5 +97,22 @@ contract LiveNFT is ERC721, Ownable {
         returns (string memory, string memory, string memory, uint256, uint256)
     {
         return (baseTokenURI, LNFTname, description, totalSupply, mintPrice);
+    }
+
+    function toString(address account) public pure returns (string memory) {
+        return toString(abi.encodePacked(account));
+    }
+
+    function toString(bytes memory data) public pure returns (string memory) {
+        bytes memory alphabet = "0123456789abcdef";
+
+        bytes memory str = new bytes(2 + data.length * 2);
+        str[0] = "0";
+        str[1] = "x";
+        for (uint i = 0; i < data.length; i++) {
+            str[2 + i * 2] = alphabet[uint(uint8(data[i] >> 4))];
+            str[3 + i * 2] = alphabet[uint(uint8(data[i] & 0x0f))];
+        }
+        return string(str);
     }
 }
