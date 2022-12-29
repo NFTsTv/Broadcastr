@@ -16,7 +16,7 @@ export const createMetadata = ({
   streamId: string;
 }) => {
   const url =
-    "https://player-generator.vercel.app/iframe?poster=https://streameth.tv/social.png&streamid=" +
+    "https://nftstv-client-htry-l84roynp7-shamaon.vercel.app/&address=" +
     streamId;
   return {
     name: name,

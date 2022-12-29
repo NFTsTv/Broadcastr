@@ -27,7 +27,7 @@ export interface LNFTMetadata {
   description: string;
   image: string;
   external_url: string;
-  animation_url?: string;
+  animation_url: string;
   properties: {
     creator_address: string;
     LNFTId: string;
