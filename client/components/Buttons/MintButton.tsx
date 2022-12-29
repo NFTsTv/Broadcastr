@@ -6,15 +6,13 @@ import {
   useContractWrite,
   useAccount,
 } from "wagmi";
-import { BigNumber, ethers } from "ethers";
+import { ethers } from "ethers";
 import LNFTcontractABI from "contracts/LNFTcontract-abi";
-import { parseUnits } from "ethers/lib/utils";
 
 
 const MintButton = ({ address }: { address: string }) => {
   const [mintLoading, setMintLoading] = React.useState(false);
   const { isConnected, address: userAddress } = useAccount();
-  if (!address) return <></>;
   // get mintPrice from contract
   const { data: mintPrice } = useContractRead({
     addressOrName: address,
@@ -22,8 +20,6 @@ const MintButton = ({ address }: { address: string }) => {
     functionName: "mintPrice",
     args: [],
   });
-
-  console.log(mintPrice);
 
   const { writeAsync: mint, error: mintError } = useContractWrite({
     addressOrName: address,
@@ -52,7 +48,7 @@ const MintButton = ({ address }: { address: string }) => {
 
   return (
     <Button onClick={onMintClick} isLoading={mintLoading}>
-      Mint
+      Subscribre for {ethers.utils.formatEther(mintPrice ? mintPrice: 0)} ETH
     </Button>
   );
 };

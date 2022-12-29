@@ -44,7 +44,7 @@ const useLiveNFT = (address: string) => {
 
   const { data: stream } = useStream({
     streamId: properties.streamId,
-    refetchInterval: (stream) => (!stream?.isActive ? 5000 : false),
+    // refetchInterval: (stream) => (!stream?.isActive ? 5000 : false),
   });
 
   const { data: sessions } = useStreamSessions({

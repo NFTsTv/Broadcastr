@@ -2,7 +2,7 @@ import React from "react";
 
 interface props {
   onClick: () => void;
-  isLoading: boolean;
+  isLoading?: boolean;
   children: React.ReactNode
 }
 
