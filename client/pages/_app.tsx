@@ -11,15 +11,20 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
-import MainLayout from "../components/mainLayout";
+import Router from "components/Router";
 
 const { chains, provider } = configureChains(
   [chain.goerli],
-  [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY }), publicProvider()]
+  [
+    infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY }),
+    publicProvider(),
+  ]
 );
 
 const client = createReactClient({
-  provider: studioProvider({ apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY }),
+  provider: studioProvider({
+    apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY,
+  }),
 });
 
 const { connectors } = getDefaultWallets({
@@ -39,9 +44,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <WagmiConfig client={wagmiClient}>
         <Head> NFTsTv </Head>
         <RainbowKitProvider chains={chains}>
-          <MainLayout>
+          <Router>
             <Component {...pageProps} />
-          </MainLayout>
+          </Router>
         </RainbowKitProvider>
       </WagmiConfig>
     </LivepeerConfig>
