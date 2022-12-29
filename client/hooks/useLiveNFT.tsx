@@ -1,6 +1,7 @@
 import React from "react";
 import {
   useStream,
+  useStreamSessions
 } from "@livepeer/react";
 import { useAccount, useContractRead } from "wagmi";
 import LNFTcontractABI from "contracts/factory-abi";
@@ -8,7 +9,7 @@ import { get } from "utils/requests";
 import { parseParams } from "utils/helpers";
 import { LiveNFT } from "types/general";
 
-export const useLivenft = (address: string) => {
+const useLiveNFT = (address: string) => {
   const contractAddress =
     process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
@@ -48,8 +49,18 @@ export const useLivenft = (address: string) => {
   const { data: stream } = useStream({
     streamId: properties.streamId,
   });
+
+  const { data: sessions } = useStreamSessions({
+    streamId: properties.streamId,
+  });
+
+
   return {
+    sessions,
     stream,
     lnftData,
   };
 };
+
+
+export default useLiveNFT;

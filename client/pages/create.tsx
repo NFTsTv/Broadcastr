@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import React from "react";
-import DeployLNFT from "components/DeployForm";
-import CreateLNFT from "components/CreateForm";
+import DeployLNFT from "components/create/DeployForm";
+import CreateLNFT from "components/create/CreateForm";
 import { CreateContextProvider, CreateContext } from "context/createContext";
 import Container from "components/container";
 import Menu from "components/Menu";

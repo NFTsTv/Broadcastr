@@ -3,14 +3,14 @@ import React from "react";
 import Container from "components/container";
 import Menu from "components/Menu";
 import { useRouter } from "next/router";
-import { useLivenft } from "hooks/useLiveNFT";
+import useLiveNFT from "hooks/useLiveNFT";
 import Modal from "components/Modal";
 import Link from "next/link";
 
 const Create: NextPage = () => {
   const router = useRouter();
   const { address } = router.query;
-  const { stream } = useLivenft(address as string);
+  const { stream } = useLiveNFT(address as string);
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -29,10 +29,16 @@ const Create: NextPage = () => {
               For the best experience posible, we recomend using chrome.
             </p>
             <Link href={`/stream?address=${address}`}>
-              <button className="btn btn-sm mt-4 text-white">Take me to the webcam</button>
+              <button className="btn btn-sm mt-4 text-white">
+                Take me to the webcam
+              </button>
             </Link>
-            <button onClick={() => setIsOpen(false)} className="btn btn-sm btn-warning mt-4 text-white">Dont do it</button>
-
+            <button
+              onClick={() => setIsOpen(false)}
+              className="btn btn-sm btn-warning mt-4 text-white"
+            >
+              Dont do it
+            </button>
           </div>
         </Modal>
       )}
