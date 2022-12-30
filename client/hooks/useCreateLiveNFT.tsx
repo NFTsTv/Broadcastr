@@ -39,11 +39,12 @@ const useCreateLiveNFT = () => {
       functionName: "createLiveNFT",
       args: validateFormData()
         ? [
-            process.env.NEXT_PUBLIC_APP_URL + "/api/collection/getMetadata?address=",
+            liveNFT.baseUri,
             liveNFT.name,
             liveNFT.description,
             Number(liveNFT.totalSupply),
             parseEther(liveNFT.price),
+            process.env.NEXT_PUBLIC_APP_URL + "/api/collection/getMetadata?address="
           ]
         : [],
     });
