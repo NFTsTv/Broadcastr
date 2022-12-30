@@ -42,9 +42,9 @@ const useCreateLiveNFT = () => {
             liveNFT.baseUri,
             liveNFT.name,
             liveNFT.description,
+            process.env.NEXT_PUBLIC_APP_URL + "/api/collection/getMetadata?address=",
             Number(liveNFT.totalSupply),
-            parseEther(liveNFT.price),
-            process.env.NEXT_PUBLIC_APP_URL + "/api/collection/getMetadata?address="
+            parseEther(liveNFT.price)
           ]
         : [],
     });

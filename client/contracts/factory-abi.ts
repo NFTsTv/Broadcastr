@@ -17,6 +17,11 @@ const factoryContract = [
         type: "string",
       },
       {
+        internalType: "string",
+        name: "_serverUri",
+        type: "string",
+      },
+      {
         internalType: "uint256",
         name: "_totalSupply",
         type: "uint256",
