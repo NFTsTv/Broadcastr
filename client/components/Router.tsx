@@ -11,7 +11,10 @@ const Router = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    if (unprotectedRoutes.includes(route)) setIsLoading(false);
+    if (unprotectedRoutes.includes(route)) {
+      setIsLoading(false);
+      return;
+    }
     setIsLoading(status === "reconnecting");
   }, [isConnected, status]);
 
