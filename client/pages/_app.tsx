@@ -21,12 +21,6 @@ const { chains, provider } = configureChains(
   ]
 );
 
-const client = createReactClient({
-  provider: studioProvider({
-    apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY,
-  }),
-});
-
 const { connectors } = getDefaultWallets({
   appName: "My RainbowKit App",
   chains,
@@ -39,6 +33,18 @@ const wagmiClient = createClient({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const client = createReactClient({
+    provider: studioProvider({ apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY }),
+    storage: {
+      getItem: (key) => {
+        return null;
+      },
+      setItem: (key, defaultState) => {
+        return defaultState;
+      },
+      removeItem: (key) => {},
+    },
+  });
   return (
     <LivepeerConfig client={client}>
       <WagmiConfig client={wagmiClient}>
