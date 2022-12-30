@@ -36,8 +36,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const client = createReactClient({
     provider: studioProvider({ apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY }),
     storage: {
-      getItem: (key) => {
-        return null;
+      getItem: (key, defaultState) => {
+        return defaultState;
       },
       setItem: (key, defaultState) => {
         return defaultState;
