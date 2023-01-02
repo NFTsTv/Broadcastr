@@ -6,13 +6,14 @@ import { useRouter } from "next/router";
 import useLiveNFT from "hooks/useLiveNFT";
 import UseWebcam from "components/goLive/UseWebcam";
 import UseObs from "components/goLive/UseObs";
+import UseTestStream from "components/goLive/UseTestSignal";
 import ViewComponent from "components/view/ViewComponent";
 import { ViewContextProvider } from "context/viewContext";
+
 const Create: NextPage = () => {
   const router = useRouter();
   const { address } = router.query;
   const { stream } = useLiveNFT(address as string);
-  const [isOpen, setIsOpen] = React.useState(false);
 
   if (!stream || !address) return <div>Loading...</div>;
 
@@ -22,9 +23,10 @@ const Create: NextPage = () => {
         <Menu />
         <h1>Go live on your LNFT!</h1>
         <p>Stream directly into you LNFT using on of the following methods:</p>
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col">
           <UseObs stream={stream} />
           <UseWebcam address={address as string} />
+          <UseTestStream stream={stream} />
         </div>
       </div>
       <div className="flex flex-col h-1/3 lg:w-3/4 lg:h-full border-1">

@@ -21,16 +21,10 @@ const UseWebcam = ({ address }: { address: string }) => {
               For the best experience posible, we recomend using chrome.
             </p>
             <Link href={`/stream?address=${address}`}>
-              <button className="btn btn-sm mt-4 text-white">
+              <button className="btn mt-4 text-white">
                 Take me to the webcam
               </button>
             </Link>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="btn btn-sm mt-4 text-white"
-            >
-              Dont do it
-            </button>
           </div>
         </Modal>
       )}
@@ -38,7 +32,7 @@ const UseWebcam = ({ address }: { address: string }) => {
         onClick={() => {
           setIsOpen(true);
         }}
-        className="btn"
+        className="btn mb-4"
       >
         Use webcam
       </div>

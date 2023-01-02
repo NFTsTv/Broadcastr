@@ -13,14 +13,15 @@ const UseObs = ({ stream }: { stream: Stream }) => {
             setIsOpen(false);
           }}
         >
-          <div className="flex flex-col m-auto">
+          <div className="flex flex-col m-auto space-y-4">
+            <h1 className="mb-2">Streaming details</h1>
             <p>
               You can use obs, or any other livestreaming software to go live.
               Check out the{" "}
               <a href="https://docs.livepeer.org/guides/developing/stream-via-obs">
                 livepeer documentation
               </a>{" "}
-              on how to use OBS to start livestreaming
+              on how to use OBS to start livestreaming.
             </p>
             <h2>Stream details</h2>
             <div className="form-control">
@@ -49,12 +50,6 @@ const UseObs = ({ stream }: { stream: Stream }) => {
                 }}
               />
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="btn btn-sm mt-4 text-white"
-            >
-              Done!
-            </button>
           </div>
         </Modal>
       )}
@@ -63,7 +58,7 @@ const UseObs = ({ stream }: { stream: Stream }) => {
           setIsOpen(true);
         }}
       >
-        <button className="btn btn-primary w-full">Use Stream key</button>
+        <button className="btn btn-primary w-full mb-4">Use Stream key</button>
       </div>
     </>
   );
