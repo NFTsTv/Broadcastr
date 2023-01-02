@@ -3,7 +3,7 @@ import Link from "next/link";
 import Router from "next/router";
 const Menu = () => {
   return (
-    <ul className="menu menu-horizontal bg-base-100 m-auto rounded-box">
+    <ul className="menu menu-horizontal bg-base-100 mx-auto rounded-box">
       <Link href="/">
         <li>
           <a>

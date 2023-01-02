@@ -7,6 +7,7 @@ import VodView from "./VodView";
 
 const ViewComponent = () => {
   const context = React.useContext(ViewContext);
+  
   if (!context) {
     return <div>loading</div>;
   }
