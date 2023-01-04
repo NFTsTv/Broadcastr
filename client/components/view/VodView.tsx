@@ -14,7 +14,6 @@ const VodView = () => {
   }
 
   const handleWatch = (session: StreamSession) => {
-    console.log(session);
     setActiveSrc(session.recordingUrl);
   };
 

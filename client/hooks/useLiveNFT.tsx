@@ -31,7 +31,6 @@ const useLiveNFT = (address: string) => {
         return;
       }
       get(item.baseUri).then((response) => {
-        console.log(response);
         if (response?.properties) {
           setProperties({
             streamId: response.properties.LNFTId,

@@ -15,11 +15,9 @@ const UseObs = ({ stream }: { stream: Stream }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
         setIsOpen(false);
       })
       .catch((error) => {
-        console.error("Error:", error);
       });
   };
 
