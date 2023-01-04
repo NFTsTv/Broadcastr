@@ -47,9 +47,9 @@ const Router = ({ children }: { children: React.ReactNode }) => {
     }
   }, [isConnected, status, data, route, router, loadingRead]);
 
-  const protectedRoutes = ["/", "/create", "/stream", "/golive"];
+  const protectedRoutes = ["/", "/create", "/golive"];
 
-  const unprotectedRoutes = ["/view"];
+  const unprotectedRoutes = ["/view", "/stream"];
 
   if (isLoading) {
     return (
