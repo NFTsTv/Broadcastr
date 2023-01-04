@@ -32,18 +32,18 @@ const Router = ({ children }: { children: React.ReactNode }) => {
     if (
       !(status === "reconnecting" || status === "connecting" || loadingRead)
     ) {
-      if (isConnected && data?.length === 0 && route !== "/create") {
-        router.push("/create");
-      } else if (
-        isConnected &&
-        data &&
-        data?.length > 0 &&
-        route !== "/golive"
-      ) {
-        router.push("/golive?address=" + data[0]);
-      } else {
+      // if (isConnected && data?.length === 0 && route !== "/create") {
+      //   router.push("/create");
+      // } else if (
+      //   isConnected &&
+      //   data &&
+      //   data?.length > 0 &&
+      //   route !== "/golive"
+      // ) {
+      //   router.push("/golive?address=" + data[0]);
+      // } else {
         setIsLoading(false);
-      }
+      // }
     }
   }, [isConnected, status, data, route, router, loadingRead]);
 
