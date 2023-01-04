@@ -8,7 +8,7 @@ import Container from "components/container";
 import GoBackButton from "components/Buttons/GoBackButton";
 const CreateComponent = () => {
   const context = React.useContext(CreateContext);
-  const [step, setStep] = React.useState(2);
+  const [step, setStep] = React.useState(0);
   if (!context) return <>missing context</>;
   const { liveNFT } = context;
 
