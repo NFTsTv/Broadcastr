@@ -6,9 +6,11 @@ import {
   LivepeerConfig,
   createReactClient,
   studioProvider,
+  noopStorage,
+  createStorage as livepeerStorage,
 } from "@livepeer/react";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { chain, configureChains, createClient, WagmiConfig, createStorage } from "wagmi";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
 import Router from "components/Router";
@@ -30,21 +32,22 @@ const wagmiClient = createClient({
   autoConnect: true,
   connectors,
   provider,
+  storage: createStorage({
+    storage: noopStorage,
+  }),
+});
+
+const client = createReactClient({
+  provider: studioProvider({
+    apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY,
+  }),
+  storage: livepeerStorage({
+    storage: noopStorage,
+  }),
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const client = createReactClient({
-    provider: studioProvider({ apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY }),
-    storage: {
-      getItem: (key, defaultState) => {
-        return defaultState;
-      },
-      setItem: (key, defaultState) => {
-        return defaultState;
-      },
-      removeItem: (key) => {},
-    },
-  });
+
   return (
     <LivepeerConfig client={client}>
       <WagmiConfig client={wagmiClient}>
