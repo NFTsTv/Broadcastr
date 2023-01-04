@@ -21,14 +21,13 @@ const Create: NextPage = () => {
   return (
     <div className="flex h-full lg:flex-row flex-col-reverse">
       <div className="flex flex-col p-5 space-y-5 h-2/3 lg:h-full lg:w-1/4 relative overflow-auto">
-        <Menu />
-        <h1>Go live on your LNFT!</h1>
+          <h1>Go live on {lnftData.name}!</h1>
         <p>Stream directly into you LNFT using on of the following methods:</p>
         <div className="flex flex-col">
           <UseObs stream={stream} />
           <UseWebcam address={address as string} />
           <UseTestStream stream={stream} />
-          <StreamDetails details={lnftData} />
+          <StreamDetails details={lnftData} address={address as string} />
         </div>
       </div>
       <div className="flex flex-col h-1/3 lg:w-3/4 lg:h-full border-1">
