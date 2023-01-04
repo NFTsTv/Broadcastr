@@ -38,7 +38,7 @@ const StreamDetails = ({ details, address }: { details: LiveNFT, address: string
     <div className="flex flex-col m-auto w-full rounded-xl mt-4">
       <DetailsModal />
       <div className="flex flex-col space-y-4 text-center">
-        <div className="flex flex-row w-full max-w-full bg-base-200 text-white justify-center">
+        <div className="flex flex-row w-full max-w-full text-white justify-center">
           <DetailBox
             title="Subscription price"
             text={String(details.price) + " eth"}
