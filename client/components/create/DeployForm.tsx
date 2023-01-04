@@ -1,6 +1,6 @@
 import React from "react";
 import useCreateLiveNFT from "hooks/useCreateLiveNFT";
-import Button from "components/Button";
+import Button from "components/Buttons/Button";
 import { CreateContext } from "context/createContext";
 const DeployLNFT = () => {
   const context = React.useContext(CreateContext);

@@ -42,8 +42,8 @@ const useCreateLiveNFT = () => {
             liveNFT.baseUri,
             liveNFT.name,
             liveNFT.description,
-            parseEther(liveNFT.price),
             Number(liveNFT.totalSupply),
+            parseEther(liveNFT.price),
           ]
         : [],
     });
