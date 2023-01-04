@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const sendTestStream = async (streamKey: string) => {
-  console.log(streamKey)
   return fetch("https://teststream.live/stream", {
     method: "POST",
     headers: {
@@ -30,13 +29,11 @@ export default async function handler(
   if (req.method === "POST") {
     try {
       const result = await sendTestStream(body.streamKey);
-      console.log(result)
       return res.status(200).json(result);
     } catch (e: any) {
       return res.status(e.statusCode).json(e);
     }
   } else {
-    console.log("Invalid request");
     return res.status(400).json({});
   }
 }

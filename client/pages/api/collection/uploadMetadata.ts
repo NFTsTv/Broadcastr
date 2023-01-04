@@ -14,7 +14,6 @@ export default async function handler(
       return res.status(e.statusCode).json(e);
     }
   } else {
-    console.log("Invalid request");
     return res.status(400).json({});
   }
 }

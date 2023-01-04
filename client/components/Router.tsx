@@ -1,18 +1,51 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { useAccount } from "wagmi";
+import { useAccount, useContractRead } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Container from "./container";
+import factoryContract from "contracts/factory-abi";
+
+const Layout = ({ children }: { children: React.ReactNode }) => (
+  <div className=" h-screen mx-auto w-screen">{children}</div>
+);
+const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
 const Router = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const route = router.pathname;
-  const { isConnected, status } = useAccount();
+  const { isConnected, address, status } = useAccount();
   const [isLoading, setIsLoading] = React.useState(true);
+  const {
+    data,
+    error,
+    isError,
+    isLoading: loadingRead,
+    status: readStatus,
+  } = useContractRead({
+    addressOrName: contractAddress,
+    contractInterface: factoryContract,
+    functionName: "getCreatorChannels",
+    args: [address],
+  });
 
   React.useEffect(() => {
-    setIsLoading(status === "reconnecting");
-  }, [isConnected, status]);
+    if (
+      !(status === "reconnecting" || status === "connecting" || loadingRead)
+    ) {
+      if (isConnected && data?.length === 0 && route !== "/create") {
+        router.push("/create");
+      } else if (
+        isConnected &&
+        data &&
+        data?.length > 0 &&
+        route !== "/golive"
+      ) {
+        router.push("/golive?address=" + data[0]);
+      } else {
+        setIsLoading(false);
+      }
+    }
+  }, [isConnected, status, data, route, router, loadingRead]);
 
   const protectedRoutes = ["/", "/create", "/stream", "/golive"];
 
@@ -20,27 +53,31 @@ const Router = ({ children }: { children: React.ReactNode }) => {
 
   if (isLoading) {
     return (
-      <Container>
-        <h1 className="text-4xl font-bold">loading...</h1>
-      </Container>
+      <Layout>
+        <Container>
+          <h1 className="text-4xl font-bold">loading...</h1>
+        </Container>
+      </Layout>
     );
   }
 
   if (protectedRoutes.includes(route) && !isConnected) {
     return (
-      <Container>
-        <h1 className="text-4xl font-bold">NFTS are live</h1>
-        <p className="text-xl text-center">
-          Welcome to NFTs are live! Connect your wallet to get started
-        </p>
-        <div className="w-40 m-auto">
-          <ConnectButton />
-        </div>
-      </Container>
+      <Layout>
+        <Container>
+          <h1 className="text-4xl font-bold">NFTS are live</h1>
+          <p className="text-xl text-center">
+            Welcome to NFTs are live! Connect your wallet to get started
+          </p>
+          <div className="w-40 m-auto">
+            <ConnectButton />
+          </div>
+        </Container>
+      </Layout>
     );
   }
 
-  return <>{children}</>;
+  return <Layout>{children}</Layout>;
 };
 
 export default Router;

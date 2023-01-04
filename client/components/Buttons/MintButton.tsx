@@ -38,7 +38,6 @@ const MintButton = ({ address }: { address: string }) => {
     try {
       const tx = await mint();
       const receipt = await tx.wait();
-      console.log({ receipt });
     } catch (error) {
       console.error(error);
     } finally {

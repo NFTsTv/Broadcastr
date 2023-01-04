@@ -36,7 +36,6 @@ export function CreateContextProvider(props: Props) {
   };
 
   function validateFormData(): boolean {
-    console.log(liveNFT);
     if (!liveNFT.name || typeof liveNFT.name !== "string") {
       return false;
     }
