@@ -53,7 +53,7 @@ const List: NextPage = () => {
           {data.map((data) => {
             return (
               <SwiperSlide>
-                <NftCard address={data} />
+                <NftCard address={data}  />
               </SwiperSlide>
             );
           })}
