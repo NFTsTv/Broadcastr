@@ -15,9 +15,7 @@ export const createMetadata = ({
   address: string;
   streamId: string;
 }) => {
-  const url =
-    "https://player-generator.vercel.app/iframe?poster=https://streameth.tv/social.png&streamid=" +
-    streamId;
+  const url = "https://player-generator.vercel.app/iframe?streamid=" + streamId;
   return {
     name: name,
     description: description,
@@ -31,13 +29,13 @@ export const createMetadata = ({
   };
 };
 
-export const parseParams = (params: Array<string>): LiveNFT => {
+export const parseParams = (params: LiveNFT[keyof LiveNFT][]): LiveNFT => {
   return {
-    baseUri: params[0],
-    name: params[1],
-    description: params[2],
-    price: BigInt(params[3]),
-    totalSupply: Number(params[4]),
+    baseUri: params[0] as LiveNFT["baseUri"],
+    name: params[1] as LiveNFT["name"],
+    description: params[2] as LiveNFT["description"],
+    totalSupply: params[3] as LiveNFT["totalSupply"],
+    price: params[4] as LiveNFT["price"],
   };
 };
 

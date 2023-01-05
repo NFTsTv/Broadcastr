@@ -1,6 +1,7 @@
 import { LiveNFT } from "types/general";
 import Link from "next/link";
 import { ShareBox } from "components/Share/Box";
+import { formatEther } from "ethers/lib/utils";
 
 const DetailsModal = () => {
   return (
@@ -33,7 +34,13 @@ const DetailBox = ({
   );
 };
 
-const StreamDetails = ({ details, address }: { details: LiveNFT, address: string }) => {
+const StreamDetails = ({
+  details,
+  address,
+}: {
+  details: LiveNFT;
+  address: string;
+}) => {
   return (
     <div className="flex flex-col m-auto w-full rounded-xl mt-4">
       <DetailsModal />
@@ -41,13 +48,13 @@ const StreamDetails = ({ details, address }: { details: LiveNFT, address: string
         <div className="flex flex-row w-full max-w-full text-white justify-center">
           <DetailBox
             title="Subscription price"
-            text={String(details.price) + " eth"}
+            text={formatEther(details.price) + " eth"}
           />
-          <DetailBox title="Earned" text={String(details.totalSupply) + "   $"}>
+          {/* <DetailBox title="Earned" text={String(details.totalSupply) + "   $"}> */}
+          <DetailBox title="Earned" text={"0  $"}>
             <button className="btn btn-sm btn-disabled	">Withdrawal</button>
           </DetailBox>
         </div>
-
       </div>
       <div className="flex flex-row mt-8">
         <a
@@ -64,7 +71,7 @@ const StreamDetails = ({ details, address }: { details: LiveNFT, address: string
         >
           Share on socials
         </label>
-        </div>
+      </div>
     </div>
   );
 };

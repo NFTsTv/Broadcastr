@@ -24,7 +24,9 @@ const useLiveNFT = (address: string) => {
 
   React.useEffect(() => {
     if (data) {
-      const item = parseParams(data as Array<string>);
+
+
+      const item = parseParams(data as (LiveNFT[keyof LiveNFT])[]);
       setLnftData(item);
 
       if (!item.baseUri) {

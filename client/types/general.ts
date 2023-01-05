@@ -1,3 +1,5 @@
+import { BigNumberish } from "ethers";
+
 export interface FactoryContractParameters {
   owner: string;
   contractAddress: string;
@@ -17,7 +19,7 @@ export interface LNFTContractAttributes {
 export type LiveNFT = {
   name: string;
   description: string;
-  price: BigInt;
+  price: BigNumberish;
   totalSupply: Number;
   baseUri: string;
 };
