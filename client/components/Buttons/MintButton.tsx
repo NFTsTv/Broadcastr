@@ -46,7 +46,7 @@ const MintButton = ({ address }: { address: string }) => {
   };
 
   return (
-    <Button onClick={onMintClick} isLoading={mintLoading}>
+    <Button styles={"ml-2 btn-primary"} onClick={onMintClick} isLoading={mintLoading}>
       Subscribre for {ethers.utils.formatEther(mintPrice ? mintPrice: 0)} ETH
     </Button>
   );

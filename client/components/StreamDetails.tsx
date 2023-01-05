@@ -1,20 +1,7 @@
 import { LiveNFT } from "types/general";
-import Link from "next/link";
-import { ShareBox } from "components/Share/Box";
 import { formatEther } from "ethers/lib/utils";
+import ShareButton from "components/Share/Button";
 
-const DetailsModal = () => {
-  return (
-    <>
-      <input type="checkbox" id="my-modal-4" className="modal-toggle" />
-      <label htmlFor="my-modal-4" className="modal cursor-pointer">
-        <label className="modal-box relative bg-base-300" htmlFor="">
-          <ShareBox title="Share your stream" />
-        </label>
-      </label>
-    </>
-  );
-};
 
 const DetailBox = ({
   title,
@@ -43,7 +30,6 @@ const StreamDetails = ({
 }) => {
   return (
     <div className="flex flex-col m-auto w-full rounded-xl mt-4">
-      <DetailsModal />
       <div className="flex flex-col space-y-4 text-center">
         <div className="flex flex-row w-full max-w-full text-white justify-center">
           <DetailBox
@@ -65,12 +51,15 @@ const StreamDetails = ({
         >
           View on Opensea
         </a>
-        <label
-          htmlFor="my-modal-4"
+        <a
+          target="_blank"
+          rel="noreferrer"
           className="btn btn-sm btn-outline btn-info text-white m-auto"
+          href={`/view?address=${address}`}
         >
-          Share on socials
-        </label>
+          Subscribers page
+        </a>
+        <ShareButton />
       </div>
     </div>
   );
