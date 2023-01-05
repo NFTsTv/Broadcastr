@@ -1,16 +1,17 @@
 import type { NextPage } from "next";
 import React from "react";
+import { CreateContextProvider } from "context/createContext";
+import useCreateContext from "hooks/useCreateContext";
 import DeployLNFT from "components/create/DeployForm";
 import CreateLNFT from "components/create/CreateForm";
-import { CreateContextProvider, CreateContext } from "context/createContext";
 import Intro from "components/create/Intro";
 import Container from "components/container";
 import GoBackButton from "components/Buttons/GoBackButton";
+
+
 const CreateComponent = () => {
-  const context = React.useContext(CreateContext);
   const [step, setStep] = React.useState(0);
-  if (!context) return <>missing context</>;
-  const { liveNFT } = context;
+  const { liveNFT } = useCreateContext();
 
   React.useEffect(() => {
     if (liveNFT?.baseUri) {

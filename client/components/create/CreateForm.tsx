@@ -1,14 +1,10 @@
 import React from "react";
 import useCreateLiveNFT from "hooks/useCreateLiveNFT";
 import Button from "components/Buttons/Button";
-import { CreateContext } from "context/createContext";
+import useCreateContext from "hooks/useCreateContext";
 
 const CreateLNFT = () => {
-  const context = React.useContext(CreateContext);
-  if (!context) {
-    throw "context requred to use this hook";
-  }
-  const { liveNFT, handleSetData } = context;
+  const { liveNFT, handleSetData } = useCreateContext();
   const { handleCreateStream, error, isLoading } = useCreateLiveNFT();
 
   return (
