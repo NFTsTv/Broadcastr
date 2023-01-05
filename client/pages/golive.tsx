@@ -1,7 +1,5 @@
 import type { NextPage } from "next";
 import React from "react";
-import Container from "components/container";
-import Menu from "components/Menu";
 import { useRouter } from "next/router";
 import useLiveNFT from "hooks/useLiveNFT";
 import UseWebcam from "components/goLive/UseWebcam";
@@ -10,6 +8,7 @@ import UseTestStream from "components/goLive/UseTestSignal";
 import ViewComponent from "components/view/ViewComponent";
 import { ViewContextProvider } from "context/viewContext";
 import StreamDetails from "components/StreamDetails";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Create: NextPage = () => {
   const router = useRouter();
@@ -21,7 +20,14 @@ const Create: NextPage = () => {
   return (
     <div className="flex h-full lg:flex-row flex-col-reverse">
       <div className="flex flex-col p-5 space-y-5 h-2/3 lg:h-full lg:w-1/4 relative overflow-auto">
-          <h1>Go live on {lnftData.name}!</h1>
+        <ConnectButton
+          accountStatus={{
+            smallScreen: "avatar",
+            largeScreen: "full",
+          }}
+          showBalance={false}
+        />
+        <h1>Go live on {lnftData.name}!</h1>
         <p>Stream directly into you LNFT using on of the following methods:</p>
         <div className="flex flex-col">
           <UseObs stream={stream} />

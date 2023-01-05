@@ -9,18 +9,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
   <div className=" h-screen mx-auto w-screen">{children}</div>
 );
 const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
+const protectedRoutes = ["/", "/create", "/golive"];
 
 const Router = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const route = router.pathname;
   const { isConnected, address, status } = useAccount();
+  console.log(status);
   const [isLoading, setIsLoading] = React.useState(true);
   const {
     data,
-    error,
-    isError,
     isLoading: loadingRead,
-    status: readStatus,
   } = useContractRead({
     addressOrName: contractAddress,
     contractInterface: factoryContract,
@@ -29,27 +28,18 @@ const Router = ({ children }: { children: React.ReactNode }) => {
   });
 
   React.useEffect(() => {
-    if (
-      !(status === "reconnecting" || status === "connecting" || loadingRead)
-    ) {
-      // if (isConnected && data?.length === 0 && route !== "/create") {
-      //   router.push("/create");
-      // } else if (
-      //   isConnected &&
-      //   data &&
-      //   data?.length > 0 &&
-      //   route !== "/golive"
-      // ) {
-      //   router.push("/golive?address=" + data[0]);
-      // } else {
+    if (protectedRoutes.includes(route) && !loadingRead) {
+      if (data?.length === 0 && route !== "/create") {
+        router.push("/create");
+      } else if (data && data?.length > 0 && route !== "/golive") {
+        router.push("/golive?address=" + data[0]);
+      } else {
         setIsLoading(false);
-      // }
+      }
+    } else if (!protectedRoutes.includes(route)) {
+      setIsLoading(status === "reconnecting");
     }
   }, [isConnected, status, data, route, router, loadingRead]);
-
-  const protectedRoutes = ["/", "/create", "/golive"];
-
-  const unprotectedRoutes = ["/view", "/stream"];
 
   if (isLoading) {
     return (

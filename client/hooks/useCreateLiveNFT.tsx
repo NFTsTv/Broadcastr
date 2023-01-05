@@ -79,7 +79,7 @@ const useCreateLiveNFT = () => {
     }
     if (writeTransactionStatus === "success") {
       alert("success");
-      window.location.href = "/list";
+      window.location.href = "/";
     }
   }, [createStreamStatus, writeTransactionStatus]);
 
