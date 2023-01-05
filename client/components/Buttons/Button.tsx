@@ -3,7 +3,7 @@ import React from "react";
 interface props {
   onClick: () => void;
   isLoading?: boolean;
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const Button = ({ ...props }: props) => {
@@ -25,7 +25,7 @@ const Button = ({ ...props }: props) => {
             cy="12"
             r="10"
             stroke="currentColor"
-            stroke-width="4"
+            strokeWidth="4"
           ></circle>
           <path
             className="opacity-75"
