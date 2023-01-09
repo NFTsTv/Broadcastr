@@ -1,14 +1,12 @@
 import React from "react";
-import {
-  useStream,
-} from "@livepeer/react";
-import { useAccount, useContractRead } from "wagmi";
+import { useStream, useStreamSessions } from "@livepeer/react";
+import { useContractRead } from "wagmi";
 import LNFTcontractABI from "contracts/factory-abi";
 import { get } from "utils/requests";
 import { parseParams } from "utils/helpers";
 import { LiveNFT } from "types/general";
 
-export const useLivenft = (address: string) => {
+const useLiveNFT = (address: string) => {
   const contractAddress =
     process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
@@ -17,7 +15,6 @@ export const useLivenft = (address: string) => {
     streamId: "",
     ownerAddress: "",
   });
-  const { isConnected } = useAccount();
   const { data } = useContractRead({
     addressOrName: contractAddress,
     contractInterface: LNFTcontractABI,
@@ -27,14 +24,15 @@ export const useLivenft = (address: string) => {
 
   React.useEffect(() => {
     if (data) {
-      const item = parseParams(data as Array<string>);
+
+
+      const item = parseParams(data as (LiveNFT[keyof LiveNFT])[]);
       setLnftData(item);
 
       if (!item.baseUri) {
         return;
       }
       get(item.baseUri).then((response) => {
-        console.log(response);
         if (response?.properties) {
           setProperties({
             streamId: response.properties.LNFTId,
@@ -47,9 +45,18 @@ export const useLivenft = (address: string) => {
 
   const { data: stream } = useStream({
     streamId: properties.streamId,
+    refetchInterval: (stream) => (!stream?.isActive ? 5000 : false),
   });
+
+  const { data: sessions } = useStreamSessions({
+    streamId: properties.streamId,
+  });
+
   return {
+    sessions,
     stream,
     lnftData,
   };
 };
+
+export default useLiveNFT;

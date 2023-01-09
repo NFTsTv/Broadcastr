@@ -7,7 +7,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 const Home: NextPage = () => {
   return (
     <Container>
-      <span className="mx-auto text-2xl">Welcome</span>
+      Loading...
+      {/* <span className="mx-auto text-2xl">Welcome</span>
       <div className="mx-auto">
         <ConnectButton />
       </div>
@@ -16,7 +17,7 @@ const Home: NextPage = () => {
       </Link>
       <Link href="/list">
         <button className="btn w-full btn-secondary">View collection</button>
-      </Link>
+      </Link> */}
     </Container>
   );
 };

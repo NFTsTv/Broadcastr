@@ -1,22 +1,23 @@
 import React from "react";
 import useCreateLiveNFT from "hooks/useCreateLiveNFT";
-import Button from "components/Button";
-import { CreateContext } from "context/createContext";
+import Button from "components/Buttons/Button";
+import useCreateContext from "hooks/useCreateContext";
+
 const DeployLNFT = () => {
-  const context = React.useContext(CreateContext);
-  if (!context) {
-    throw "context requred to use this hook";
-  }
-  const { liveNFT, handleSetData, formError } = context;
+  const { liveNFT, handleSetData, formError } = useCreateContext();
 
   const { deployContract, error, isLoading } = useCreateLiveNFT();
 
   return (
     <>
-      <h1>Deploy your Live NFT</h1>
+      <p>
+        Subscribers to your channel will be able to watch your stream on these
+        platforms. Additionally, these subscribers can also trade their
+        subscription to your channel on the secondary market.
+      </p>
       <div className="form-control w-full max-w-xs m-auto">
         <label className="label">
-          <span className="label-text">Price of your LNFT</span>
+          <span className="label-text">Subscription price</span>
         </label>
         <label className="input-group mb-4 max-w-xs w-full">
           <input
@@ -29,7 +30,7 @@ const DeployLNFT = () => {
           <span className="w-1/4">ETH</span>
         </label>
         <label className="label">
-          <span className="label-text">Total supply</span>
+          <span className="label-text">Max. number of subscriptions</span>
         </label>
         <input
           type="text"

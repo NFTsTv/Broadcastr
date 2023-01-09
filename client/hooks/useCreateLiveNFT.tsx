@@ -42,8 +42,8 @@ const useCreateLiveNFT = () => {
             liveNFT.baseUri,
             liveNFT.name,
             liveNFT.description,
-            parseEther(liveNFT.price),
             Number(liveNFT.totalSupply),
+            parseEther(liveNFT.price),
           ]
         : [],
     });
@@ -79,7 +79,7 @@ const useCreateLiveNFT = () => {
     }
     if (writeTransactionStatus === "success") {
       alert("success");
-      window.location.href = "/list";
+      window.location.href = "/";
     }
   }, [createStreamStatus, writeTransactionStatus]);
 

@@ -2,8 +2,9 @@ import React from "react";
 
 interface props {
   onClick: () => void;
-  isLoading: boolean;
-  children: React.ReactNode
+  isLoading?: boolean;
+  children: React.ReactNode;
+  styles?: string;
 }
 
 const Button = ({ ...props }: props) => {
@@ -11,7 +12,9 @@ const Button = ({ ...props }: props) => {
     return (
       <button
         type="button"
-        className="btn btn-primary transition ease-in-out duration-150 cursor-not-allowed"
+        className={`btn ${
+          props.styles ? props.styles : "btn-primary"
+        } transition ease-in-out duration-150 cursor-not-allowed`}
       >
         <svg
           className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -25,7 +28,7 @@ const Button = ({ ...props }: props) => {
             cy="12"
             r="10"
             stroke="currentColor"
-            stroke-width="4"
+            strokeWidth="4"
           ></circle>
           <path
             className="opacity-75"
@@ -39,7 +42,12 @@ const Button = ({ ...props }: props) => {
   }
 
   return (
-    <button onClick={props.onClick} className="btn btn-primary">
+    <button
+      onClick={props.onClick}
+      className={`${
+        props.styles ? props.styles : "btn-primary"
+      } btn   disabled:opacity-50`}
+    >
       {props.children}
     </button>
   );

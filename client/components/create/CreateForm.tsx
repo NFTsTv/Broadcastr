@@ -1,20 +1,19 @@
 import React from "react";
 import useCreateLiveNFT from "hooks/useCreateLiveNFT";
-import Button from "components/Button";
-import Container from "components/container";
-import { CreateContext } from "context/createContext";
+import Button from "components/Buttons/Button";
+import useCreateContext from "hooks/useCreateContext";
 
 const CreateLNFT = () => {
-  const context = React.useContext(CreateContext);
-  if (!context) {
-    throw "context requred to use this hook";
-  }
-  const { liveNFT, handleSetData } = context;
+  const { liveNFT, handleSetData } = useCreateContext();
   const { handleCreateStream, error, isLoading } = useCreateLiveNFT();
 
   return (
-    <Container>
-      <h1>Create your Live NFT</h1>
+    <>
+      <p>
+        Your channel on NFTsTv is an NFT. When you go live, your channel can be
+        viewed on platforms that support NFT display, like OpenSea, Zora, Zerion
+        wallet and more.
+      </p>
       <div className="form-control">
         <label className="label">
           <span className="label-text">Whats the channel name?</span>
@@ -37,12 +36,11 @@ const CreateLNFT = () => {
           onChange={(e) => handleSetData("description", e.target.value)}
         />
         <Button onClick={handleCreateStream} isLoading={isLoading}>
-          Create LNFT
+          Next
         </Button>
-
         {error && <span className="text-red-500">{error}</span>}
       </div>
-    </Container>
+    </>
   );
 };
 
