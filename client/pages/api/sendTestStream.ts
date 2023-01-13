@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const sendTestStream = async (streamKey: string) => {
-  return fetch("https://teststream.live/stream", {
+  return fetch("https://test-stream-lp.herokuapp.com/stream", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
