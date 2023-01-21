@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin-upgradeable/contracts/token/ERC721/ERC721Upgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/proxy/utils/Initializable.sol";
+import "@openzeppelin-upgradeable/contracts/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 
 error MintPriceNotPaid(string message);
 error NonExistentTokenURI(string message);
 error WithdrawTransfer(string message);
 
-contract Castr is ERC721, Ownable, Initializable {
+contract Castr is Initializable, ERC721Upgradeable, OwnableUpgradeable {
     using Strings for uint256;
-
-    bool private isInitialized = false;
 
     string public castrName;
     string public description;
@@ -25,8 +23,6 @@ contract Castr is ERC721, Ownable, Initializable {
 
     address[] public castrAddresses;
 
-    constructor() ERC721("Castr", "CASTR") {}
-
     function initialize(
         string memory _baseTokenURI,
         string memory _name,
@@ -37,8 +33,8 @@ contract Castr is ERC721, Ownable, Initializable {
         external
         initializer
     {
-        require(!isInitialized, "Contract is already initialized!");
-        isInitialized = true;
+        __ERC721_init(_name, "CASTR");
+        __Ownable_init();
         baseTokenURI = _baseTokenURI;
         castrName = _name;
         description = _description;
