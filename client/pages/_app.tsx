@@ -14,7 +14,7 @@ import { publicProvider } from "wagmi/providers/public";
 import Router from "components/Router";
 
 const { chains, provider } = configureChains(
-  [chain.goerli],
+  [chain.polygonMumbai],
   [
     infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY }),
     publicProvider(),

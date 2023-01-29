@@ -25,11 +25,11 @@ const useLiveNFT = (address: string) => {
   React.useEffect(() => {
     if (data) {
 
-
       const item = parseParams(data as (LiveNFT[keyof LiveNFT])[]);
       setLnftData(item);
 
       if (!item.baseUri) {
+        console.log("error no base uri", item)
         return;
       }
       get(item.baseUri).then((response) => {
