@@ -27,6 +27,7 @@ const Router = ({ children }: { children: React.ReactNode }) => {
     args: [address],
   });
 
+  console.log(data);
   React.useEffect(() => {
     if (protectedRoutes.includes(route) && !loadingRead) {
       if (data?.length === 0 && route !== "/create") {
