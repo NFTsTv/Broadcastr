@@ -18,6 +18,7 @@ contract LiveNFT is ERC721, Ownable {
     string public LNFTname;
     string public baseTokenURI;
     string public description;
+    bool public limitedSupply;
     uint256 public totalSupply;
     uint256 public mintPrice;
 
@@ -29,6 +30,7 @@ contract LiveNFT is ERC721, Ownable {
         string memory _baseTokenURI,
         string memory _name,
         string memory _description,
+        bool _limitedSupply,
         uint256 _totalSupply,
         uint256 _mintPrice
     )
@@ -39,6 +41,7 @@ contract LiveNFT is ERC721, Ownable {
         baseTokenURI = _baseTokenURI;
         LNFTname = _name;
         description = _description;
+        limitedSupply = _limitedSupply;
         totalSupply = _totalSupply;
         mintPrice = _mintPrice;
     }
@@ -65,7 +68,9 @@ contract LiveNFT is ERC721, Ownable {
     // @param: recipient: address of the recipient
     // @return: newTokenId: id of the new token
     function mintTo(address recipient) public payable returns (uint256) {
-        require(totalSupply == 0 || currentTokenId < totalSupply, "Total supply reached!");
+        if (limitedSupply) {
+            require(currentTokenId < totalSupply, "No more tokens available");
+        }
 
         if (msg.sender == owner()) {
             uint256 newTokenId = ++currentTokenId;
