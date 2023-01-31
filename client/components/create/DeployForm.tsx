@@ -29,16 +29,27 @@ const DeployLNFT = () => {
           />
           <span className="w-1/4">ETH</span>
         </label>
+
         <label className="label">
-          <span className="label-text">Max. number of subscriptions</span>
+          <span>Want a limited number of subscribers?</span>
+          <input type={"checkbox"} checked={liveNFT.limitedSupply} className="toggle toggle-success" onChange={(e) => handleSetData("limitedSupply", e.target.checked)} />
         </label>
-        <input
-          type="text"
-          placeholder="100"
-          className="input input-bordered w-full mb-4"
-          value={liveNFT.totalSupply}
-          onChange={(e) => handleSetData("totalSupply", e.target.value)}
-        />
+
+        {liveNFT.limitedSupply && (
+          <>
+            <label className="label">
+              <span className="label-text">Max. number of subscriptions</span>
+            </label>
+            <input
+              type="text"
+              placeholder="100"
+              className="input input-bordered w-full mb-4"
+              value={liveNFT.totalSupply}
+              onChange={(e) => handleSetData("totalSupply", e.target.value)}
+            />
+          </>
+        )}
+
         <Button onClick={deployContract} isLoading={isLoading}>
           Deploy
         </Button>

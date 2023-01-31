@@ -291,6 +291,11 @@ const LNFTcontractABI = [
         "type": "string"
       },
       {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      },
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
@@ -320,6 +325,11 @@ const LNFTcontractABI = [
         "internalType": "string",
         "name": "_description",
         "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "_limitedSupply",
+        "type": "bool"
       },
       {
         "internalType": "uint256",
@@ -364,6 +374,19 @@ const LNFTcontractABI = [
   {
     "inputs": [],
     "name": "isInitialized",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "limitedSupply",
     "outputs": [
       {
         "internalType": "bool",
