@@ -13,6 +13,7 @@ contract LNFTFactory {
         string memory _uri,
         string memory _name,
         string memory _description,
+        bool _limitedSupply,
         uint256 _totalSupply,
         uint256 _mintPrice
     )
@@ -21,7 +22,7 @@ contract LNFTFactory {
     {
         LiveNFT contractInstance = new LiveNFT();
         address contractAddress = address(contractInstance);
-        LiveNFT(contractAddress).initialize(_uri, _name, _description, _totalSupply, _mintPrice);
+        LiveNFT(contractAddress).initialize(_uri, _name, _description, _limitedSupply, _totalSupply, _mintPrice);
         livenfts.push(contractAddress);
         contentCreatorsChannels[msg.sender].push(contractAddress);
         contractInstance.mintTo(msg.sender);
@@ -36,7 +37,7 @@ contract LNFTFactory {
     function getMetadata(address _liveNftAddress)
         public
         view
-        returns (string memory, string memory, string memory, uint256, uint256)
+        returns (string memory, string memory, string memory, bool, uint256, uint256)
     {
         return LiveNFT(_liveNftAddress).getMetadata();
     }

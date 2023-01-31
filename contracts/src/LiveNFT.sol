@@ -98,7 +98,7 @@ contract LiveNFT is ERC721, Ownable {
         }
     }
 
-    function getMetadata() public view returns (string memory, string memory, string memory, uint256, uint256) {
-        return (baseTokenURI, LNFTname, description, totalSupply, mintPrice);
+    function getMetadata() public view returns (string memory, string memory, string memory, bool, uint256, uint256) {
+        return (baseTokenURI, LNFTname, description, limitedSupply, totalSupply, mintPrice);
     }
 }
