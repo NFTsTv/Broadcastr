@@ -31,8 +31,7 @@ const DeployLNFT = () => {
         </label>
 
         <label className="label">
-
-          <span>Want a limited supply?</span>
+          <span>Want a limited number of subscribers?</span>
           <input type={"checkbox"} checked={liveNFT.limitedSupply} className="toggle toggle-success" onChange={(e) => handleSetData("limitedSupply", e.target.checked)} />
         </label>
 

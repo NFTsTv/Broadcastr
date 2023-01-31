@@ -15,7 +15,7 @@ const CreateComponent = () => {
 
   React.useEffect(() => {
     if (liveNFT?.baseUri) {
-      setStep(2);
+      setStep(0);
     }
   }, [liveNFT]);
 
