@@ -1,7 +1,11 @@
 import { LiveNFT } from "types/general";
 import { formatEther } from "ethers/lib/utils";
 import ShareButton from "components/Share/Button";
-import { useBalance } from 'wagmi';
+import {
+  useBalance,
+  useAccount
+} from 'wagmi';
+import WithdrawalButton from "components/Buttons/WithdrawalButton";
 
 const DetailBox = ({
   title,
@@ -41,7 +45,7 @@ const StreamDetails = ({
             text={formatEther(details.price) + " ETH"}
           />
           <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
-            <button className="btn btn-sm btn-disabled	">Withdrawal</button>
+            <WithdrawalButton address={address} />
           </DetailBox>
         </div>
       </div>
