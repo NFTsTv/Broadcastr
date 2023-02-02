@@ -9,7 +9,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
   <div className=" h-screen mx-auto w-screen">{children}</div>
 );
 const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
-const protectedRoutes = ["/", "/create", "/list", "/golive"];
+const protectedRoutes = ["/", "/golive"];
 
 const Router = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();

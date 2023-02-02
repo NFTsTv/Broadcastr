@@ -34,8 +34,9 @@ export const parseParams = (params: LiveNFT[keyof LiveNFT][]): LiveNFT => {
     baseUri: params[0] as LiveNFT["baseUri"],
     name: params[1] as LiveNFT["name"],
     description: params[2] as LiveNFT["description"],
-    totalSupply: params[3] as LiveNFT["totalSupply"],
-    price: params[4] as LiveNFT["price"],
+    limitedSupply: params[3] as LiveNFT["limitedSupply"],
+    totalSupply: params[4] as LiveNFT["totalSupply"],
+    price: params[5] as LiveNFT["price"],
   };
 };
 
