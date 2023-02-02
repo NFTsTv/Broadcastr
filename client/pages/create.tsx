@@ -8,9 +8,8 @@ import Intro from "components/create/Intro";
 import Container from "components/container";
 import GoBackButton from "components/Buttons/GoBackButton";
 
-
 const CreateComponent = () => {
-  const [step, setStep] = React.useState(2);
+  const [step, setStep] = React.useState(0);
   const { liveNFT } = useCreateContext();
 
   React.useEffect(() => {

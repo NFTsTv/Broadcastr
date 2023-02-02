@@ -10,9 +10,9 @@ const CreateLNFT = () => {
   return (
     <>
       <p>
-        Your channel on NFTsTv is an NFT. When you go live, your channel can be
-        viewed on platforms that support NFT display, like OpenSea, Zora, Zerion
-        wallet and more.
+        Your channel on broadcastr is an NFT. When you go live, your channel can
+        be viewed on platforms that support NFT display, like OpenSea, Zora,
+        Zerion wallet and more.
       </p>
       <div className="form-control">
         <label className="label">
