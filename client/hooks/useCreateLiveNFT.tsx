@@ -12,8 +12,8 @@ import { createMetadata } from "utils/helpers";
 import { post } from "utils/requests";
 import factoryContract from "contracts/factory-abi";
 import { parseEther } from "ethers/lib/utils";
+import { ContractAddress } from "utils/constants";
 
-const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
 const useCreateLiveNFT = () => {
   const { address } = useAccount();
@@ -34,7 +34,7 @@ const useCreateLiveNFT = () => {
 
   const { config, isSuccess: prepareContractWriteSuccess } =
     usePrepareContractWrite({
-      addressOrName: contractAddress,
+      addressOrName: ContractAddress,
       contractInterface: [...factoryContract],
       functionName: "createLiveNFT",
       args: validateFormData()

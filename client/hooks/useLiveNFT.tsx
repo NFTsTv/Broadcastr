@@ -5,10 +5,9 @@ import LNFTcontractABI from "contracts/factory-abi";
 import { get } from "utils/requests";
 import { parseParams } from "utils/helpers";
 import { LiveNFT } from "types/general";
+import { ContractAddress } from "utils/constants";
 
 const useLiveNFT = (address: string) => {
-  const contractAddress =
-    process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
   const [lnftData, setLnftData] = React.useState<LiveNFT | null>(null);
   const [properties, setProperties] = React.useState({
@@ -16,7 +15,7 @@ const useLiveNFT = (address: string) => {
     ownerAddress: "",
   });
   const { data } = useContractRead({
-    addressOrName: contractAddress,
+    addressOrName: ContractAddress,
     contractInterface: LNFTcontractABI,
     functionName: "getMetadata",
     args: [address],

@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import useLiveNFT from "hooks/useLiveNFT";
+
 interface Props {
   address: string;
 }
 
 const NftCard = ({ ...props }: Props) => {
-  const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS;
-  if (!contractAddress || !props.address) return null;
+  if (!!props.address) return null;
   const { lnftData } = useLiveNFT(props.address);
   return (
     <div className="card-body h-full" key={props.address}>

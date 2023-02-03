@@ -9,18 +9,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-cards";
+import {  ContractAddress } from "utils/constants";
 
 // import required modules
 import { EffectCards, Controller, Swiper as swiperType } from "swiper";
 
-const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
 const List: NextPage = () => {
   const { address } = useAccount();
   const [controlledSwiper, setControlledSwiper] =
     React.useState<swiperType | null>(null);
   const { data, error, isError, isLoading, status } = useContractRead({
-    addressOrName: contractAddress,
+    addressOrName: ContractAddress,
     contractInterface: factoryContract,
     functionName: "getCreatorChannels",
     args: [address],

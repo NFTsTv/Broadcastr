@@ -4,38 +4,37 @@ import { useAccount, useContractRead } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Container from "components/Elements/Container";
 import factoryContract from "contracts/factory-abi";
+import { Routes, ProtectedRutes, ContractAddress } from "utils/constants";
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <div className=" h-screen mx-auto w-screen">{children}</div>
 );
-const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
-const protectedRoutes = ["/", "/golive"];
 
 const Router = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const route = router.pathname;
+  const route = router.pathname as Routes;
   const { isConnected, address, status } = useAccount();
   const [isLoading, setIsLoading] = React.useState(true);
-  const {
-    data,
-    isLoading: loadingRead,
-  } = useContractRead({
-    addressOrName: contractAddress,
+  const { data, isLoading: loadingRead } = useContractRead({
+    addressOrName: ContractAddress,
     contractInterface: factoryContract,
     functionName: "getCreatorChannels",
     args: [address],
   });
 
   React.useEffect(() => {
-    if (protectedRoutes.includes(route) && !loadingRead) {
-      if (data?.length === 0 && route !== "/create") {
-        router.push("/create");
-      } else if (data && data?.length > 0 && route !== "/golive") {
-        router.push("/golive?address=" + data[0]);
+    if (ProtectedRutes.includes(route) && !loadingRead) {
+      console.log("route",data && data?.length > 0 && route !== Routes.CAST)
+
+      if (data?.length === 0 && route !== Routes.CREATE) {
+        router.push(Routes.CREATE);
+      } else if (data && data?.length > 0 && route !== Routes.CAST) {
+        console.log("test")
+        router.push(Routes.CAST + "?address=" + data[0]);
       } else {
         setIsLoading(false);
       }
-    } else if (!protectedRoutes.includes(route)) {
+    } else if (!ProtectedRutes.includes(route)) {
       setIsLoading(status === "reconnecting");
     }
   }, [isConnected, status, data, route, router, loadingRead]);
@@ -50,7 +49,7 @@ const Router = ({ children }: { children: React.ReactNode }) => {
     );
   }
 
-  if (protectedRoutes.includes(route) && !isConnected) {
+  if (ProtectedRutes.includes(route) && !isConnected) {
     return (
       <Layout>
         <Container>
