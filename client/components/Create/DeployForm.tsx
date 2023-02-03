@@ -27,7 +27,7 @@ const DeployLNFT = () => {
             className="input input-bordered w-3/4"
             onChange={(e) => handleSetData("price", e.target.value)}
           />
-          <span className="w-1/4">ETH</span>
+          <span className="w-1/4">MATIC</span>
         </label>
 
         <label className="label">

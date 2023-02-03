@@ -24,12 +24,9 @@ const Router = ({ children }: { children: React.ReactNode }) => {
 
   React.useEffect(() => {
     if (ProtectedRutes.includes(route) && !loadingRead) {
-      console.log("route",data && data?.length > 0 && route !== Routes.CAST)
-
       if (data?.length === 0 && route !== Routes.CREATE) {
         router.push(Routes.CREATE);
       } else if (data && data?.length > 0 && route !== Routes.CAST) {
-        console.log("test")
         router.push(Routes.CAST + "?address=" + data[0]);
       } else {
         setIsLoading(false);

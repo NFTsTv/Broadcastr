@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { ViewContextProvider } from "context/viewContext";
 import WatchComponent from "components/Watch";
 import UserInteractionBar from "components/Buttons/UserInteractionBar";
+
 const View = () => {
   const router = useRouter();
   const { address } = router.query;

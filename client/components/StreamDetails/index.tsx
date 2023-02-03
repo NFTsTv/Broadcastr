@@ -1,11 +1,10 @@
 import { LiveNFT } from "types/general";
 import { formatEther } from "ethers/lib/utils";
 import ShareButton from "components/Share/Button";
-import {
-  useBalance,
-  useAccount
-} from 'wagmi';
+import { useBalance } from "wagmi";
 import WithdrawalButton from "components/Buttons/WithdrawalButton";
+import { Routes } from "utils/constants";
+import { NFTMarketAddress } from "utils/constants";
 
 const DetailBox = ({
   title,
@@ -35,14 +34,14 @@ const StreamDetails = ({
   const { data = { formatted: "", symbol: "" } } = useBalance({
     addressOrName: address,
     watch: true,
-  })
+  });
   return (
     <div className="flex flex-col m-auto w-full rounded-xl mt-4">
       <div className="flex flex-col space-y-4 text-center">
         <div className="flex flex-row w-full max-w-full text-white justify-center">
           <DetailBox
             title="Subscription price"
-            text={formatEther(details.price) + " ETH"}
+            text={formatEther(details.price) + " MATIC"}
           />
           <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
             <WithdrawalButton address={address} />
@@ -54,7 +53,7 @@ const StreamDetails = ({
           target="_blank"
           rel="noreferrer"
           className="btn btn-sm btn-outline btn-info text-white m-auto"
-          href={`https://testnets.opensea.io/assets/goerli/${address}/1`}
+          href={`${NFTMarketAddress}/${address}/1`}
         >
           View on Opensea
         </a>
@@ -62,7 +61,7 @@ const StreamDetails = ({
           target="_blank"
           rel="noreferrer"
           className="btn btn-sm btn-outline btn-info text-white m-auto"
-          href={`/view?address=${address}`}
+          href={`${Routes.WATCH}?address=${address}`}
         >
           Subscribers page
         </a>

@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "components/Elements/Modal";
 import Link from "next/link";
-
+import { Routes } from "utils/constants";
 const UseWebcam = ({ address }: { address: string }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -20,7 +20,7 @@ const UseWebcam = ({ address }: { address: string }) => {
               this feature is still in development and might not work at all.
               For the best experience posible, we recomend using chrome.
             </p>
-            <Link href={`/stream?address=${address}`}>
+            <Link href={Routes.WATCH + `?address=${address}`}>
               <button className="btn mt-4 text-white">
                 Take me to the webcam
               </button>
