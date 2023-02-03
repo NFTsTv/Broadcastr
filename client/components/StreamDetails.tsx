@@ -1,7 +1,11 @@
 import { LiveNFT } from "types/general";
 import { formatEther } from "ethers/lib/utils";
 import ShareButton from "components/Share/Button";
-
+import {
+  useBalance,
+  useAccount
+} from 'wagmi';
+import WithdrawalButton from "components/Buttons/WithdrawalButton";
 
 const DetailBox = ({
   title,
@@ -9,7 +13,7 @@ const DetailBox = ({
   children,
 }: {
   title: string;
-  text: string;
+  text: string | string;
   children?: React.ReactNode;
 }) => {
   return (
@@ -28,17 +32,20 @@ const StreamDetails = ({
   details: LiveNFT;
   address: string;
 }) => {
+  const { data = { formatted: "", symbol: "" } } = useBalance({
+    addressOrName: address,
+    watch: true,
+  })
   return (
     <div className="flex flex-col m-auto w-full rounded-xl mt-4">
       <div className="flex flex-col space-y-4 text-center">
         <div className="flex flex-row w-full max-w-full text-white justify-center">
           <DetailBox
             title="Subscription price"
-            text={formatEther(details.price) + " eth"}
+            text={formatEther(details.price) + " ETH"}
           />
-          {/* <DetailBox title="Earned" text={String(details.totalSupply) + "   $"}> */}
-          <DetailBox title="Earned" text={"0  $"}>
-            <button className="btn btn-sm btn-disabled	">Withdrawal</button>
+          <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
+            <WithdrawalButton address={address} />
           </DetailBox>
         </div>
       </div>

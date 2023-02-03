@@ -20,6 +20,7 @@ export type LiveNFT = {
   name: string;
   description: string;
   price: BigNumberish;
+  limitedSupply: boolean;
   totalSupply: Number;
   baseUri: string;
 };
