@@ -42,7 +42,7 @@ const StreamDetails = ({
           </DetailBox>
         </div>
       </div>
-      <div className="flex flex-row mt-8">
+      <div className="flex flex-row flex-wrap mt-8">
         <a
           target="_blank"
           rel="noreferrer"
