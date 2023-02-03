@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <LivepeerConfig client={client}>
       <WagmiConfig client={wagmiClient}>
-        <Head> NFTsTv </Head>
+        <Head> broadcastr </Head>
         <RainbowKitProvider chains={chains}>
           <Router>
             <Component {...pageProps} />

@@ -17,6 +17,11 @@ const factoryContract = [
         "type": "string"
       },
       {
+        "internalType": "bool",
+        "name": "_limitedSupply",
+        "type": "bool"
+      },
+      {
         "internalType": "uint256",
         "name": "_totalSupply",
         "type": "uint256"
@@ -83,6 +88,11 @@ const factoryContract = [
         "type": "string"
       },
       {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      },
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
@@ -105,6 +115,19 @@ const factoryContract = [
       }
     ],
     "name": "livenfts",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "masterContract",
     "outputs": [
       {
         "internalType": "address",

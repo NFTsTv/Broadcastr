@@ -9,13 +9,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
   <div className=" h-screen mx-auto w-screen">{children}</div>
 );
 const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
-const protectedRoutes = ["/", "/create", "/list", "/golive"];
+const protectedRoutes = ["/", "/golive"];
 
 const Router = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const route = router.pathname;
   const { isConnected, address, status } = useAccount();
-  console.log(status);
   const [isLoading, setIsLoading] = React.useState(true);
   const {
     data,
@@ -27,7 +26,6 @@ const Router = ({ children }: { children: React.ReactNode }) => {
     args: [address],
   });
 
-  console.log(data);
   React.useEffect(() => {
     if (protectedRoutes.includes(route) && !loadingRead) {
       if (data?.length === 0 && route !== "/create") {

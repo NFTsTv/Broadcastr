@@ -39,12 +39,13 @@ const useCreateLiveNFT = () => {
       functionName: "createLiveNFT",
       args: validateFormData()
         ? [
-            liveNFT.baseUri,
-            liveNFT.name,
-            liveNFT.description,
-            Number(liveNFT.totalSupply),
-            parseEther(liveNFT.price),
-          ]
+          liveNFT.baseUri,
+          liveNFT.name,
+          liveNFT.description,
+          liveNFT.limitedSupply,
+          Number(liveNFT.totalSupply),
+          parseEther(liveNFT.price),
+        ]
         : [],
     });
 
