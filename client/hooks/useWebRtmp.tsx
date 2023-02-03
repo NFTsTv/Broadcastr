@@ -1,6 +1,6 @@
 import React from "react";
 import { CastSession, Client } from "@livepeer/webrtmp-sdk";
-import VideoView, { VideoViewHanlde } from "components/VideoView";
+import { VideoViewHanlde } from "components/Webcam/VideoView";
 
 export type State = {
   state: "loading" | "error" | "live" | "idle";

@@ -2,14 +2,14 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import useLiveNFT from "hooks/useLiveNFT";
-import UseWebcam from "components/goLive/UseWebcam";
-import UseObs from "components/goLive/UseObs";
-import UseTestStream from "components/goLive/UseTestSignal";
-import ViewComponent from "components/view/ViewComponent";
+import UseWebcam from "components/Cast/UseWebcam";
+import UseObs from "components/Cast/UseObs";
+import UseTestStream from "components/Cast/UseTestSignal";
+import ViewComponent from "components/Watch";
 import { ViewContextProvider } from "context/viewContext";
 import StreamDetails from "components/StreamDetails";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import WebcamView from "components/WebcamView";
+import WebcamView from "components/Webcam";
 
 const Create: NextPage = () => {
   const router = useRouter();

@@ -1,7 +1,7 @@
 import React from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
-import Container from "./container";
+import Container from "./Container";
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <div className=" h-screen mx-auto">
     <div className="flex justify-center align-center h-full w-full ">

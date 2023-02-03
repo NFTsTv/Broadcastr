@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useAccount, useContractRead } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Container from "./container";
+import Container from "components/Elements/Container";
 import factoryContract from "contracts/factory-abi";
 
 const Layout = ({ children }: { children: React.ReactNode }) => (

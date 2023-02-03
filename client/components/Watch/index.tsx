@@ -2,10 +2,10 @@ import React from "react";
 import { ViewContext } from "context/viewContext";
 import UserInteractionBar from "components/Buttons/UserInteractionBar";
 import { Player } from "@livepeer/react";
-import OfflineView from "components/view/OfflineView";
+import OfflineView from "components/Watch/OfflineView";
 import VodView from "./VodView";
 
-const ViewComponent = () => {
+const WatchComponent = () => {
   const context = React.useContext(ViewContext);
   
   if (!context) {
@@ -28,4 +28,4 @@ const ViewComponent = () => {
   return <OfflineView />;
 };
 
-export default ViewComponent;
+export default WatchComponent;

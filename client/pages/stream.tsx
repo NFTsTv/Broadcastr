@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import WebcamView from "components/WebcamView";
+import WebcamView from "components/Webcam";
 import type { NextPage } from "next";
 
 const Stream: NextPage = () => {

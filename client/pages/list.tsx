@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import React from "react";
 import { useAccount, useContractRead } from "wagmi";
-import NftCard from "components/NftCard";
-import Container from "components/container";
+import NftCard from "components/Elements/NftCard";
+import Container from "components/Elements/Container";
 import factoryContract from "contracts/factory-abi";
-import Menu from "components/Menu";
+import Menu from "components/Elements/Menu";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
@@ -17,7 +17,8 @@ const contractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS ?? "";
 
 const List: NextPage = () => {
   const { address } = useAccount();
-  const [controlledSwiper, setControlledSwiper] = React.useState<swiperType | null>(null);
+  const [controlledSwiper, setControlledSwiper] =
+    React.useState<swiperType | null>(null);
   const { data, error, isError, isLoading, status } = useContractRead({
     addressOrName: contractAddress,
     contractInterface: factoryContract,
@@ -30,7 +31,7 @@ const List: NextPage = () => {
   }
 
   const handleScroll = (index: string) => {
-    controlledSwiper?.slideTo(Number(index))
+    controlledSwiper?.slideTo(Number(index));
   };
 
   return (
@@ -53,7 +54,7 @@ const List: NextPage = () => {
           {data.map((data) => {
             return (
               <SwiperSlide>
-                <NftCard address={data}  />
+                <NftCard address={data} />
               </SwiperSlide>
             );
           })}
@@ -61,7 +62,7 @@ const List: NextPage = () => {
             type="range"
             min="0"
             defaultValue={0}
-            max={data.length -1}
+            max={data.length - 1}
             className="range range-xs mt-8"
             onChange={(e) => handleScroll(e.target.value)}
           />

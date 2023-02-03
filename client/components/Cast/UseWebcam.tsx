@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "components/Modal";
+import Modal from "components/Elements/Modal";
 import Link from "next/link";
 
 const UseWebcam = ({ address }: { address: string }) => {

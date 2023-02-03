@@ -1,4 +1,4 @@
-import Modal from "components/Modal";
+import Modal from "components/Elements/Modal";
 import React from "react";
 import { Stream } from "@livepeer/react";
 
