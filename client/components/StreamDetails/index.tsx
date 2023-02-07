@@ -1,10 +1,7 @@
 import { LiveNFT } from "types/general";
 import { formatEther } from "ethers/lib/utils";
-import ShareButton from "components/Share/Button";
 import { useBalance } from "wagmi";
 import WithdrawalButton from "components/Buttons/WithdrawalButton";
-import { Routes } from "utils/constants";
-import { NFTMarketAddress } from "utils/constants";
 
 const DetailBox = ({
   title,
@@ -33,7 +30,7 @@ const StreamDetails = ({
 }) => {
   const { data = { formatted: "", symbol: "" } } = useBalance({
     addressOrName: address,
-    watch: true,
+    watch: false,
   });
   return (
     <div className="flex flex-col w-full rounded-xl">

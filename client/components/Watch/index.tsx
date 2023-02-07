@@ -1,6 +1,5 @@
 import React from "react";
 import { ViewContext } from "context/viewContext";
-import UserInteractionBar from "components/Buttons/UserInteractionBar";
 import { Player } from "@livepeer/react";
 import OfflineView from "components/Watch/OfflineView";
 import VodView from "./VodView";
@@ -12,11 +11,11 @@ const WatchComponent = () => {
     return <div>loading</div>;
   }
   const { displayVodContent, activeSrc } = context;
-
+  console.log("test")
   if (activeSrc) {
     return (
       <div className="h-screen flex">
-        <Player src={activeSrc} />
+        <Player  src={activeSrc} />
       </div>
     );
   }

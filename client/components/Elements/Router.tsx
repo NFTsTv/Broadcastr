@@ -32,7 +32,9 @@ const Router = ({ children }: { children: React.ReactNode }) => {
         setIsLoading(false);
       }
     } else if (!ProtectedRutes.includes(route)) {
-      setIsLoading(status === "reconnecting");
+    console.log(route, isLoading)
+
+      setIsLoading(false);
     }
   }, [isConnected, status, data, route, router, loadingRead]);
 
