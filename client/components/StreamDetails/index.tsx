@@ -30,7 +30,7 @@ const StreamDetails = ({
 }) => {
   const { data = { formatted: "", symbol: "" } } = useBalance({
     addressOrName: address,
-    watch: false,
+    watch: true,
   });
   return (
     <div className="flex flex-col w-full rounded-xl">
