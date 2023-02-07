@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode } from "react";
 import useLiveNFT from "hooks/useLiveNFT";
 import { Stream, StreamSession } from "@livepeer/react";
-
+import { LiveNFT } from "types/general";
 interface ContextType {
   address: string;
   stream: Stream | undefined;
@@ -10,6 +10,7 @@ interface ContextType {
   setDisplayVodContent: (value: boolean) => void;
   activeSrc: string | undefined;
   setActiveSrc: (value: string | undefined) => void;
+  lnftData: LiveNFT | null;
 }
 
 interface Props {
@@ -47,6 +48,7 @@ export function ViewContextProvider(props: Props) {
         setDisplayVodContent,
         activeSrc,
         setActiveSrc,
+        lnftData,
       }}
     >
       {props.children}

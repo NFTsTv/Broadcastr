@@ -1,5 +1,5 @@
 import React from "react";
-import GoBackButton from "./Buttons/GoBackButton";
+import GoBackButton from "components/Buttons/GoBackButton";
 const Modal = ({
   onExit,
   children,

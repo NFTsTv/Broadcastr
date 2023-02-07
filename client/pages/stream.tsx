@@ -1,44 +1,19 @@
-import React, { useRef } from "react";
-import VideoView, { VideoViewHanlde } from "components/VideoView";
 import { useRouter } from "next/router";
-import useLiveNFT from "hooks/useLiveNFT";
-import WebcamControl from "components/webCamControl";
-import useWebRtmp from "hooks/useWebRtmp";
+import WebcamView from "components/Webcam";
+import type { NextPage } from "next";
 
-const LiveStreamState = () => {
-  const videoView = useRef<VideoViewHanlde | null>(null);
+const Stream: NextPage = () => {
   const router = useRouter();
   const { address } = router.query;
-  const { stream } = useLiveNFT(address as string);
-  const { onStart, state } = useWebRtmp(videoView, stream?.streamKey);
 
   if (!address) {
     return <div>loading</div>;
   }
-
-  const disableVideo = () => {
-    if (videoView.current) {
-      videoView.current.disableVideo();
-    }
-  };
-
-  const switchCamera = () => {
-    if (videoView.current) {
-      videoView.current.switchCamera();
-    }
-  };
-
   return (
     <div className="flex flex-col h-screen">
-      <VideoView ref={videoView} />
-      <WebcamControl
-        goLive={onStart}
-        disableVideo={disableVideo}
-        switchCamera={switchCamera}
-        status={state.state}
-      />
+      <WebcamView address={address as string} />
     </div>
   );
 };
 
-export default LiveStreamState;
+export default Stream;
