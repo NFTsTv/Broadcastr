@@ -38,7 +38,7 @@ const CastComponent = () => {
         <StreamDetails address={address} details={lnftData} />
       </div>
       <div className="flex flex-col h-2/4 lg:w-4/5 lg:h-full border-1 lg:relative">
-        <div className="absolute bottom-0 lg:top-0 lg:left-0 z-10 p-4 w-full flex justify-center lg:justify-start">
+        <div className="absolute bottom-0 lg:top-0 lg:left-0 z-10 p-4 w-full flex justify-center lg:justify-start h-9">
           <ViewOnOpensea address={address} />
           <ShareButton />
           <a
