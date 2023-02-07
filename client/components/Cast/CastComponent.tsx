@@ -22,7 +22,7 @@ const CastComponent = () => {
 
   return (
     <div className="flex h-full lg:flex-row flex-col-reverse">
-      <div className="flex flex-col p-5 space-y-5 h-2/3 lg:h-full lg:w-1/4 relative overflow-auto">
+      <div className="flex flex-col p-5 space-y-5 h-2/3 lg:h-full lg:w-1/5 relative overflow-auto">
         <ConnectButton
           accountStatus={{
             smallScreen: "avatar",
@@ -37,8 +37,8 @@ const CastComponent = () => {
         />
         <StreamDetails address={address} details={lnftData} />
       </div>
-      <div className="flex flex-col h-1/3 lg:w-3/4 lg:h-full border-1 relative">
-        <div className="absolute top-0 left-0 z-10 flex m-4">
+      <div className="flex flex-col h-2/4 lg:w-4/5 lg:h-full border-1 lg:relative">
+        <div className="absolute bottom-0 lg:top-0 lg:left-0 z-10 p-4 w-full flex justify-center lg:justify-start">
           <ViewOnOpensea address={address} />
           <ShareButton />
           <a
