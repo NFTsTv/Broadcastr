@@ -16,7 +16,7 @@ export const GoLive = ({
   return (
     <>
       {stream.isActive ? (
-        <h1>Stream is live!</h1>
+        <h1 className="animate-pulse text-success">Stream is live!</h1>
       ) : (
         <>
           <h1>Go live on {lnftData.name}!</h1>
@@ -25,7 +25,7 @@ export const GoLive = ({
           </p>
           <div className="flex flex-col">
             <UseObs stream={stream} />
-            <UseWebcam address={address as string} />
+            {/* <UseWebcam address={address as string} /> */}
             <UseTestStream stream={stream} />
           </div>
         </>

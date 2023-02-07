@@ -12,6 +12,7 @@
   "dependencies": {
     "@livepeer/react": "^1.5.5",
     "@livepeer/webrtmp-sdk": "^0.2.3",
+    "@mui/icons-material": "^5.11.0",
     "@rainbow-me/rainbowkit": "^0.6.1",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/styled-components": "^5.1.26",

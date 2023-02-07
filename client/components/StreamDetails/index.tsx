@@ -18,7 +18,7 @@ const DetailBox = ({
   return (
     <div className="flex flex-col mx-auto space-y-2">
       <div className="stat-title">{title}</div>
-      <div className="stat-value">{text}</div>
+      <div className="text-2xl font-medium">{text}</div>
       {children}
     </div>
   );
@@ -36,9 +36,9 @@ const StreamDetails = ({
     watch: true,
   });
   return (
-    <div className="flex flex-col m-auto w-full rounded-xl mt-4">
+    <div className="flex flex-col w-full rounded-xl">
       <div className="flex flex-col space-y-4 text-center">
-        <div className="flex flex-row w-full max-w-full text-white justify-center">
+        <div className="flex flex-row lg:flex-col xl:flex-row w-full max-w-full text-white justify-center">
           <DetailBox
             title="Subscription price"
             text={formatEther(details.price) + " MATIC"}
@@ -47,25 +47,6 @@ const StreamDetails = ({
             <WithdrawalButton address={address} />
           </DetailBox>
         </div>
-      </div>
-      <div className="flex flex-row flex-wrap mt-8">
-        <a
-          target="_blank"
-          rel="noreferrer"
-          className="btn btn-sm btn-outline btn-info text-white m-auto"
-          href={`${NFTMarketAddress}/${address}/1`}
-        >
-          View on Opensea
-        </a>
-        <a
-          target="_blank"
-          rel="noreferrer"
-          className="btn btn-sm btn-outline btn-info text-white m-auto"
-          href={`${Routes.WATCH}?address=${address}`}
-        >
-          Subscribers page
-        </a>
-        <ShareButton />
       </div>
     </div>
   );

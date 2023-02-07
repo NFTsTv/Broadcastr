@@ -19,7 +19,7 @@ const ShareButton = () => {
       <DetailsModal />
       <label
         htmlFor="my-modal-4"
-        className="btn btn-sm btn-outline btn-info text-white m-auto"
+        className="btn btn-sm btn-secondary text-white m-1"
       >
         Share
       </label>
