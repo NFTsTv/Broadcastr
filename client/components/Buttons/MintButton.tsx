@@ -6,21 +6,21 @@ import {
   useAccount,
 } from "wagmi";
 import { ethers } from "ethers";
-import LNFTcontractABI from "contracts/LNFTcontract-abi";
+import CastrABI from "contracts/Castr-abi";
 
 const MintButton = ({ address }: { address: string }) => {
   const [mintLoading, setMintLoading] = useState(false);
   const { address: userAddress } = useAccount();
   const { data: mintPrice } = useContractRead({
     addressOrName: address,
-    contractInterface: LNFTcontractABI,
+    contractInterface: CastrABI,
     functionName: "mintPrice",
     args: [],
   });
 
   const { writeAsync: mint, error: mintError } = useContractWrite({
     addressOrName: address,
-    contractInterface: LNFTcontractABI,
+    contractInterface: CastrABI,
     functionName: "mintTo",
     mode: "recklesslyUnprepared",
     args: [

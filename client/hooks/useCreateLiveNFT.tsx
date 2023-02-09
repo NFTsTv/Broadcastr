@@ -10,7 +10,7 @@ import {
 
 import { createMetadata } from "utils/helpers";
 import { post } from "utils/requests";
-import factoryContract from "contracts/factory-abi";
+import factoryContract from "contracts/CastrFactory-abi";
 import { parseEther } from "ethers/lib/utils";
 import { ContractAddress } from "utils/constants";
 

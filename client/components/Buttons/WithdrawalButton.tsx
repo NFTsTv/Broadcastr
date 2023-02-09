@@ -3,7 +3,7 @@ import {
     useContractWrite,
     useAccount
 } from 'wagmi';
-import LNFTcontractABI from "contracts/LNFTcontract-abi";
+import LNFTcontractABI from "contracts/Castr-abi";
 
 const WithdrawalButton = ({
     address,

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useAccount, useContractRead } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Container from "components/Elements/Container";
-import factoryContract from "contracts/factory-abi";
+import factoryContract from "contracts/CastrFactory-abi";
 import { Routes, ProtectedRutes, ContractAddress } from "utils/constants";
 
 const Layout = ({ children }: { children: ReactNode }) => (

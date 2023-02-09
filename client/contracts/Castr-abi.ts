@@ -1,4 +1,4 @@
-const LNFTcontractABI = [
+const CastrABI = [
   {
     "inputs": [],
     "stateMutability": "nonpayable",
@@ -133,7 +133,7 @@ const LNFTcontractABI = [
   },
   {
     "inputs": [],
-    "name": "LNFTname",
+    "name": "CastrName",
     "outputs": [
       {
         "internalType": "string",
@@ -208,6 +208,25 @@ const LNFTcontractABI = [
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "castrAddresses",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "currentTokenId",
     "outputs": [
@@ -228,25 +247,6 @@ const LNFTcontractABI = [
         "internalType": "string",
         "name": "",
         "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "emitterAddresses",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -411,25 +411,6 @@ const LNFTcontractABI = [
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "recipient",
-        "type": "address"
-      }
-    ],
-    "name": "mintTo",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "name",
     "outputs": [
@@ -566,6 +547,25 @@ const LNFTcontractABI = [
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "recipient",
+        "type": "address"
+      }
+    ],
+    "name": "subscribe",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "bytes4",
         "name": "interfaceId",
         "type": "bytes4"
@@ -667,7 +667,7 @@ const LNFTcontractABI = [
     "inputs": [
       {
         "internalType": "address payable",
-        "name": "payee",
+        "name": "recipient",
         "type": "address"
       }
     ],
@@ -678,4 +678,4 @@ const LNFTcontractABI = [
   }
 ];
 
-export default LNFTcontractABI;
+export default CastrABI;

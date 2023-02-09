@@ -1,7 +1,7 @@
 import React from "react";
 import { useStream, useStreamSessions } from "@livepeer/react";
 import { useContractRead } from "wagmi";
-import LNFTcontractABI from "contracts/factory-abi";
+import LNFTcontractABI from "contracts/CastrFactory-abi";
 import { get } from "utils/requests";
 import { parseParams } from "utils/helpers";
 import { LiveNFT } from "types/general";

@@ -3,13 +3,13 @@ import React from "react";
 import { useAccount, useContractRead } from "wagmi";
 import NftCard from "components/Elements/NftCard";
 import Container from "components/Elements/Container";
-import factoryContract from "contracts/factory-abi";
+import factoryContract from "contracts/CastrFactory-abi";
 import Menu from "components/Elements/Menu";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-cards";
-import {  ContractAddress } from "utils/constants";
+import { ContractAddress } from "utils/constants";
 
 // import required modules
 import { EffectCards, Controller, Swiper as swiperType } from "swiper";
