@@ -1,8 +1,9 @@
-import React from "react";
+import { useContext } from "react";
 import { ViewContext } from "context/viewContext";
 import { PlayerURL } from "utils/constants";
+
 const WatchComponent = () => {
-  const context = React.useContext(ViewContext);
+  const context = useContext(ViewContext);
 
   if (!context) {
     return <div>loading</div>;

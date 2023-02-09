@@ -1,9 +1,10 @@
-import React from "react";
+import { useContext } from "react";
 import { ViewContext } from "context/viewContext";
 import moment from "moment";
 import { StreamSession } from "@livepeer/react";
+
 const VodView = () => {
-  const context = React.useContext(ViewContext);
+  const context = useContext(ViewContext);
   if (!context) {
     return <div>loading</div>;
   }
