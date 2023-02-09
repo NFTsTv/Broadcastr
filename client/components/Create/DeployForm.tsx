@@ -1,11 +1,11 @@
-import useCreateLiveNFT from "hooks/useCreateLiveNFT";
+import useCreateCastr from "hooks/useCreateCastr";
 import Button from "components/Buttons/Button";
 import useCreateContext from "hooks/useCreateContext";
 
 const DeployLNFT = () => {
-  const { liveNFT, handleSetData, formError } = useCreateContext();
+  const { Castr, handleSetData, formError } = useCreateContext();
 
-  const { deployContract, error, isLoading } = useCreateLiveNFT();
+  const { deployContract, error, isLoading } = useCreateCastr();
 
   return (
     <>
@@ -22,7 +22,7 @@ const DeployLNFT = () => {
           <input
             type="text"
             placeholder="0.08"
-            value={liveNFT.price}
+            value={Castr.price}
             className="input input-bordered w-3/4"
             onChange={(e) => handleSetData("price", e.target.value)}
           />
@@ -31,10 +31,10 @@ const DeployLNFT = () => {
 
         <label className="label">
           <span>Want a limited number of subscribers?</span>
-          <input type={"checkbox"} checked={liveNFT.limitedSupply} className="toggle toggle-success" onChange={(e) => handleSetData("limitedSupply", e.target.checked)} />
+          <input type={"checkbox"} checked={Castr.limitedSupply} className="toggle toggle-success" onChange={(e) => handleSetData("limitedSupply", e.target.checked)} />
         </label>
 
-        {liveNFT.limitedSupply && (
+        {Castr.limitedSupply && (
           <>
             <label className="label">
               <span className="label-text">Max. number of subscriptions</span>
@@ -43,7 +43,7 @@ const DeployLNFT = () => {
               type="text"
               placeholder="100"
               className="input input-bordered w-full mb-4"
-              value={liveNFT.totalSupply}
+              value={Castr.totalSupply}
               onChange={(e) => handleSetData("totalSupply", e.target.value)}
             />
           </>

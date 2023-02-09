@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import useLiveNFT from "hooks/useLiveNFT";
+import useCastr from "hooks/useCastr";
 import { Stream, StreamSession } from "@livepeer/react";
-import { LiveNFT } from "types/general";
+import { Castr } from "types/general";
 
 interface ContextType {
   address: string;
@@ -11,7 +11,7 @@ interface ContextType {
   setDisplayVodContent: (value: boolean) => void;
   activeSrc: string | undefined;
   setActiveSrc: (value: string | undefined) => void;
-  lnftData: LiveNFT | null;
+  CastrData: Castr | null;
 }
 
 interface Props {
@@ -22,7 +22,7 @@ interface Props {
 export const ViewContext = createContext<ContextType | undefined>(undefined);
 
 export function ViewContextProvider(props: Props) {
-  const { stream, lnftData, sessions } = useLiveNFT(props.address);
+  const { stream, CastrData, sessions } = useCastr(props.address);
   const [displayVodContent, setDisplayVodContent] = useState(false);
   const activeSessions = sessions?.filter(
     (session) => session.recordingStatus === "ready"
@@ -49,7 +49,7 @@ export function ViewContextProvider(props: Props) {
         setDisplayVodContent,
         activeSrc,
         setActiveSrc,
-        lnftData,
+        CastrData,
       }}
     >
       {props.children}

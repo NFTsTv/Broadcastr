@@ -8,13 +8,13 @@ import GoBackButton from "components/Buttons/GoBackButton";
 
 const CreateComponent = () => {
   const [step, setStep] = useState(0);
-  const { liveNFT } = useCreateContext();
+  const { Castr } = useCreateContext();
 
   useEffect(() => {
-    if (liveNFT?.baseUri) {
+    if (Castr?.baseUri) {
       setStep(2);
     }
-  }, [liveNFT]);
+  }, [Castr]);
 
   const renderStep = () => {
     switch (step) {

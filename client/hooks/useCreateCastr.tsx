@@ -1,5 +1,5 @@
 import { CreateContext } from "context/createContext";
-import React from "react";
+import { useContext, useEffect, useState } from "react";
 import { useCreateStream } from "@livepeer/react";
 import {
   useContractWrite,
@@ -15,36 +15,36 @@ import { parseEther } from "ethers/lib/utils";
 import { ContractAddress } from "utils/constants";
 
 
-const useCreateLiveNFT = () => {
+const useCreateCastr = () => {
   const { address } = useAccount();
-  const context = React.useContext(CreateContext);
-  const [createError, setError] = React.useState<string | undefined>();
+  const context = useContext(CreateContext);
+  const [createError, setError] = useState<string | undefined>();
   if (!context) {
     throw "context requred to use this hook";
   }
-  const { liveNFT, handleSetData, validateFormData } = context;
-  const [isLoadingRequest, setIsLoadingRequest] = React.useState(false);
+  const { Castr, handleSetData, validateFormData } = context;
+  const [isLoadingRequest, setIsLoadingRequest] = useState(false);
 
   const {
     data: assetData,
     mutate: createStream,
     status: createStreamStatus,
     error: createStreamError,
-  } = useCreateStream({ name: liveNFT.name, record: true });
+  } = useCreateStream({ name: Castr.name, record: true });
 
   const { config, isSuccess: prepareContractWriteSuccess } =
     usePrepareContractWrite({
       addressOrName: ContractAddress,
       contractInterface: [...factoryContract],
-      functionName: "createLiveNFT",
+      functionName: "createCastr",
       args: validateFormData()
         ? [
-          liveNFT.baseUri,
-          liveNFT.name,
-          liveNFT.description,
-          liveNFT.limitedSupply,
-          Number(liveNFT.totalSupply),
-          parseEther(liveNFT.price),
+          Castr.baseUri,
+          Castr.name,
+          Castr.description,
+          Castr.limitedSupply,
+          Number(Castr.totalSupply),
+          parseEther(Castr.price),
         ]
         : [],
     });
@@ -61,14 +61,14 @@ const useCreateLiveNFT = () => {
       hash: data?.hash,
     });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (createStreamStatus === "success") {
       if (!assetData) return;
       setIsLoadingRequest(true);
       const metadata = createMetadata({
-        name: liveNFT.name,
-        description: liveNFT.description,
-        LNFTId: assetData.id,
+        name: Castr.name,
+        description: Castr.description,
+        CastrId: assetData.id,
         streamId: assetData?.id,
         playbackUrl: assetData?.playbackUrl,
         address: address ?? "",
@@ -84,7 +84,7 @@ const useCreateLiveNFT = () => {
     }
   }, [createStreamStatus, writeTransactionStatus]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (txError) {
       setError(txError.message);
     }
@@ -97,7 +97,7 @@ const useCreateLiveNFT = () => {
   }, [txError, contractWriteError, createStreamError]);
 
   const handleCreateStream = () => {
-    if (liveNFT.name !== "" && liveNFT.description !== "") {
+    if (Castr.name !== "" && Castr.description !== "") {
       createStream && createStream();
     } else {
       setError("Fill all parameters");
@@ -125,4 +125,4 @@ const useCreateLiveNFT = () => {
   };
 };
 
-export default useCreateLiveNFT;
+export default useCreateCastr;

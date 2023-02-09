@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useState } from "react";
 import { parseEther } from "ethers/lib/utils";
 
-export interface liveNFTFormControl {
+export interface CastrFormControl {
   name: string;
   price: string;
   description: string;
@@ -11,11 +11,11 @@ export interface liveNFTFormControl {
 }
 
 interface handleSetDataParameters {
-  (key: keyof liveNFTFormControl, value: string | boolean): void;
+  (key: keyof CastrFormControl, value: string | boolean): void;
 }
 
 interface ContextType {
-  liveNFT: liveNFTFormControl;
+  Castr: CastrFormControl;
   handleSetData: handleSetDataParameters;
   formError: string | undefined;
   validateFormData: () => boolean;
@@ -30,7 +30,7 @@ export const CreateContext = createContext<ContextType | undefined>(undefined);
 export function CreateContextProvider(props: Props) {
   const [formError, setError] = useState<string | undefined>();
 
-  const [liveNFT, setLiveNFT] = useState<liveNFTFormControl>({
+  const [Castr, setCastr] = useState<CastrFormControl>({
     name: "",
     price: "",
     description: "",
@@ -39,27 +39,27 @@ export function CreateContextProvider(props: Props) {
   });
 
   const handleSetData: handleSetDataParameters = (key, value) => {
-    setLiveNFT({ ...liveNFT, [key]: value });
+    setCastr({ ...Castr, [key]: value });
   };
 
   function validateFormData(): boolean {
-    if (!liveNFT.name || typeof liveNFT.name !== "string") {
+    if (!Castr.name || typeof Castr.name !== "string") {
       return false;
     }
-    if (!liveNFT.description || typeof liveNFT.description !== "string") {
+    if (!Castr.description || typeof Castr.description !== "string") {
       return false;
     }
     try {
-      parseEther(liveNFT.price);
+      parseEther(Castr.price);
     } catch {
       return false;
     }
-    if (liveNFT.limitedSupply) {
-      if (!liveNFT.totalSupply || isNaN(Number(liveNFT.totalSupply))) {
+    if (Castr.limitedSupply) {
+      if (!Castr.totalSupply || isNaN(Number(Castr.totalSupply))) {
         return false;
       }
     }
-    if (!liveNFT.baseUri || typeof liveNFT.baseUri !== "string") {
+    if (!Castr.baseUri || typeof Castr.baseUri !== "string") {
       return false;
     }
     setError(undefined);
@@ -68,7 +68,7 @@ export function CreateContextProvider(props: Props) {
 
   return (
     <CreateContext.Provider
-      value={{ liveNFT, handleSetData, formError, validateFormData }}
+      value={{ Castr, handleSetData, formError, validateFormData }}
     >
       {props.children}
     </CreateContext.Provider>

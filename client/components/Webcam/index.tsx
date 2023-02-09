@@ -1,12 +1,12 @@
 import { useRef } from "react";
-import useLiveNFT from "hooks/useLiveNFT";
+import useCastr from "hooks/useCastr";
 import useWebRtmp from "hooks/useWebRtmp";
 import VideoView, { VideoViewHanlde } from "./VideoView";
 import WebcamControl from "./webCamControl";
 
 const WebcamView = ({ address }: { address: string }) => {
   const videoView = useRef<VideoViewHanlde | null>(null);
-  const { stream } = useLiveNFT(address as string);
+  const { stream } = useCastr(address as string);
   const { onStart, state } = useWebRtmp(videoView, stream?.streamKey);
 
   if (!address) {

@@ -1,4 +1,4 @@
-import { LiveNFT } from "types/general";
+import { Castr } from "types/general";
 import { Stream } from "@livepeer/react";
 import UseObs from "./UseObs";
 import UseTestStream from "./UseTestSignal";
@@ -7,11 +7,11 @@ import UseTestStream from "./UseTestSignal";
 import UseWebcam from "./UseWebcam";
 
 export const GoLive = ({
-  lnftData,
+  CastrData,
   stream,
   address,
 }: {
-  lnftData: LiveNFT;
+  CastrData: Castr;
   stream: Stream;
   address: string;
 }) => {
@@ -21,9 +21,9 @@ export const GoLive = ({
         <h1 className="animate-pulse text-success">Stream is live!</h1>
       ) : (
         <>
-          <h1>Go live on {lnftData.name}!</h1>
+          <h1>Go live on {CastrData.name}!</h1>
           <p>
-            Stream directly into you LNFT using on of the following methods:
+            Stream directly into you Castr using on of the following methods:
           </p>
           <div className="flex flex-col">
             <UseObs stream={stream} />

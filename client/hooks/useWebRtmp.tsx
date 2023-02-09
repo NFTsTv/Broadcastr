@@ -1,4 +1,4 @@
-import React from "react";
+import { MutableRefObject, useEffect, useReducer, useState } from "react";
 import { CastSession, Client } from "@livepeer/webrtmp-sdk";
 import { VideoViewHanlde } from "components/Webcam/VideoView";
 
@@ -26,14 +26,14 @@ function reducer(state: State, action: Action): State {
 }
 
 export const useWebRtmp = (
-  videoView: React.MutableRefObject<VideoViewHanlde | null>,
+  videoView: MutableRefObject<VideoViewHanlde | null>,
   streamKey: string | undefined
 ) => {
-  const [state, dispatch] = React.useReducer(reducer, { state: "idle" });
-  const [session, setSession] = React.useState<CastSession | null>(null);
+  const [state, dispatch] = useReducer(reducer, { state: "idle" });
+  const [session, setSession] = useState<CastSession | null>(null);
   const client = new Client({ transport: "auto" });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (session) {
       session.on("open", () => {
         console.log("Stream started; visit Livepeer Dashboard.");

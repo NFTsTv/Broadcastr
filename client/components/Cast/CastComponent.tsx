@@ -14,9 +14,9 @@ const CastComponent = () => {
   if (!context) {
     return <div>loading</div>;
   }
-  const { address, stream, lnftData } = context;
+  const { address, stream, CastrData } = context;
 
-  if (!stream || !lnftData) {
+  if (!stream || !CastrData) {
     return <div>loading</div>;
   }
 
@@ -33,9 +33,9 @@ const CastComponent = () => {
         <GoLive
           address={address}
           stream={stream}
-          lnftData={lnftData}
+          CastrData={CastrData}
         />
-        <StreamDetails address={address} details={lnftData} />
+        <StreamDetails address={address} details={CastrData} />
       </div>
       <div className="flex flex-col h-2/4 lg:w-4/5 lg:h-full border-1 lg:relative">
         <div className="absolute bottom-0 lg:top-0 lg:left-0 z-10 p-4 w-full flex justify-center lg:justify-start h-9">

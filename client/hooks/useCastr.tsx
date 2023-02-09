@@ -1,31 +1,31 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useStream, useStreamSessions } from "@livepeer/react";
 import { useContractRead } from "wagmi";
-import LNFTcontractABI from "contracts/CastrFactory-abi";
+import CastrFactoryABI from "contracts/CastrFactory-abi";
 import { get } from "utils/requests";
 import { parseParams } from "utils/helpers";
-import { LiveNFT } from "types/general";
+import { Castr } from "types/general";
 import { ContractAddress } from "utils/constants";
 
-const useLiveNFT = (address: string) => {
+const useCastr = (address: string) => {
 
-  const [lnftData, setLnftData] = React.useState<LiveNFT | null>(null);
-  const [properties, setProperties] = React.useState({
+  const [CastrData, setCastrData] = useState<Castr | null>(null);
+  const [properties, setProperties] = useState({
     streamId: "",
     ownerAddress: "",
   });
   const { data } = useContractRead({
     addressOrName: ContractAddress,
-    contractInterface: LNFTcontractABI,
+    contractInterface: CastrFactoryABI,
     functionName: "getMetadata",
     args: [address],
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (data) {
 
-      const item = parseParams(data as (LiveNFT[keyof LiveNFT])[]);
-      setLnftData(item);
+      const item = parseParams(data as (Castr[keyof Castr])[]);
+      setCastrData(item);
 
       if (!item.baseUri) {
         console.log("error no base uri", item)
@@ -34,7 +34,7 @@ const useLiveNFT = (address: string) => {
       get(item.baseUri).then((response) => {
         if (response?.properties) {
           setProperties({
-            streamId: response.properties.LNFTId,
+            streamId: response.properties.CastrId,
             ownerAddress: response.properties.creator_address,
           });
         }
@@ -54,8 +54,8 @@ const useLiveNFT = (address: string) => {
   return {
     sessions,
     stream,
-    lnftData,
+    CastrData,
   };
 };
 
-export default useLiveNFT;
+export default useCastr;

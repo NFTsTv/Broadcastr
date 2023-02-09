@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useAccount, useContractRead } from "wagmi";
 import NftCard from "components/Elements/NftCard";
 import Container from "components/Elements/Container";
-import factoryContract from "contracts/CastrFactory-abi";
+import CastrFactory from "contracts/CastrFactory-abi";
 import Menu from "components/Elements/Menu";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -19,9 +19,9 @@ const List: NextPage = () => {
   const { address } = useAccount();
   const [controlledSwiper, setControlledSwiper] =
     useState<swiperType | null>(null);
-  const { data, error, isError, isLoading, status } = useContractRead({
+  const { data, isLoading } = useContractRead({
     addressOrName: ContractAddress,
-    contractInterface: factoryContract,
+    contractInterface: CastrFactory,
     functionName: "getCreatorChannels",
     args: [address],
   });

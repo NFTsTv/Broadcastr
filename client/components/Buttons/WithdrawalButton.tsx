@@ -3,7 +3,7 @@ import {
     useContractWrite,
     useAccount
 } from 'wagmi';
-import LNFTcontractABI from "contracts/Castr-abi";
+import CastrABI from "contracts/Castr-abi";
 
 const WithdrawalButton = ({
     address,
@@ -13,7 +13,7 @@ const WithdrawalButton = ({
     const { address: userAddress } = useAccount();
     const { config, error } = usePrepareContractWrite({
         addressOrName: address,
-        contractInterface: [...LNFTcontractABI],
+        contractInterface: [...CastrABI],
         functionName: "withdrawPayments",
         args: [userAddress],
     })

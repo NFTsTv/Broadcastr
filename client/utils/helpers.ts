@@ -1,16 +1,16 @@
-import { LiveNFT } from "types/general";
+import { Castr } from "types/general";
 
 export const createMetadata = ({
   name,
   description,
-  LNFTId,
+  CastrId,
   playbackUrl,
   address,
   streamId,
 }: {
   name: string;
   description: string;
-  LNFTId: string;
+  CastrId: string;
   playbackUrl: string;
   address: string;
   streamId: string;
@@ -24,19 +24,19 @@ export const createMetadata = ({
     image: url,
     properties: {
       creator_address: address,
-      LNFTId: LNFTId,
+      CastrId: CastrId,
     },
   };
 };
 
-export const parseParams = (params: LiveNFT[keyof LiveNFT][]): LiveNFT => {
+export const parseParams = (params: Castr[keyof Castr][]): Castr => {
   return {
-    baseUri: params[0] as LiveNFT["baseUri"],
-    name: params[1] as LiveNFT["name"],
-    description: params[2] as LiveNFT["description"],
-    limitedSupply: params[3] as LiveNFT["limitedSupply"],
-    totalSupply: params[4] as LiveNFT["totalSupply"],
-    price: params[5] as LiveNFT["price"],
+    baseUri: params[0] as Castr["baseUri"],
+    name: params[1] as Castr["name"],
+    description: params[2] as Castr["description"],
+    limitedSupply: params[3] as Castr["limitedSupply"],
+    totalSupply: params[4] as Castr["totalSupply"],
+    price: params[5] as Castr["price"],
   };
 };
 
