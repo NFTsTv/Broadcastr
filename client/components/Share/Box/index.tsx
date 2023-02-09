@@ -8,7 +8,6 @@ import {
   TwitterShareButton,
   TwitterIcon,
 } from "react-share";
-import { useState } from "react";
 
 interface Props {
   title: string;
