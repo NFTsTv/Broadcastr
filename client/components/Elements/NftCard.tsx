@@ -1,7 +1,7 @@
-import React from "react";
 import Link from "next/link";
 import useLiveNFT from "hooks/useLiveNFT";
-import {NFTMarketAddress} from "utils/constants";
+import { NFTMarketAddress } from "utils/constants";
+
 interface Props {
   address: string;
 }

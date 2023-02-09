@@ -1,8 +1,9 @@
-import React from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import Container from "./Container";
-const Layout = ({ children }: { children: React.ReactNode }) => (
+
+const Layout = ({ children }: { children: ReactNode }) => (
   <div className=" h-screen mx-auto">
     <div className="flex justify-center align-center h-full w-full ">
       {children}
@@ -10,12 +11,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+const MainLayout = ({ children }: { children: ReactNode }) => {
   const { isConnected, status } = useAccount();
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsLoggedIn(isConnected);
     setIsLoading(status === "reconnecting");
   }, [isConnected, status]);
@@ -40,7 +41,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             Welcome to NFTs are live! Connect your wallet to get started
           </p>
           <div className="w-40 m-auto"><ConnectButton /></div>
-          
+
         </Container>
       </Layout>
     );

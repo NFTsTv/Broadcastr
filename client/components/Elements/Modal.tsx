@@ -1,11 +1,12 @@
-import React from "react";
+import { ReactNode } from "react";
 import GoBackButton from "components/Buttons/GoBackButton";
+
 const Modal = ({
   onExit,
   children,
 }: {
   onExit: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
 }) => {
   return (
     <div className="flex absolute top-0 right-0 z-20 w-full h-full m-0 overflow-hidden">
