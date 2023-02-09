@@ -1,7 +1,6 @@
-import React from "react";
+import { useState } from "react";
 import Button from "./Button";
 import {
-  usePrepareContractWrite,
   useContractRead,
   useContractWrite,
   useAccount,
@@ -9,11 +8,9 @@ import {
 import { ethers } from "ethers";
 import LNFTcontractABI from "contracts/LNFTcontract-abi";
 
-
 const MintButton = ({ address }: { address: string }) => {
-  const [mintLoading, setMintLoading] = React.useState(false);
-  const { isConnected, address: userAddress } = useAccount();
-  // get mintPrice from contract
+  const [mintLoading, setMintLoading] = useState(false);
+  const { address: userAddress } = useAccount();
   const { data: mintPrice } = useContractRead({
     addressOrName: address,
     contractInterface: LNFTcontractABI,
@@ -47,7 +44,7 @@ const MintButton = ({ address }: { address: string }) => {
 
   return (
     <Button styles={"ml-2 btn-primary"} onClick={onMintClick} isLoading={mintLoading}>
-      Subscribre for {ethers.utils.formatEther(mintPrice ? mintPrice: 0)} MATIC
+      Subscribre for {ethers.utils.formatEther(mintPrice ? mintPrice : 0)} MATIC
     </Button>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import MintButton from "./MintButton";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -7,7 +7,7 @@ import ViewOnOpensea from "./ViewOnOpensea";
 import ShareButton from "components/Share/Button";
 const UserInteractionBar = () => {
   const { isConnected } = useAccount();
-  const context = React.useContext(ViewContext);
+  const context = useContext(ViewContext);
   if (!context) {
     return <div>loading</div>;
   }
@@ -26,7 +26,7 @@ const UserInteractionBar = () => {
         </Button>
       )} */}
       <ShareButton />
-      <ViewOnOpensea address={address} /> 
+      <ViewOnOpensea address={address} />
     </div>
   );
 };
