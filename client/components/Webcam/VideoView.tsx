@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from "react";
+import { useRef, forwardRef, useEffect, useImperativeHandle } from "react";
 
 export type VideoViewHanlde = {
   getMediaStream: () => MediaStream | null;
@@ -9,7 +9,7 @@ export type VideoViewHanlde = {
 const VideoView = forwardRef<VideoViewHanlde>((props, ref) => {
   const videoEl = useRef<HTMLVideoElement | null>(null);
   const stream = useRef<MediaStream | null>(null);
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
       if (!videoEl.current) {
         console.log("no video element");
@@ -28,7 +28,7 @@ const VideoView = forwardRef<VideoViewHanlde>((props, ref) => {
   }, [stream]);
 
   // Expose the methods to the parent component using useImperativeHandle
-  React.useImperativeHandle(ref, () => ({
+  useImperativeHandle(ref, () => ({
     getMediaStream: () => {
       return stream.current;
     },
