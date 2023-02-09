@@ -21,7 +21,7 @@ const MintButton = ({ address }: { address: string }) => {
   const { writeAsync: mint, error: mintError } = useContractWrite({
     addressOrName: address,
     contractInterface: CastrABI,
-    functionName: "mintTo",
+    functionName: "subscribe",
     mode: "recklesslyUnprepared",
     args: [
       userAddress,

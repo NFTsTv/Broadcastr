@@ -10,7 +10,7 @@ import {
 
 import { createMetadata } from "utils/helpers";
 import { post } from "utils/requests";
-import factoryContract from "contracts/CastrFactory-abi";
+import CastrFactoryABI from "contracts/CastrFactory-abi";
 import { parseEther } from "ethers/lib/utils";
 import { ContractAddress } from "utils/constants";
 
@@ -35,7 +35,7 @@ const useCreateCastr = () => {
   const { config, isSuccess: prepareContractWriteSuccess } =
     usePrepareContractWrite({
       addressOrName: ContractAddress,
-      contractInterface: [...factoryContract],
+      contractInterface: [...CastrFactoryABI],
       functionName: "createCastr",
       args: validateFormData()
         ? [
