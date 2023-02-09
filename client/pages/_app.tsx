@@ -10,14 +10,12 @@ import {
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { infuraProvider } from "wagmi/providers/infura";
-import { publicProvider } from "wagmi/providers/public";
 import Router from "components/Elements/Router";
 
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai],
+  [chain.polygon],
   [
     infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY }),
-    publicProvider(),
   ]
 );
 
