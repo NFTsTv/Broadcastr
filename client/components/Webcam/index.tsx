@@ -10,7 +10,7 @@ const WebcamView = ({ address }: { address: string }) => {
   const { onStart, state } = useWebRtmp(videoView, stream?.streamKey);
 
   if (!address) {
-    return <div>loading</div>;
+    return <div>Loading</div>;
   }
 
   const disableVideo = () => {

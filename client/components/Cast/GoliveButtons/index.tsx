@@ -23,7 +23,7 @@ export const GoLive = ({
         <>
           <h1>Go live on {CastrData.name}!</h1>
           <p>
-            Stream directly into you Castr using on of the following methods:
+            Stream directly into your Castr using on of the following methods:
           </p>
           <div className="flex flex-col">
             <UseObs stream={stream} />
