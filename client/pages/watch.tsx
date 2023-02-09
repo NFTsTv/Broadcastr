@@ -1,4 +1,3 @@
-import React from "react";
 import { useRouter } from "next/router";
 import { ViewContextProvider } from "context/viewContext";
 import WatchComponent from "components/Watch";

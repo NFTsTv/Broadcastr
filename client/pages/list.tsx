@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import React from "react";
+import { useState } from "react";
 import { useAccount, useContractRead } from "wagmi";
 import NftCard from "components/Elements/NftCard";
 import Container from "components/Elements/Container";
@@ -18,7 +18,7 @@ import { EffectCards, Controller, Swiper as swiperType } from "swiper";
 const List: NextPage = () => {
   const { address } = useAccount();
   const [controlledSwiper, setControlledSwiper] =
-    React.useState<swiperType | null>(null);
+    useState<swiperType | null>(null);
   const { data, error, isError, isLoading, status } = useContractRead({
     addressOrName: ContractAddress,
     contractInterface: factoryContract,
