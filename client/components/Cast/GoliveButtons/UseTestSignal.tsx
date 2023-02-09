@@ -1,12 +1,11 @@
+import { useState } from "react";
 import Modal from "components/Elements/Modal";
-import React from "react";
 import { Stream } from "@livepeer/react";
 import Button from "components/Buttons/Button";
 const UseObs = ({ stream }: { stream: Stream }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const sendTestSignal = () => {
-    // post request to teststream.live
     setIsLoading(true);
     fetch("/api/sendTestStream", {
       method: "POST",
