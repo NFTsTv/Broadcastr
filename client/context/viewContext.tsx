@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import useLiveNFT from "hooks/useLiveNFT";
 import { Stream, StreamSession } from "@livepeer/react";
 import { LiveNFT } from "types/general";
@@ -22,19 +22,19 @@ export const ViewContext = createContext<ContextType | undefined>(undefined);
 
 export function ViewContextProvider(props: Props) {
   const { stream, lnftData, sessions } = useLiveNFT(props.address);
-  const [displayVodContent, setDisplayVodContent] = React.useState(false);
+  const [displayVodContent, setDisplayVodContent] = useState(false);
   const activeSessions = sessions?.filter(
     (session) => session.recordingStatus === "ready"
   );
-  const [activeSrc, setActiveSrc] = React.useState<string | undefined>();
+  const [activeSrc, setActiveSrc] = useState<string | undefined>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (stream && stream.isActive && stream.playbackUrl !== activeSrc) {
       setActiveSrc(stream.playbackUrl);
     }
   }, [stream]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setActiveSrc(undefined);
   }, [displayVodContent]);
 

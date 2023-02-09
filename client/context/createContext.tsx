@@ -1,5 +1,6 @@
-import React, { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { parseEther } from "ethers/lib/utils";
+
 export interface liveNFTFormControl {
   name: string;
   price: string;
@@ -27,9 +28,9 @@ interface Props {
 export const CreateContext = createContext<ContextType | undefined>(undefined);
 
 export function CreateContextProvider(props: Props) {
-  const [formError, setError] = React.useState<string | undefined>();
+  const [formError, setError] = useState<string | undefined>();
 
-  const [liveNFT, setLiveNFT] = React.useState<liveNFTFormControl>({
+  const [liveNFT, setLiveNFT] = useState<liveNFTFormControl>({
     name: "",
     price: "",
     description: "",
