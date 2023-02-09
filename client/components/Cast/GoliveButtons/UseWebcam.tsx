@@ -2,6 +2,7 @@ import { useState } from "react";
 import Modal from "components/Elements/Modal";
 import Link from "next/link";
 import { Routes } from "utils/constants";
+
 const UseWebcam = ({ address }: { address: string }) => {
   const [isOpen, setIsOpen] = useState(false);
 

@@ -1,4 +1,3 @@
-import React from "react";
 import useCreateLiveNFT from "hooks/useCreateLiveNFT";
 import Button from "components/Buttons/Button";
 import useCreateContext from "hooks/useCreateContext";

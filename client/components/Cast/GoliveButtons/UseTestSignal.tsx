@@ -2,6 +2,7 @@ import { useState } from "react";
 import Modal from "components/Elements/Modal";
 import { Stream } from "@livepeer/react";
 import Button from "components/Buttons/Button";
+
 const UseObs = ({ stream }: { stream: Stream }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
