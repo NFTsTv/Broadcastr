@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import useLiveNFT from "hooks/useLiveNFT";
 import { Stream, StreamSession } from "@livepeer/react";
 import { LiveNFT } from "types/general";
+
 interface ContextType {
   address: string;
   stream: Stream | undefined;
