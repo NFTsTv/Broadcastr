@@ -14,14 +14,14 @@ import { ContractAddress } from "utils/constants";
 // import required modules
 import { EffectCards, Controller, Swiper as swiperType } from "swiper";
 
-
 const List: NextPage = () => {
   const { address } = useAccount();
-  const [controlledSwiper, setControlledSwiper] =
-    useState<swiperType | null>(null);
+  const [controlledSwiper, setControlledSwiper] = useState<swiperType | null>(
+    null
+  );
   const { data, isLoading } = useContractRead({
-    addressOrName: ContractAddress,
-    contractInterface: CastrFactory,
+    address: ContractAddress,
+    abi: CastrFactory,
     functionName: "getCreatorChannels",
     args: [address],
   });

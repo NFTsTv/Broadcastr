@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useAccount, useContractRead } from "wagmi";
+import { useAccount, useContractRead, Address } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Container from "components/Elements/Container";
 import factoryContract from "contracts/CastrFactory-abi";
@@ -16,23 +16,24 @@ const Router = ({ children }: { children: ReactNode }) => {
   const { isConnected, address, status } = useAccount();
   const [isLoading, setIsLoading] = useState(true);
   const { data, isLoading: loadingRead } = useContractRead({
-    addressOrName: ContractAddress,
-    contractInterface: factoryContract,
+    address: ContractAddress as Address,
+    abi: factoryContract,
     functionName: "getCreatorChannels",
     args: [address],
   });
 
   useEffect(() => {
+    const ArrayData = data as string[];
     if (ProtectedRutes.includes(route) && !loadingRead) {
-      if (data?.length === 0 && route !== Routes.CREATE) {
+      if (ArrayData?.length === 0 && route !== Routes.CREATE) {
         router.push(Routes.CREATE);
-      } else if (data && data?.length > 0 && route !== Routes.CAST) {
-        router.push(Routes.CAST + "?address=" + data[0]);
+      } else if (data && ArrayData?.length > 0 && route !== Routes.CAST) {
+        router.push(Routes.CAST + "?address=" + ArrayData[0]);
       } else {
         setIsLoading(false);
       }
     } else if (!ProtectedRutes.includes(route)) {
-      console.log(route, isLoading)
+      console.log(route, isLoading);
 
       setIsLoading(false);
     }

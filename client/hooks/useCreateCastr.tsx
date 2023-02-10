@@ -14,7 +14,6 @@ import CastrFactoryABI from "contracts/CastrFactory-abi";
 import { parseEther } from "ethers/lib/utils";
 import { ContractAddress } from "utils/constants";
 
-
 const useCreateCastr = () => {
   const { address } = useAccount();
   const context = useContext(CreateContext);
@@ -34,18 +33,18 @@ const useCreateCastr = () => {
 
   const { config, isSuccess: prepareContractWriteSuccess } =
     usePrepareContractWrite({
-      addressOrName: ContractAddress,
-      contractInterface: [...CastrFactoryABI],
+      address: ContractAddress,
+      abi: [...CastrFactoryABI],
       functionName: "createCastr",
       args: validateFormData()
         ? [
-          Castr.baseUri,
-          Castr.name,
-          Castr.description,
-          Castr.limitedSupply,
-          Number(Castr.totalSupply),
-          parseEther(Castr.price),
-        ]
+            Castr.baseUri,
+            Castr.name,
+            Castr.description,
+            Castr.limitedSupply,
+            Number(Castr.totalSupply),
+            parseEther(Castr.price),
+          ]
         : [],
     });
 

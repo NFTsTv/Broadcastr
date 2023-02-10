@@ -29,7 +29,7 @@ const StreamDetails = ({
   address: string;
 }) => {
   const { data = { formatted: "", symbol: "" } } = useBalance({
-    addressOrName: address,
+    address: address,
     watch: true,
   });
   return (

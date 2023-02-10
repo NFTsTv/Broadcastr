@@ -8,27 +8,25 @@ import { Castr } from "types/general";
 import { ContractAddress } from "utils/constants";
 
 const useCastr = (address: string) => {
-
   const [CastrData, setCastrData] = useState<Castr | null>(null);
   const [properties, setProperties] = useState({
     streamId: "",
     ownerAddress: "",
   });
   const { data } = useContractRead({
-    addressOrName: ContractAddress,
-    contractInterface: CastrFactoryABI,
+    address: ContractAddress,
+    abi: CastrFactoryABI,
     functionName: "getMetadata",
     args: [address],
   });
 
   useEffect(() => {
     if (data) {
-
-      const item = parseParams(data as (Castr[keyof Castr])[]);
+      const item = parseParams(data as Castr[keyof Castr][]);
       setCastrData(item);
 
       if (!item.baseUri) {
-        console.log("error no base uri", item)
+        console.log("error no base uri", item);
         return;
       }
       get(item.baseUri).then((response) => {
