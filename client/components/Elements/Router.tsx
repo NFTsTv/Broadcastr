@@ -16,7 +16,7 @@ const Router = ({ children }: { children: ReactNode }) => {
   const { isConnected, address, status } = useAccount();
   const [isLoading, setIsLoading] = useState(true);
   const { data, isLoading: loadingRead } = useContractRead({
-    address: ContractAddress as Address,
+    address: ContractAddress,
     abi: factoryContract,
     functionName: "getCreatorChannels",
     args: [address],

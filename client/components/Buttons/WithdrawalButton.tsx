@@ -1,10 +1,10 @@
-import { usePrepareContractWrite, useContractWrite, useAccount } from "wagmi";
+import { usePrepareContractWrite, useContractWrite, useAccount, Address } from "wagmi";
 import CastrABI from "contracts/Castr-abi";
 
 const WithdrawalButton = ({ address }: { address: string }) => {
   const { address: userAddress } = useAccount();
   const { config, error } = usePrepareContractWrite({
-    address: address,
+    address: address as Address,
     abi: [...CastrABI],
     functionName: "withdrawPayments",
     args: [userAddress],

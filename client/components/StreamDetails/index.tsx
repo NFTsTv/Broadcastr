@@ -1,6 +1,6 @@
 import { Castr } from "types/general";
 import { formatEther } from "ethers/lib/utils";
-import { useBalance } from "wagmi";
+import { useBalance, Address } from "wagmi";
 import WithdrawalButton from "components/Buttons/WithdrawalButton";
 
 const DetailBox = ({
@@ -29,7 +29,7 @@ const StreamDetails = ({
   address: string;
 }) => {
   const { data = { formatted: "", symbol: "" } } = useBalance({
-    address: address,
+    address: address as Address,
     watch: true,
   });
   return (

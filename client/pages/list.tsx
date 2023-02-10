@@ -33,7 +33,7 @@ const List: NextPage = () => {
   const handleScroll = (index: string) => {
     controlledSwiper?.slideTo(Number(index));
   };
-
+  const returnData = data as string[];
   return (
     <Container>
       <Menu />
@@ -51,7 +51,7 @@ const List: NextPage = () => {
             perSlideOffset: 15,
           }}
         >
-          {data.map((data) => {
+          {returnData.map((data) => {
             return (
               <SwiperSlide>
                 <NftCard address={data} />
@@ -62,7 +62,7 @@ const List: NextPage = () => {
             type="range"
             min="0"
             defaultValue={0}
-            max={data.length - 1}
+            max={returnData.length - 1}
             className="range range-xs mt-8"
             onChange={(e) => handleScroll(e.target.value)}
           />
