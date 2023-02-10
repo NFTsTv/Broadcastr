@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { GoLive } from "components/Cast/GoliveButtons";
 import StreamDetails from "components/StreamDetails";
-import ViewOnOpensea from "components/Buttons/ViewOnOpensea";
+import {ViewOnOpensea, ViewOnRarible} from "components/Buttons/ViewOnPlatform";
 import ShareButton from "components/Share/Button";
 import ViewComponent from "components/Watch";
 import { Routes } from "utils/constants";
@@ -39,7 +39,7 @@ const CastComponent = () => {
       </div>
       <div className="flex flex-col h-2/4 lg:w-4/5 lg:h-full border-1 lg:relative">
         <div className="absolute bottom-0 lg:top-0 lg:left-0 z-10 p-4 w-full flex justify-center lg:justify-start h-9">
-          <ViewOnOpensea address={address} />
+
           <ShareButton />
           <a
             target="_blank"
@@ -50,6 +50,8 @@ const CastComponent = () => {
               Mint page
             </div>
           </a>
+          <ViewOnOpensea address={`${address}/1`} />
+          <ViewOnRarible address={`${address}:1`} />
         </div>
         <ViewComponent />
       </div>
