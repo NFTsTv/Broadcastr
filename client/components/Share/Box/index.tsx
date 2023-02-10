@@ -13,7 +13,7 @@ interface Props {
 export function ShareBox({ title }: Props) {
   const url = window.location.href;
   // replace cast with view
-  const shareUrl  = url.includes("cast") ? url.replace("cast", "watch") :
+  const shareUrl  = url.includes("cast") ? url.replace("cast?", "watch?") :
 
 
   url.replace("golive", "view");

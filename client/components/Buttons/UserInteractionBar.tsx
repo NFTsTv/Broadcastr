@@ -3,7 +3,7 @@ import MintButton from "./MintButton";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ViewContext } from "context/viewContext";
-import {ViewOnOpensea, ViewOnRarible} from "./ViewOnPlatform";
+import { ViewOnOpensea, ViewOnRarible } from "./ViewOnPlatform";
 import ShareButton from "components/Share/Button";
 const UserInteractionBar = () => {
   const { isConnected } = useAccount();
@@ -26,8 +26,8 @@ const UserInteractionBar = () => {
         </Button>
       )} */}
       <ShareButton />
-      <ViewOnOpensea address={address} />
-      <ViewOnRarible address={address} />
+      <ViewOnOpensea address={`${address}/1`} />
+      <ViewOnRarible address={`${address}:1`} />
     </div>
   );
 };
