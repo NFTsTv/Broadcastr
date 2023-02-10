@@ -1,4 +1,23 @@
-const factoryContract = [
+const CastrFactoryABI = [
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "Castrs",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
   {
     "inputs": [
       {
@@ -32,7 +51,7 @@ const factoryContract = [
         "type": "uint256"
       }
     ],
-    "name": "createLiveNFT",
+    "name": "createCastr",
     "outputs": [
       {
         "internalType": "address",
@@ -66,7 +85,7 @@ const factoryContract = [
     "inputs": [
       {
         "internalType": "address",
-        "name": "_liveNftAddress",
+        "name": "_CastrAddress",
         "type": "address"
       }
     ],
@@ -105,39 +124,7 @@ const factoryContract = [
     ],
     "stateMutability": "view",
     "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "livenfts",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "masterContract",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
   }
 ];
 
-export default factoryContract;
+export default CastrFactoryABI;

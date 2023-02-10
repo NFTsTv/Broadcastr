@@ -1,27 +1,27 @@
 import type { NextPage } from "next";
-import React from "react";
+import { useState } from "react";
 import { useAccount, useContractRead } from "wagmi";
 import NftCard from "components/Elements/NftCard";
 import Container from "components/Elements/Container";
-import factoryContract from "contracts/factory-abi";
+import CastrFactory from "contracts/CastrFactory-abi";
 import Menu from "components/Elements/Menu";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-cards";
-import {  ContractAddress } from "utils/constants";
+import { ContractAddress } from "utils/constants";
 
 // import required modules
 import { EffectCards, Controller, Swiper as swiperType } from "swiper";
 
-
 const List: NextPage = () => {
   const { address } = useAccount();
-  const [controlledSwiper, setControlledSwiper] =
-    React.useState<swiperType | null>(null);
-  const { data, error, isError, isLoading, status } = useContractRead({
-    addressOrName: ContractAddress,
-    contractInterface: factoryContract,
+  const [controlledSwiper, setControlledSwiper] = useState<swiperType | null>(
+    null
+  );
+  const { data, isLoading } = useContractRead({
+    address: ContractAddress,
+    abi: CastrFactory,
     functionName: "getCreatorChannels",
     args: [address],
   });
@@ -33,7 +33,7 @@ const List: NextPage = () => {
   const handleScroll = (index: string) => {
     controlledSwiper?.slideTo(Number(index));
   };
-
+  const returnData = data as string[];
   return (
     <Container>
       <Menu />
@@ -51,7 +51,7 @@ const List: NextPage = () => {
             perSlideOffset: 15,
           }}
         >
-          {data.map((data) => {
+          {returnData.map((data) => {
             return (
               <SwiperSlide>
                 <NftCard address={data} />
@@ -62,7 +62,7 @@ const List: NextPage = () => {
             type="range"
             min="0"
             defaultValue={0}
-            max={data.length - 1}
+            max={returnData.length - 1}
             className="range range-xs mt-8"
             onChange={(e) => handleScroll(e.target.value)}
           />

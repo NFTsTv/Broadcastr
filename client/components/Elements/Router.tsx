@@ -1,38 +1,39 @@
-import React from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useAccount, useContractRead } from "wagmi";
+import { useAccount, useContractRead, Address } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Container from "components/Elements/Container";
-import factoryContract from "contracts/factory-abi";
+import factoryContract from "contracts/CastrFactory-abi";
 import { Routes, ProtectedRutes, ContractAddress } from "utils/constants";
 
-const Layout = ({ children }: { children: React.ReactNode }) => (
+const Layout = ({ children }: { children: ReactNode }) => (
   <div className=" h-screen mx-auto w-screen">{children}</div>
 );
 
-const Router = ({ children }: { children: React.ReactNode }) => {
+const Router = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const route = router.pathname as Routes;
   const { isConnected, address, status } = useAccount();
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const { data, isLoading: loadingRead } = useContractRead({
-    addressOrName: ContractAddress,
-    contractInterface: factoryContract,
+    address: ContractAddress,
+    abi: factoryContract,
     functionName: "getCreatorChannels",
     args: [address],
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const ArrayData = data as string[];
     if (ProtectedRutes.includes(route) && !loadingRead) {
-      if (data?.length === 0 && route !== Routes.CREATE) {
+      if (ArrayData?.length === 0 && route !== Routes.CREATE) {
         router.push(Routes.CREATE);
-      } else if (data && data?.length > 0 && route !== Routes.CAST) {
-        router.push(Routes.CAST + "?address=" + data[0]);
+      } else if (data && ArrayData?.length > 0 && route !== Routes.CAST) {
+        router.push(Routes.CAST + "?address=" + ArrayData[0]);
       } else {
         setIsLoading(false);
       }
     } else if (!ProtectedRutes.includes(route)) {
-    console.log(route, isLoading)
+      console.log(route, isLoading);
 
       setIsLoading(false);
     }

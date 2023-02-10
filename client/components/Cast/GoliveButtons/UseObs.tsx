@@ -1,9 +1,9 @@
+import { useState } from "react";
 import Modal from "components/Elements/Modal";
-import React from "react";
 import { Stream } from "@livepeer/react";
 
 const UseObs = ({ stream }: { stream: Stream }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>

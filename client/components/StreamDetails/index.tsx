@@ -1,6 +1,6 @@
-import { LiveNFT } from "types/general";
+import { Castr } from "types/general";
 import { formatEther } from "ethers/lib/utils";
-import { useBalance } from "wagmi";
+import { useBalance, Address } from "wagmi";
 import WithdrawalButton from "components/Buttons/WithdrawalButton";
 
 const DetailBox = ({
@@ -25,11 +25,11 @@ const StreamDetails = ({
   details,
   address,
 }: {
-  details: LiveNFT;
+  details: Castr;
   address: string;
 }) => {
   const { data = { formatted: "", symbol: "" } } = useBalance({
-    addressOrName: address,
+    address: address as Address,
     watch: true,
   });
   return (

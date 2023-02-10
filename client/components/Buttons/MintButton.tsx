@@ -1,30 +1,24 @@
-import React from "react";
+import { useState } from "react";
 import Button from "./Button";
-import {
-  usePrepareContractWrite,
-  useContractRead,
-  useContractWrite,
-  useAccount,
-} from "wagmi";
+import { useContractRead, useContractWrite, useAccount, Address } from "wagmi";
 import { ethers } from "ethers";
-import LNFTcontractABI from "contracts/LNFTcontract-abi";
-
+import CastrABI from "contracts/Castr-abi";
 
 const MintButton = ({ address }: { address: string }) => {
-  const [mintLoading, setMintLoading] = React.useState(false);
-  const { isConnected, address: userAddress } = useAccount();
-  // get mintPrice from contract
-  const { data: mintPrice } = useContractRead({
-    addressOrName: address,
-    contractInterface: LNFTcontractABI,
+  const [mintLoading, setMintLoading] = useState(false);
+  const { address: userAddress } = useAccount();
+  const { data } = useContractRead({
+    address: address as Address,
+    abi: CastrABI,
     functionName: "mintPrice",
     args: [],
   });
 
+  const mintPrice = data as ethers.BigNumber;
   const { writeAsync: mint, error: mintError } = useContractWrite({
-    addressOrName: address,
-    contractInterface: LNFTcontractABI,
-    functionName: "mintTo",
+    address: address as Address,
+    abi: CastrABI,
+    functionName: "subscribe",
     mode: "recklesslyUnprepared",
     args: [
       userAddress,
@@ -46,8 +40,12 @@ const MintButton = ({ address }: { address: string }) => {
   };
 
   return (
-    <Button styles={"ml-2 btn-primary"} onClick={onMintClick} isLoading={mintLoading}>
-      Subscribre for {ethers.utils.formatEther(mintPrice ? mintPrice: 0)} MATIC
+    <Button
+      styles={"ml-2 btn-primary"}
+      onClick={onMintClick}
+      isLoading={mintLoading}
+    >
+      Subscribre for {ethers.utils.formatEther(mintPrice ? mintPrice : 0)} MATIC
     </Button>
   );
 };

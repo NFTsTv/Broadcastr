@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { State } from "hooks/useWebRtmp";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const WebcamControl = ({ ...props }: Props) => {
-  const [isLiveClicked, setIsLiveClicked] = React.useState(false);
+  const [isLiveClicked, setIsLiveClicked] = useState(false);
 
   return (
     <ul className="menu menu-horizontal bg-base-200 m-auto rounded-box absolute bottom-0 right-0 left-0 shadow-xl">

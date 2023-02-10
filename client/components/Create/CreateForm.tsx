@@ -1,11 +1,10 @@
-import React from "react";
-import useCreateLiveNFT from "hooks/useCreateLiveNFT";
+import useCreateCastr from "hooks/useCreateCastr";
 import Button from "components/Buttons/Button";
 import useCreateContext from "hooks/useCreateContext";
 
 const CreateLNFT = () => {
-  const { liveNFT, handleSetData } = useCreateContext();
-  const { handleCreateStream, error, isLoading } = useCreateLiveNFT();
+  const { Castr, handleSetData } = useCreateContext();
+  const { handleCreateStream, error, isLoading } = useCreateCastr();
 
   return (
     <>
@@ -22,7 +21,7 @@ const CreateLNFT = () => {
           type="text"
           placeholder="Type here"
           className="input input-bordered w-full mb-4"
-          value={liveNFT.name}
+          value={Castr.name}
           onChange={(e) => handleSetData("name", e.target.value)}
         />
         <label className="label">
@@ -32,7 +31,7 @@ const CreateLNFT = () => {
           type="text"
           placeholder="Type here"
           className="input input-bordered w-full mb-8"
-          value={liveNFT.description}
+          value={Castr.description}
           onChange={(e) => handleSetData("description", e.target.value)}
         />
         <Button onClick={handleCreateStream} isLoading={isLoading}>

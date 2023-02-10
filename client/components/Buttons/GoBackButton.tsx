@@ -1,6 +1,4 @@
-import React from "react";
-
-const GoBackButton = ({onClick}: {onClick: () => void}) => {
+const GoBackButton = ({ onClick }: { onClick: () => void }) => {
   return (
     <svg
       onClick={onClick}

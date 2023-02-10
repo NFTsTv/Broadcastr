@@ -1,6 +1,6 @@
-import React from "react";
 import Link from "next/link";
 import Router from "next/router";
+
 const Menu = () => {
   return (
     <ul className="menu menu-horizontal bg-base-100 mx-auto rounded-box">

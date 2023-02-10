@@ -7,7 +7,7 @@ export interface FactoryContractParameters {
   price?: number;
   maxMintNumber?: number;
 }
-export interface LNFTContractAttributes {
+export interface CastrContractAttributes {
   currentTokenId: number;
   baseTokenURI: string;
   LNFTname: string;
@@ -16,7 +16,7 @@ export interface LNFTContractAttributes {
   mintPrice: number;
 }
 
-export type LiveNFT = {
+export type Castr = {
   name: string;
   description: string;
   price: BigNumberish;
@@ -25,7 +25,7 @@ export type LiveNFT = {
   baseUri: string;
 };
 
-export interface LNFTMetadata {
+export interface CastrMetadata {
   name: string;
   description: string;
   image: string;

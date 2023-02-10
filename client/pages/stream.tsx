@@ -7,7 +7,7 @@ const Stream: NextPage = () => {
   const { address } = router.query;
 
   if (!address) {
-    return <div>loading</div>;
+    return <div>Loading</div>;
   }
   return (
     <div className="flex flex-col h-screen">

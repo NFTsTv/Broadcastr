@@ -1,5 +1,5 @@
-import React from "react";
 import { ShareBox } from "components/Share/Box";
+
 const DetailsModal = () => {
   return (
     <>

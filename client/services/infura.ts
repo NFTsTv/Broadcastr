@@ -1,5 +1,5 @@
 import { create } from "ipfs-http-client";
-import { LNFTMetadata } from "../types/general";
+import { CastrMetadata } from "../types/general";
 
 export default class Infura {
   public ipfsClient;
@@ -20,7 +20,7 @@ export default class Infura {
     });
   }
 
-  public async uploadMetadata(metadata: LNFTMetadata) {
+  public async uploadMetadata(metadata: CastrMetadata) {
     const cid = await this.ipfsClient.add(JSON.stringify(metadata));
     return {
       cid: cid.path,
