@@ -1,11 +1,14 @@
-import type { NextPage } from "next";
-import Container from "../components/Elements/Container";
+import { NextPage } from "next";
+import { ViewContextProvider } from "context/viewContext";
+import WatchComponent from "components/Watch";
 
 const Home: NextPage = () => {
+  const address = "0xccc50676b8919656f3c50f9b0903fbaa0e09f58b";
+
   return (
-    <Container>
-      Loading...
-    </Container>
+    <ViewContextProvider address={address}>
+      <WatchComponent />
+    </ViewContextProvider>
   );
 };
 

@@ -1,5 +1,5 @@
 import { ShareBox } from "components/Share/Box";
-
+import Button from "components/Buttons/Button";
 const DetailsModal = () => {
   return (
     <>
@@ -17,12 +17,9 @@ const ShareButton = () => {
   return (
     <>
       <DetailsModal />
-      <label
-        htmlFor="my-modal-4"
-        className="btn btn-sm btn-secondary text-white m-1"
-      >
+      <Button htmlFor="my-modal-4" styles="btn-info btn-sm">
         Share
-      </label>
+      </Button>
     </>
   );
 };
