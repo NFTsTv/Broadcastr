@@ -12,7 +12,7 @@ const WatchComponent = () => {
 
   return (
     <div className="h-screen flex">
-      <iframe src={PlayerURL + stream?.id} className="w-full h-full" />
+      <iframe src={PlayerURL + stream?.id + "&chat=false"} className="w-full h-full" />
     </div>
   );
 };

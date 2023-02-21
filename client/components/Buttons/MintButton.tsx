@@ -3,6 +3,7 @@ import Button from "./Button";
 import { useContractRead, useContractWrite, useAccount, Address } from "wagmi";
 import { ethers } from "ethers";
 import CastrABI from "contracts/Castr-abi";
+import IsConnectedButton from "./IsConnected";
 
 const MintButton = ({ address }: { address: string }) => {
   const [mintLoading, setMintLoading] = useState(false);
@@ -40,13 +41,16 @@ const MintButton = ({ address }: { address: string }) => {
   };
 
   return (
-    <Button
-      styles={"ml-2 btn-primary"}
-      onClick={onMintClick}
-      isLoading={mintLoading}
-    >
-      Subscribre for {ethers.utils.formatEther(mintPrice ? mintPrice : 0)} MATIC
-    </Button>
+    <IsConnectedButton>
+      <Button
+        styles={"btn-primary"}
+        onClick={onMintClick}
+        isLoading={mintLoading}
+      >
+        Subscribre for {ethers.utils.formatEther(mintPrice ? mintPrice : 0)}{" "}
+        MATIC
+      </Button>
+    </IsConnectedButton>
   );
 };
 

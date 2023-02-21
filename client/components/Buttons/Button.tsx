@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 interface props {
-  onClick: () => void;
+  onClick?: () => void;
   isLoading?: boolean;
   children: ReactNode;
   styles?: string;
