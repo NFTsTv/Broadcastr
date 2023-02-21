@@ -47,7 +47,7 @@ const MintButton = ({ address }: { address: string }) => {
         onClick={onMintClick}
         isLoading={mintLoading}
       >
-        Subscribre for {ethers.utils.formatEther(mintPrice ? mintPrice : 0)}{" "}
+        SUBSCRIBE for {ethers.utils.formatEther(mintPrice ? mintPrice : 0)}{" "}
         MATIC
       </Button>
     </IsConnectedButton>
