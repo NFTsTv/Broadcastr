@@ -29,7 +29,7 @@ export default ViewOnPlatform;
 export const ViewOnOpensea = ({ address }: { address: string }) => {
   return (
     <ViewOnPlatform href={`${Network.Opensea}/${address}/1`}>
-      <Button styles={"bg-[#2081E2] text-white flex-row flex "}>
+      <Button styles={"bg-[#2081E2] text-white flex-row flex btn-md"}>
         <p className="mr-1">View on Opensea</p>
         <svg
           width="40"
@@ -59,7 +59,7 @@ export const ViewOnOpensea = ({ address }: { address: string }) => {
 export const ViewOnRarible = ({ address }: { address: string }) => {
   return (
     <ViewOnPlatform href={`${Network.Rarible}/${address}:1`}>
-      <Button styles={"bg-[#FEDA03] text-[#16161A] flex-row flex"}>
+      <Button styles={"bg-[#FEDA03] text-[#16161A] flex-row flex btn-md"}>
         <p className="mr-1">View on Rarible</p>
         <svg
           fill="none"
