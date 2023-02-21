@@ -1,10 +1,12 @@
 import { ReactNode } from "react";
 
 interface props {
-  onClick: () => void;
+  onClick?: () => void;
   isLoading?: boolean;
   children: ReactNode;
   styles?: string;
+  htmlFor?: string;
+  tabIndex?: number;
 }
 
 const Button = ({ ...props }: props) => {
@@ -12,8 +14,7 @@ const Button = ({ ...props }: props) => {
     return (
       <button
         type="button"
-        className={`btn ${props.styles ? props.styles : "btn-primary"
-          } transition ease-in-out duration-150 cursor-not-allowed`}
+        className={`btn ${props.styles} transition ease-in-out duration-150 cursor-not-allowed`}
       >
         <svg
           className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -41,13 +42,14 @@ const Button = ({ ...props }: props) => {
   }
 
   return (
-    <button
+    <label
+      tabIndex={props.tabIndex}
+      htmlFor={props.htmlFor}
       onClick={props.onClick}
-      className={`${props.styles ? props.styles : "btn-primary"
-        } btn   disabled:opacity-50`}
+      className={`${props.styles} btn rounded disabled:opacity-50`}
     >
       {props.children}
-    </button>
+    </label>
   );
 };
 
