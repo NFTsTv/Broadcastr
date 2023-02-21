@@ -1,13 +1,11 @@
 import { ReactNode } from "react";
 import Button from "./Button";
+import NFTScan from "public/nftscan.png";
+import Image from "next/image";
 enum Network {
   Opensea = "https://opensea.io/assets/matic",
   Rarible = "https://rarible.com/token/polygon",
-  SuperRare = "https://superrare.co/artwork/",
-  KnownOrigin = "https://knownorigin.io/artwork/",
-  Foundation = "https://foundation.app/",
-  AsyncArt = "https://async.art/artwork/",
-  MakersPlace = "https://makersplace.com/artwork/",
+  NFTScan = "https://polygon.nftscan.com",
 }
 
 const ViewOnPlatform = ({
@@ -79,6 +77,17 @@ export const ViewOnRarible = ({ address }: { address: string }) => {
             fill-rule="evenodd"
           />
         </svg>
+      </Button>
+    </ViewOnPlatform>
+  );
+};
+
+export const ViewOnNftScan = ({ address }: { address: string }) => {
+  return (
+    <ViewOnPlatform href={`${Network.NFTScan}/${address}/1`}>
+      <Button styles={"bg-[#1450f0] text-white flex-row flex btn-md"}>
+        <p className="mr-1">View on NftScan</p>
+        <Image src={NFTScan} alt="NftScan Logo"  height={"40px"} width={"40px"}/>
       </Button>
     </ViewOnPlatform>
   );

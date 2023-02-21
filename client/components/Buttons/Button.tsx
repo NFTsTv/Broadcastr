@@ -5,6 +5,8 @@ interface props {
   isLoading?: boolean;
   children: ReactNode;
   styles?: string;
+  htmlFor?: string;
+  tabIndex?: number;
 }
 
 const Button = ({ ...props }: props) => {
@@ -40,12 +42,14 @@ const Button = ({ ...props }: props) => {
   }
 
   return (
-    <button
+    <label
+      tabIndex={props.tabIndex}
+      htmlFor={props.htmlFor}
       onClick={props.onClick}
-      className={`${props.styles} btn btn-sm rounded lg:btn-md disabled:opacity-50`}
+      className={`${props.styles} btn rounded disabled:opacity-50`}
     >
       {props.children}
-    </button>
+    </label>
   );
 };
 

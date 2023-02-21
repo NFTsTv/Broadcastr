@@ -17,8 +17,8 @@ const ShareButton = () => {
   return (
     <>
       <DetailsModal />
-      <Button styles="btn-info">
-        <label htmlFor="my-modal-4">Share</label>
+      <Button htmlFor="my-modal-4" styles="btn-info btn-sm">
+        Share
       </Button>
     </>
   );

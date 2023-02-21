@@ -5,6 +5,7 @@ import NetworkDropdown from "components/Elements/NetworkDropdown";
 import {
   ViewOnOpensea,
   ViewOnRarible,
+  ViewOnNftScan
 } from "components/Buttons/ViewOnPlatform";
 import MintButton from "components/Buttons/MintButton";
 import ShareButton from "components/Share/Button";
@@ -27,6 +28,7 @@ const WatchComponent = () => {
         <NetworkDropdown>
           <ViewOnOpensea address={address} />
           <ViewOnRarible address={address} />
+          <ViewOnNftScan address={address} />
         </NetworkDropdown>
       </div>
       <div className="lg:hidden absolute bottom-0 w-full my-2 flex items-center justify-center">
