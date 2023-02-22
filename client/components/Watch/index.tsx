@@ -15,16 +15,15 @@ const WatchComponent = () => {
   return (
     <>
       <Navbar address={address} />
-
-      <div className="h-full flex flex-col lg:flex-row w-full">
-        <div className="h-3/5 md:h-full w-full flex flex-col">
+      <div className="flex flex-col lg:flex-row w-full h-full">
+        <div className="md:h-full w-full flex flex-col">
           <iframe
             src={PlayerURL + stream?.id + "&chat=false"}
-            className="h-full w-full"
+            className="min-h-[250px] w-full h-full"
           />
           <div className="h-14 items-center p-3 box-content flex flex-row ">
             <div id="shadowBox" className="mr-auto">
-              <h3 className="rainbow rainbow_text_animated lg:text-2xl font-bold">
+              <h3 className="rainbow rainbow_text_animated lg:text-2xl font-bold m-1">
                 Welcome to the Broadcastr festival
               </h3>
             </div>
@@ -32,10 +31,8 @@ const WatchComponent = () => {
           </div>
         </div>
         <iframe
-          className=" w-full lg:w-1/4 lg:h-full bg-zinc-800 bg-opacity-80"
+          className="flex-grow w-full lg:w-1/4 lg:h-full bg-zinc-800 bg-opacity-80 min-h-[350px]"
           src="https://stingray-app-u9f8x.ondigitalocean.app/29f8d219-d76c-4019-81bc-b46ac20453dc"
-          width="100%"
-          height="100%"
         />
       </div>
     </>
