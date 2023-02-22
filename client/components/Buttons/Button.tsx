@@ -46,7 +46,7 @@ const Button = ({ ...props }: props) => {
       tabIndex={props.tabIndex}
       htmlFor={props.htmlFor}
       onClick={props.onClick}
-      className={`${props.styles} btn rounded disabled:opacity-50`}
+      className={`${props.styles} btn btn-sm rounded disabled:opacity-50`}
     >
       {props.children}
     </label>

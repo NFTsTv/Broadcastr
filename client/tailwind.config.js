@@ -8,7 +8,14 @@ module.exports = {
     extend: {}
   },
   daisyui: {
-    themes: ['dracula']
+    themes: [
+      {
+        dracula: {
+          ...require('daisyui/src/colors/themes')['[data-theme=dracula]'],
+          'base-100': '#1D1D1B'
+        }
+      }
+    ]
   },
   plugins: [require('daisyui')]
 }

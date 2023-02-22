@@ -43,7 +43,7 @@ const MintButton = ({ address }: { address: string }) => {
   return (
     <IsConnectedButton>
       <Button
-        styles={"btn-primary btn-md"}
+        styles={"btn-primary"}
         onClick={onMintClick}
         isLoading={mintLoading}
       >

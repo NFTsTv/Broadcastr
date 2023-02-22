@@ -7,7 +7,7 @@ import factoryContract from "contracts/CastrFactory-abi";
 import { Routes, ProtectedRutes, ContractAddress } from "utils/constants";
 
 const Layout = ({ children }: { children: ReactNode }) => (
-  <div className=" h-screen mx-auto w-screen">{children}</div>
+  <div className=" h-screen mx-auto w-screen bg-base-100">{children}</div>
 );
 
 const Router = ({ children }: { children: ReactNode }) => {
