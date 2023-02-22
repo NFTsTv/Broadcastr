@@ -8,11 +8,6 @@ const UseObs = ({ stream }: { stream: Stream }) => {
   return (
     <>
       {isOpen && (
-        <Modal
-          onExit={() => {
-            setIsOpen(false);
-          }}
-        >
           <div className="flex flex-col m-auto space-y-4">
             <h1 className="mb-2">Streaming details</h1>
             <p>
@@ -51,7 +46,6 @@ const UseObs = ({ stream }: { stream: Stream }) => {
               />
             </div>
           </div>
-        </Modal>
       )}
       <div
         onClick={() => {
