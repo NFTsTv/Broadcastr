@@ -7,7 +7,7 @@ const Home: NextPage = () => {
 
   return (
     <ViewContextProvider address={address}>
-      <Navbar />
+      <Navbar address={address} />
       <WatchComponent />
     </ViewContextProvider>
   );

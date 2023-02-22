@@ -1,24 +1,7 @@
 import NetworkDropdown from "components/Elements/NetworkDropdown";
-import {
-  ViewOnOpensea,
-  ViewOnRarible,
-  ViewOnNftScan,
-} from "components/Buttons/ViewOnPlatform";
+import ViewOnPlatform from "components/Buttons/ViewOnPlatform";
 import MintButton from "components/Buttons/MintButton";
 import ShareButton from "components/Share/Button";
-
-const NavbarButtons = ({ address }: { address: string }) => {
-  return (
-    <div className="space-x-1">
-      <ShareButton />
-      <NetworkDropdown>
-        <ViewOnOpensea address={address} />
-        <ViewOnRarible address={address} />
-        <ViewOnNftScan address={address} />
-      </NetworkDropdown>
-    </div>
-  );
-};
 
 const Navbar = ({ address }: { address: string }) => {
   return (
@@ -45,7 +28,8 @@ const Navbar = ({ address }: { address: string }) => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <NavbarButtons address={address} />
+            <ViewOnPlatform address={address} />
+            <ShareButton />
           </ul>
         </div>
         <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
@@ -53,8 +37,9 @@ const Navbar = ({ address }: { address: string }) => {
 
       <div className="navbar-end">
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 ">
-            <NavbarButtons address={address} />
+          <ul className="menu menu-horizontal px-1 space-x-1">
+            <ViewOnPlatform address={address} />
+            <ShareButton />
           </ul>
         </div>
         <MintButton address={address} />

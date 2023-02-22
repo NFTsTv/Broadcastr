@@ -14,6 +14,7 @@ import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
 import Router from "components/Elements/Router";
 import { ModalContextProvider } from "context/modalContext";
+import { Layout } from "components/Elements/Layout";
 
 const { chains, provider } = configureChains(
   [polygon],
@@ -48,7 +49,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <RainbowKitProvider chains={chains}>
           <Router>
             <ModalContextProvider>
-              <Component {...pageProps} />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
             </ModalContextProvider>
           </Router>
         </RainbowKitProvider>
