@@ -3,7 +3,7 @@ import Button from "components/Buttons/Button";
 const NetworkDropdown = ({ children }: { children: ReactNode }) => {
   
   return (
-    <div className="dropdown dropdown-top">
+    <div className="dropdown dropdown-down">
       <Button tabIndex={0}>Markets</Button>
       <ul
         tabIndex={0}

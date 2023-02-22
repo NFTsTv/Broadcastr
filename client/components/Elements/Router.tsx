@@ -6,10 +6,6 @@ import Container from "components/Elements/Container";
 import factoryContract from "contracts/CastrFactory-abi";
 import { Routes, ProtectedRutes, ContractAddress } from "utils/constants";
 
-const Layout = ({ children }: { children: ReactNode }) => (
-  <div className=" h-screen mx-auto w-screen bg-base-100">{children}</div>
-);
-
 const Router = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const route = router.pathname as Routes;
@@ -41,31 +37,27 @@ const Router = ({ children }: { children: ReactNode }) => {
 
   if (isLoading) {
     return (
-      <Layout>
-        <Container>
-          <h1 className="text-4xl font-bold">loading...</h1>
-        </Container>
-      </Layout>
+      <Container>
+        <h1 className="text-4xl font-bold">loading...</h1>
+      </Container>
     );
   }
 
   if (ProtectedRutes.includes(route) && !isConnected) {
     return (
-      <Layout>
-        <Container>
-          <h1 className="text-4xl font-bold">NFTS are live</h1>
-          <p className="text-xl text-center">
-            Welcome to NFTs are live! Connect your wallet to get started
-          </p>
-          <div className="w-40 m-auto">
-            <ConnectButton />
-          </div>
-        </Container>
-      </Layout>
+      <Container>
+        <h1 className="text-4xl font-bold">NFTS are live</h1>
+        <p className="text-xl text-center">
+          Welcome to NFTs are live! Connect your wallet to get started
+        </p>
+        <div className="w-40 m-auto">
+          <ConnectButton />
+        </div>
+      </Container>
     );
   }
 
-  return <Layout>{children}</Layout>;
+  return <>{children}</>;
 };
 
 export default Router;

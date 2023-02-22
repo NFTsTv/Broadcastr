@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import '@rainbow-me/rainbowkit/styles.css';
+import "@rainbow-me/rainbowkit/styles.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import {
@@ -13,6 +13,7 @@ import { polygon } from "@wagmi/core/chains";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
 import Router from "components/Elements/Router";
+import { ModalContextProvider } from "context/modalContext";
 
 const { chains, provider } = configureChains(
   [polygon],
@@ -30,16 +31,14 @@ const { connectors } = getDefaultWallets({
 const wagmiClient = createClient({
   autoConnect: true,
   connectors,
-  provider
-})
-
+  provider,
+});
 
 const client = createReactClient({
   provider: studioProvider({
     apiKey: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY ?? "",
   }),
 });
-
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -48,7 +47,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Head> broadcastr </Head>
         <RainbowKitProvider chains={chains}>
           <Router>
-            <Component {...pageProps} />
+            <ModalContextProvider>
+              <Component {...pageProps} />
+            </ModalContextProvider>
           </Router>
         </RainbowKitProvider>
       </WagmiConfig>
