@@ -1,14 +1,7 @@
 import { useContext } from "react";
 import { ViewContext } from "context/viewContext";
 import { PlayerURL } from "utils/constants";
-import NetworkDropdown from "components/Elements/NetworkDropdown";
-import {
-  ViewOnOpensea,
-  ViewOnRarible,
-  ViewOnNftScan,
-} from "components/Buttons/ViewOnPlatform";
 import MintButton from "components/Buttons/MintButton";
-import ShareButton from "components/Share/Button";
 
 const WatchComponent = () => {
   const context = useContext(ViewContext);
@@ -25,7 +18,14 @@ const WatchComponent = () => {
           src={PlayerURL + stream?.id + "&chat=false"}
           className="h-full w-full"
         />
-        <div className="p-3 box-content flex flex-row">test</div>
+        <div className="h-14 items-center p-3 box-content flex flex-row ">
+          <div id="shadowBox" className="mr-auto">
+            <h3 className="rainbow rainbow_text_animated font-bold">
+              Welcome to the Broadcastr festival
+            </h3>
+          </div>
+          <MintButton address={address} />
+        </div>
       </div>
       <iframe
         className="h-3/5 w-full lg:w-1/4 lg:h-full bg-zinc-800 bg-opacity-80"

@@ -1,8 +1,8 @@
-import NetworkDropdown from "components/Elements/NetworkDropdown";
 import ViewOnPlatform from "components/Buttons/ViewOnPlatform";
-import MintButton from "components/Buttons/MintButton";
+import Button from "components/Buttons/Button";
 import ShareButton from "components/Share/Button";
-
+import Image from "next/image";
+import Logo from "public/logo.png";
 const Navbar = ({ address }: { address: string }) => {
   return (
     <div className="navbar bg-base-100">
@@ -32,7 +32,18 @@ const Navbar = ({ address }: { address: string }) => {
             <ShareButton />
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a
+          className="btn btn-ghost normal-case text-xl h-4"
+          href="https://broadcastr.xyz"
+        >
+          <Image
+            src={Logo}
+            alt="Logo"
+            height={30}
+            width={200}
+            objectFit={"contain"}
+          />
+        </a>
       </div>
 
       <div className="navbar-end">
@@ -42,7 +53,9 @@ const Navbar = ({ address }: { address: string }) => {
             <ShareButton />
           </ul>
         </div>
-        <MintButton address={address} />
+        <Button styles="btn-info">
+          <a className="text-black no-underline">Know more</a>
+        </Button>
       </div>
     </div>
   );
