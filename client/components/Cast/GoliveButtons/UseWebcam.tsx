@@ -9,11 +9,6 @@ const UseWebcam = ({ address }: { address: string }) => {
   return (
     <>
       {isOpen && (
-        <Modal
-          onExit={() => {
-            setIsOpen(false);
-          }}
-        >
           <div className="flex flex-col m-auto">
             <h1 className="mb-2">Warning!</h1>
             <p>
@@ -27,7 +22,6 @@ const UseWebcam = ({ address }: { address: string }) => {
               </button>
             </Link>
           </div>
-        </Modal>
       )}
       <div
         onClick={() => {

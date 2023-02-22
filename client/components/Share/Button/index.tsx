@@ -1,27 +1,16 @@
 import { ShareBox } from "components/Share/Box";
 import Button from "components/Buttons/Button";
-const DetailsModal = () => {
-  return (
-    <>
-      <input type="checkbox" id="my-modal-4" className="modal-toggle" />
-      <label htmlFor="my-modal-4" className="modal cursor-pointer">
-        <label className="modal-box relative bg-base-300" htmlFor="">
-          <ShareBox title="Share your stream" />
-        </label>
-      </label>
-    </>
-  );
-};
+import useModalContext from "hooks/useModalContext";
 
 const ShareButton = () => {
-  return (
-    <>
-      <DetailsModal />
-      <Button htmlFor="my-modal-4" styles="btn-info btn-sm">
-        Share
-      </Button>
-    </>
-  );
+  const { isOpen, setIsOpen, setModalContent } = useModalContext();
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+    setModalContent(<ShareBox title="Share your stream" />);
+  };
+
+  return <Button onClick={handleClick}>Share</Button>;
 };
 
 export default ShareButton;

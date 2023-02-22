@@ -2,19 +2,10 @@ import { ReactNode } from "react";
 import Button from "./Button";
 import NFTScan from "public/nftscan.png";
 import Image from "next/image";
-enum Network {
-  Opensea = "https://opensea.io/assets/matic",
-  Rarible = "https://rarible.com/token/polygon",
-  NFTScan = "https://polygon.nftscan.com",
-}
+import { Network } from "utils/constants";
+import useModalContext from "hooks/useModalContext";
 
-const ViewOnPlatform = ({
-  href,
-  children,
-}: {
-  href: string;
-  children: ReactNode;
-}) => {
+const Link = ({ href, children }: { href: string; children: ReactNode }) => {
   return (
     <a target="_blank" rel="noreferrer" className="no-underline" href={href}>
       {children}
@@ -22,11 +13,9 @@ const ViewOnPlatform = ({
   );
 };
 
-export default ViewOnPlatform;
-
 export const ViewOnOpensea = ({ address }: { address: string }) => {
   return (
-    <ViewOnPlatform href={`${Network.Opensea}/${address}/1`}>
+    <Link href={`${Network.Opensea}/${address}/1`}>
       <Button styles={"bg-[#2081E2] text-white flex-row flex btn-md"}>
         <p className="mr-1">View on Opensea</p>
         <svg
@@ -50,13 +39,13 @@ export const ViewOnOpensea = ({ address }: { address: string }) => {
           />
         </svg>
       </Button>
-    </ViewOnPlatform>
+    </Link>
   );
 };
 
 export const ViewOnRarible = ({ address }: { address: string }) => {
   return (
-    <ViewOnPlatform href={`${Network.Rarible}/${address}:1`}>
+    <Link href={`${Network.Rarible}/${address}:1`}>
       <Button styles={"bg-[#FEDA03] text-[#16161A] flex-row flex btn-md"}>
         <p className="mr-1">View on Rarible</p>
         <svg
@@ -78,17 +67,41 @@ export const ViewOnRarible = ({ address }: { address: string }) => {
           />
         </svg>
       </Button>
-    </ViewOnPlatform>
+    </Link>
   );
 };
 
 export const ViewOnNftScan = ({ address }: { address: string }) => {
   return (
-    <ViewOnPlatform href={`${Network.NFTScan}/${address}/1`}>
+    <Link href={`${Network.NFTScan}/${address}/1`}>
       <Button styles={"bg-[#1450f0] text-white flex-row flex btn-md"}>
         <p className="mr-1">View on NftScan</p>
-        <Image src={NFTScan} alt="NftScan Logo"  height={"40px"} width={"40px"}/>
+        <Image
+          src={NFTScan}
+          alt="NftScan Logo"
+          height={"40px"}
+          width={"40px"}
+        />
       </Button>
-    </ViewOnPlatform>
+    </Link>
   );
 };
+
+const ViewOnPlatform = ({ address }: { address: string }) => {
+  const { setIsOpen, setModalContent } = useModalContext();
+
+  const handleClick = () => {
+    setIsOpen(true);
+    setModalContent(
+      <div className="flex flex-col items-center justify-center">
+        <ViewOnOpensea address={address} />
+        <ViewOnRarible address={address} />
+        <ViewOnNftScan address={address} />
+      </div>
+    );
+  };
+
+  return <Button onClick={handleClick}>View</Button>;
+};
+
+export default ViewOnPlatform;
