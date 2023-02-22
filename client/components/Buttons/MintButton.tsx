@@ -43,12 +43,15 @@ const MintButton = ({ address }: { address: string }) => {
   return (
     <IsConnectedButton>
       <Button
-        styles={"btn-primary btn-md"}
+        styles={"btn-primary"}
         onClick={onMintClick}
         isLoading={mintLoading}
       >
-        SUBSCRIBE for {ethers.utils.formatEther(mintPrice ? mintPrice : 0)}{" "}
-        MATIC
+        <span className="md:hidden">SUBSCRIBE</span>
+        <span className="hidden md:block">
+          SUBSCRIBE for {ethers.utils.formatEther(mintPrice ? mintPrice : 0)}{" "}
+          MATIC
+        </span>
       </Button>
     </IsConnectedButton>
   );

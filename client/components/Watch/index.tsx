@@ -1,14 +1,8 @@
 import { useContext } from "react";
 import { ViewContext } from "context/viewContext";
 import { PlayerURL } from "utils/constants";
-import NetworkDropdown from "components/Elements/NetworkDropdown";
-import {
-  ViewOnOpensea,
-  ViewOnRarible,
-  ViewOnNftScan
-} from "components/Buttons/ViewOnPlatform";
 import MintButton from "components/Buttons/MintButton";
-import ShareButton from "components/Share/Button";
+import Navbar from "components/Elements/Navbar";
 
 const WatchComponent = () => {
   const context = useContext(ViewContext);
@@ -19,26 +13,29 @@ const WatchComponent = () => {
   const { stream, address } = context;
 
   return (
-    <div className="h-screen flex">
-      <div className="absolute top-0 left-0 m-3 w-1/2 flex flex-row space-x-2">
-        <div className="hidden lg:block">
-          <MintButton address={address} />
+    <>
+      <Navbar address={address} />
+      <div className="flex flex-col lg:flex-row w-full h-full">
+        <div className="md:h-full w-full flex flex-col">
+          <iframe
+            src={PlayerURL + stream?.id + "&chat=false"}
+            className="min-h-[250px] w-full h-full"
+          />
+          <div className="h-14 items-center p-3 box-content flex flex-row ">
+            <div id="shadowBox" className="mr-auto">
+              <h3 className="rainbow rainbow_text_animated lg:text-2xl font-bold m-1">
+                Welcome to the Broadcastr festival
+              </h3>
+            </div>
+            <MintButton address={address} />
+          </div>
         </div>
-        <ShareButton />
-        <NetworkDropdown>
-          <ViewOnOpensea address={address} />
-          <ViewOnRarible address={address} />
-          <ViewOnNftScan address={address} />
-        </NetworkDropdown>
+        <iframe
+          className="flex-grow w-full lg:w-1/4 lg:h-full bg-zinc-800 bg-opacity-80 min-h-[350px]"
+          src="https://stingray-app-u9f8x.ondigitalocean.app/29f8d219-d76c-4019-81bc-b46ac20453dc"
+        />
       </div>
-      <div className="lg:hidden absolute bottom-0 w-full my-2 flex items-center justify-center">
-        <MintButton address={address} />
-      </div>
-      <iframe
-        src={PlayerURL + stream?.id + "&chat=false"}
-        className="w-full h-full"
-      />
-    </div>
+    </>
   );
 };
 

@@ -24,26 +24,21 @@ const UseObs = ({ stream }: { stream: Stream }) => {
         setIsOpen(false);
         setIsLoading(false);
       });
-
   };
 
   return (
     <>
       {isOpen && (
-        <Modal
-          onExit={() => {
-            setIsOpen(false);
-          }}
-        >
-          <div className="flex flex-col space-y-4 m-auto">
-            <h1 className="mb-2">Test stream</h1>
-            <p>
-              Send a ten minute test signal to the Live NFT with{" "}
-              <a href="https://teststream.live/">teststream.live</a>
-            </p>
-            <Button onClick={() => sendTestSignal()} isLoading={isLoading}>Send!</Button>
-          </div>
-        </Modal>
+        <div className="flex flex-col space-y-4 m-auto">
+          <h1 className="mb-2">Test stream</h1>
+          <p>
+            Send a ten minute test signal to the Live NFT with{" "}
+            <a href="https://teststream.live/">teststream.live</a>
+          </p>
+          <Button onClick={() => sendTestSignal()} isLoading={isLoading}>
+            Send!
+          </Button>
+        </div>
       )}
       <div
         onClick={() => {
