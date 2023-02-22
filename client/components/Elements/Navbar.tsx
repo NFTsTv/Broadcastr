@@ -7,7 +7,28 @@ const Navbar = ({ address }: { address: string }) => {
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
-        <div className="dropdown">
+        <a href="https://broadcastr.xyz">
+          <Image
+            src={Logo}
+            alt="Logo"
+            height={30}
+            width={200}
+            objectFit={"contain"}
+          />
+        </a>
+      </div>
+
+      <div className="navbar-end">
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 space-x-1">
+            <ViewOnPlatform address={address} />
+            <ShareButton />
+            <Button styles="btn-info">
+              <a className="text-black no-underline">Know more</a>
+            </Button>
+          </ul>
+        </div>
+        <div className="dropdown dropdown-left dropdown-bottom">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -26,36 +47,15 @@ const Navbar = ({ address }: { address: string }) => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 lg:hidden space-y-2"
           >
             <ViewOnPlatform address={address} />
             <ShareButton />
+            <Button styles="btn-info">
+              <a className="text-black no-underline">Know more</a>
+            </Button>
           </ul>
         </div>
-        <a
-          className="btn btn-ghost normal-case text-xl h-4"
-          href="https://broadcastr.xyz"
-        >
-          <Image
-            src={Logo}
-            alt="Logo"
-            height={30}
-            width={200}
-            objectFit={"contain"}
-          />
-        </a>
-      </div>
-
-      <div className="navbar-end">
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 space-x-1">
-            <ViewOnPlatform address={address} />
-            <ShareButton />
-          </ul>
-        </div>
-        <Button styles="btn-info">
-          <a className="text-black no-underline">Know more</a>
-        </Button>
       </div>
     </div>
   );
