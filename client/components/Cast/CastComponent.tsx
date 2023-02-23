@@ -3,13 +3,11 @@ import { useContext } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { GoLive } from "components/Cast/GoliveButtons";
 import StreamDetails from "components/StreamDetails";
-import {
-  ViewOnOpensea,
-  ViewOnRarible,
-} from "components/Buttons/ViewOnPlatform";
+import ViewOnPlatform from "components/Buttons/ViewOnPlatform";
 import ShareButton from "components/Share/Button";
 import { PlayerURL } from "utils/constants";
 import { Routes } from "utils/constants";
+import Button from "components/Buttons/Button";
 
 const CastComponent = () => {
   const context = useContext(ViewContext);
@@ -35,27 +33,25 @@ const CastComponent = () => {
         />
         <GoLive address={address} stream={stream} CastrData={CastrData} />
         <StreamDetails address={address} details={CastrData} />
-      </div>
-      <div className="flex flex-col h-2/4 lg:w-4/5 lg:h-full border-1 lg:relative">
-        <div className="absolute bottom-0 lg:top-0 lg:left-0 z-10 p-4 w-full flex justify-center lg:justify-start h-9">
+        <div className="flex flex-row space-x-2">
           <ShareButton />
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href={`${Routes.WATCH}?address=${address}`}
-          >
-            <div className="btn btn-sm btn-secondary text-white m-1">
+          <Button>
+            <a
+            className="no-underline"
+              target="_blank"
+              rel="noreferrer"
+              href={`${Routes.WATCH}?address=${address}`}
+            >
               Mint page
-            </div>
-          </a>
-          <ViewOnOpensea address={`${address}/1`} />
-          <ViewOnRarible address={`${address}:1`} />
+            </a>
+          </Button>
+          <ViewOnPlatform address={address} />
         </div>
-        <iframe
-          src={PlayerURL + stream?.id + "&chat=false"}
-          className="min-h-[250px] w-full h-full"
-        />
       </div>
+      <iframe
+        src={PlayerURL + stream?.id + "&chat=false"}
+        className="min-h-[250px] w-full h-full"
+      />
     </div>
   );
 };

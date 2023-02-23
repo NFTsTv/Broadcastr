@@ -1,5 +1,6 @@
 import { usePrepareContractWrite, useContractWrite, useAccount, Address } from "wagmi";
 import CastrABI from "contracts/Castr-abi";
+import Button from "./Button";
 
 const WithdrawalButton = ({ address }: { address: string }) => {
   const { address: userAddress } = useAccount();
@@ -11,9 +12,9 @@ const WithdrawalButton = ({ address }: { address: string }) => {
   });
   const { write } = useContractWrite(config);
   return (
-    <button className="btn btn-sm" onClick={() => write?.()}>
+    <Button styles="btn-info" onClick={() => write?.()}>
       Withdrawal
-    </button>
+    </Button>
   );
 };
 

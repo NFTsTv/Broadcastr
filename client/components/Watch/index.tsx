@@ -32,7 +32,7 @@ const WatchComponent = () => {
         </div>
         <iframe
           className="flex-grow w-full lg:w-1/4 lg:h-full bg-zinc-800 bg-opacity-80 min-h-[350px]"
-          src={`http://localhost:3000/${stream?.id}`}
+          src={`https://stingray-app-u9f8x.ondigitalocean.app/${stream?.id}`}
         />
       </div>
     </>
