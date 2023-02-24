@@ -93,7 +93,8 @@ const ViewOnPlatform = ({ address }: { address: string }) => {
   const handleClick = () => {
     setIsOpen(true);
     setModalContent(
-      <div className="flex flex-col items-center justify-center">
+      // make buttons be same width
+      <div className="flex flex-col space-y-3">
         <ViewOnOpensea address={address} />
         <ViewOnRarible address={address} />
         <ViewOnNftScan address={address} />
