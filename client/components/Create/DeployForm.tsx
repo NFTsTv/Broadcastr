@@ -21,7 +21,7 @@ const DeployLNFT = () => {
         <label className="input-group mb-4 max-w-xs w-full">
           <input
             type="text"
-            placeholder="0.08"
+            placeholder="10"
             value={Castr.price}
             className="input input-bordered w-3/4"
             onChange={(e) => handleSetData("price", e.target.value)}

@@ -1,4 +1,4 @@
-import {Address} from "wagmi"
+import { Address } from "wagmi"
 
 export enum Routes {
   HOME = '/',
@@ -7,7 +7,7 @@ export enum Routes {
   WATCH = '/watch',
 }
 
-export const ProtectedRutes = [Routes.CREATE, Routes.CAST];
+export const ProtectedRutes = [Routes.CAST];
 export const ContractAddress = process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS as Address ?? "";
 export const NFTMarketAddress = "https://opensea.io/assets/polygon"
 export const PlayerURL = "https://player-generator.vercel.app/iframe?streamid="
