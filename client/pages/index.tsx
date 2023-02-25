@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { ViewContextProvider } from "context/viewContext";
 import WatchComponent from "components/Watch";
 const Home: NextPage = () => {
-  const address = "0xC36DB9d429CAbC3178358fa772Dc9f60428E2D10";
+  const address = "0x8140c9647779034efef6d492f3ecccde66a6191d";
 
   return (
     <ViewContextProvider address={address}>
