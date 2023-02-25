@@ -19,7 +19,6 @@ const Modal = () => {
           setIsOpen(false);
         }}
       />
-      {/* add a padding */}
       <div className="modal-box z-50 p-10">
         <div className="text-white absolute top-0 right-0 px-4 cursor-pointer mt-3 z-50">
           <GoBackButton onClick={() => setIsOpen(false)} />
