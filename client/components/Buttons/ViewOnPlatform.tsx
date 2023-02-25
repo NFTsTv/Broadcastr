@@ -93,7 +93,6 @@ const ViewOnPlatform = ({ address }: { address: string }) => {
   const handleClick = () => {
     setIsOpen(true);
     setModalContent(
-      // make buttons be same width
       <div className="flex flex-col space-y-3">
         <ViewOnOpensea address={address} />
         <ViewOnRarible address={address} />
