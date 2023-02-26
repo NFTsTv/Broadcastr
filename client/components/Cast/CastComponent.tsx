@@ -37,7 +37,7 @@ const CastComponent = () => {
           <ShareButton />
           <Button>
             <a
-            className="no-underline"
+              className="no-underline"
               target="_blank"
               rel="noreferrer"
               href={`${Routes.WATCH}?address=${address}`}
