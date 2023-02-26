@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lens-protocol/widgets-react": "^0.0.4",
     "@livepeer/react": "^2.1.5",
     "@livepeer/webrtmp-sdk": "^0.2.3",
     "@rainbow-me/rainbowkit": "^0.8.1",

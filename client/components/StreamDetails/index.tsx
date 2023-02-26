@@ -21,6 +21,10 @@ const DetailBox = ({
   );
 };
 
+const onSignIn = (tokens: any, profile: any) => {
+  console.log(tokens, profile);
+};
+
 const StreamDetails = ({
   details,
   address,

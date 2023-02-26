@@ -25,7 +25,7 @@ const Router = ({ children }: { children: ReactNode }) => {
       if (ArrayData?.length === 0 && route !== Routes.CREATE) {
         router.push(Routes.CREATE);
       } else if (data && ArrayData?.length > 0 && route !== Routes.CAST) {
-        router.push(Routes.CAST + "?address=" + ArrayData[0]);
+        router.push(Routes.CAST + "?address=" + ArrayData[ArrayData.length - 1]);
       } else {
         setIsLoading(false);
       }
@@ -48,7 +48,7 @@ const Router = ({ children }: { children: ReactNode }) => {
     return (
       <Container>
         <div className="flex flex-col items-center space-y-4">
-          <div className="w-screen h-48 realtive">
+          <div className="w-screen h-24 relative mt-10">
             <Image
               src="/logo.png"
               alt="Broadcastr Logo"
@@ -65,6 +65,7 @@ const Router = ({ children }: { children: ReactNode }) => {
           </p>
           <ConnectButton />
         </div>
+
       </Container>
     );
   }
