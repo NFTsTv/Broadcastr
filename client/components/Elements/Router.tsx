@@ -5,6 +5,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Container from "components/Elements/Container";
 import factoryContract from "contracts/CastrFactory-abi";
 import { Routes, ProtectedRutes, ContractAddress } from "utils/constants";
+import Image from 'next/image';
 
 const Router = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
@@ -46,11 +47,22 @@ const Router = ({ children }: { children: ReactNode }) => {
   if (ProtectedRutes.includes(route) && !isConnected) {
     return (
       <Container>
-        <h1 className="text-4xl font-bold">NFTS are live</h1>
-        <p className="text-xl text-center">
-          Welcome to NFTs are live! Connect your wallet to get started
-        </p>
-        <div className="w-40 m-auto">
+        <div className="flex flex-col items-center space-y-4">
+          <div className="w-screen h-48 realtive">
+            <Image
+              src="/logo.png"
+              alt="Broadcastr Logo"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+          <h1 className="text-2xl text-center">
+            Welcome to Broadcastr!
+          </h1>
+
+          <p className="text-center">
+            Connect your wallet to get started.
+          </p>
           <ConnectButton />
         </div>
       </Container>
