@@ -12,7 +12,6 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { polygon } from "@wagmi/core/chains";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
-import Router from "components/Elements/Router";
 import { ModalContextProvider } from "context/modalContext";
 import { Layout } from "components/Elements/Layout";
 
