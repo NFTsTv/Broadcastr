@@ -20,7 +20,7 @@ const List: NextPage = () => {
     null
   );
   const { data, isLoading } = useContractRead({
-    address: ContractAddress,
+    address: ContractAddress(),
     abi: CastrFactory,
     functionName: "getCreatorChannels",
     args: [address],

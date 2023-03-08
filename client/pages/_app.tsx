@@ -9,14 +9,14 @@ import {
 } from "@livepeer/react";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { polygon } from "@wagmi/core/chains";
+import { polygon, polygonMumbai } from "@wagmi/core/chains";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
 import { ModalContextProvider } from "context/modalContext";
 import { Layout } from "components/Elements/Layout";
 
 const { chains, provider } = configureChains(
-  [polygon],
+  [polygon, polygonMumbai],
   [
     infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY ?? "" }),
     publicProvider(),

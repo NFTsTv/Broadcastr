@@ -33,7 +33,7 @@ const useCreateCastr = () => {
 
   const { config, isSuccess: prepareContractWriteSuccess } =
     usePrepareContractWrite({
-      address: ContractAddress,
+      address: ContractAddress(),
       abi: [...CastrFactoryABI],
       functionName: "createCastr",
       args: validateFormData()

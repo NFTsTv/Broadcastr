@@ -4,12 +4,12 @@ import factoryContract from "contracts/CastrFactory-abi";
 import { ContractAddress } from "utils/constants";
 
 const useCastrAccount = () => {
-  const { address, isConnected } = useAccount();
+  const { address, isConnected, isDisconnected } = useAccount();
   const [castrAddress, setCastrAddress] = useState<string | null>(null);
   const [loadingComplete, setLoadingComplete] = useState(false);
-
+  console.log(ContractAddress())
   const { data, isLoading, isSuccess, isError } = useContractRead({
-    address: ContractAddress,
+    address: ContractAddress(),
     abi: factoryContract,
     functionName: "getCreatorChannels",
     args: [address],
@@ -26,6 +26,7 @@ const useCastrAccount = () => {
   }, [isSuccess, isError, data]);
 
   const isOwned = (address: string) => {
+    if (isDisconnected) return false;
     const readData = data as string[];
     if (!readData) return false;
     return readData.includes(address);

@@ -14,7 +14,7 @@ const useCastr = (address: string) => {
     ownerAddress: "",
   });
   const { data } = useContractRead({
-    address: ContractAddress,
+    address: ContractAddress(),
     abi: CastrFactoryABI,
     functionName: "getMetadata",
     args: [address],
