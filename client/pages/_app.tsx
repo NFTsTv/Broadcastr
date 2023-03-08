@@ -47,13 +47,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       <WagmiConfig client={wagmiClient}>
         <Head> broadcastr </Head>
         <RainbowKitProvider chains={chains}>
-          <Router>
             <ModalContextProvider>
               <Layout>
                 <Component {...pageProps} />
               </Layout>
             </ModalContextProvider>
-          </Router>
         </RainbowKitProvider>
       </WagmiConfig>
     </LivepeerConfig>

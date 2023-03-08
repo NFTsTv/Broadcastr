@@ -4,6 +4,7 @@ import NFTScan from "public/nftscan.png";
 import Image from "next/image";
 import { Network } from "utils/constants";
 import useModalContext from "hooks/useModalContext";
+import useAddressContext from "hooks/useAddressContext";
 
 const Link = ({ href, children }: { href: string; children: ReactNode }) => {
   return (
@@ -87,8 +88,9 @@ export const ViewOnNftScan = ({ address }: { address: string }) => {
   );
 };
 
-const ViewOnPlatform = ({ address }: { address: string }) => {
+const ViewOnPlatform = () => {
   const { setIsOpen, setModalContent } = useModalContext();
+  const { address } = useAddressContext();
 
   const handleClick = () => {
     setIsOpen(true);
