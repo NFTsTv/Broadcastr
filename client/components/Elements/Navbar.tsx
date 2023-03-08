@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 const Navbar = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="navbar bg-base-100 h-full max-h-20">
+    <div className="navbar bg-base-100 max-h-20">
       <div className="navbar-start h-full">
         <a href="https://broadcastr.xyz">
           <Image
