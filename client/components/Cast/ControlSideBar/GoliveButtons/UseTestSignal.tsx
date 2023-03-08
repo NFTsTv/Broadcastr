@@ -29,13 +29,16 @@ const UseObs = ({ stream }: { stream: Stream }) => {
   return (
     <>
       {isOpen && (
-        <div className="flex flex-col space-y-4 m-auto">
+        <div className="flex flex-col m-auto space-y-4 absolute bg-base-100 p-5 h-full top-0 w-full left-0 z-20">
           <h1 className="mb-2">Test stream</h1>
           <p>
             Send a ten minute test signal to the Live NFT with{" "}
             <a href="https://teststream.live/">teststream.live</a>
           </p>
-          <Button onClick={() => sendTestSignal()} isLoading={isLoading}>
+          <Button onClick={() => {
+            sendTestSignal();
+            setIsOpen(false);
+          }} isLoading={isLoading}>
             Send!
           </Button>
         </div>
