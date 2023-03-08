@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
+import { Analytics } from '@vercel/analytics/react';
 import {
   LivepeerConfig,
   createReactClient,
@@ -49,6 +50,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <ModalContextProvider>
             <Layout>
               <Component {...pageProps} />
+              <Analytics />
             </Layout>
           </ModalContextProvider>
         </RainbowKitProvider>
