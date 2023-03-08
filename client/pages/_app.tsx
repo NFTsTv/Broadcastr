@@ -16,7 +16,7 @@ import { ModalContextProvider } from "context/modalContext";
 import { Layout } from "components/Elements/Layout";
 
 const { chains, provider } = configureChains(
-  [polygon, polygonMumbai],
+  [polygon],
   [
     infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY ?? "" }),
     publicProvider(),
@@ -46,11 +46,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       <WagmiConfig client={wagmiClient}>
         <Head> broadcastr </Head>
         <RainbowKitProvider chains={chains}>
-            <ModalContextProvider>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </ModalContextProvider>
+          <ModalContextProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ModalContextProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     </LivepeerConfig>

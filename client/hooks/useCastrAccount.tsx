@@ -7,13 +7,18 @@ const useCastrAccount = () => {
   const { address, isConnected, isDisconnected } = useAccount();
   const [castrAddress, setCastrAddress] = useState<string | null>(null);
   const [loadingComplete, setLoadingComplete] = useState(false);
-  console.log(ContractAddress())
-  const { data, isLoading, isSuccess, isError } = useContractRead({
+  const { data, isLoading, isSuccess, isError, refetch } = useContractRead({
     address: ContractAddress(),
     abi: factoryContract,
     functionName: "getCreatorChannels",
     args: [address],
   });
+
+  useEffect(() => {
+    if (isConnected) {
+      refetch();
+    }
+  }, [isConnected, address]);
 
   useEffect(() => {
     if (isSuccess) {

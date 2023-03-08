@@ -1,11 +1,16 @@
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { useAccount, useContractRead, Address } from "wagmi";
 import Login from "components/Elements/Login";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
-  const {isDisconnected } = useAccount();
+  const {isDisconnected, isConnecting, isConnected } = useAccount();
+  const [allowed, setAllowed] = useState(false);
 
-  if (isDisconnected) return <Login />;
+  useEffect(() => {
+    setAllowed(!isDisconnected);
+  }, [isDisconnected, isConnecting, isConnected]);
+
+  if (!allowed) return <Login />;
 
   return <>{children}</>;
 };

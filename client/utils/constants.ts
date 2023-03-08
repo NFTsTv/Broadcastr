@@ -13,14 +13,10 @@ export const ProtectedRutes = [Routes.CREATE, Routes.CAST, Routes.HOME];
 const { chain, chains } = getNetwork();
 
 export const ContractAddress = (): Address => {
-  if (chain?.name == "Polygon") {
+    console.log(chain?.name);
     return (process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS || "") as Address;
-  }
-  if (chain?.name == "Polygon Mumbai") {
     return (process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS_MUMBAI ||
       "") as Address;
-  }
-  return "" as Address;
 };
 
 export const NFTMarketAddress = "https://opensea.io/assets/polygon";
