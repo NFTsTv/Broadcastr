@@ -3,7 +3,7 @@ import { Address } from "wagmi"
 export enum Routes {
   HOME = '/',
   CREATE = '/create',
-  CAST = '/cast',
+  CAST = '/',
   WATCH = '/watch',
 }
 

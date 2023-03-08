@@ -11,13 +11,12 @@ const CastRoute = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { address } = useAddressContext();
   useEffect(() => {
-    if (address) {
-      if (!isOwned(address)) {
-        router.push(Routes.CAST + "?address=" + castrAddress);
-      }
-      setIsLoading(false);
-    } else {
+    if (loadingComplete && !castrAddress) {
+      router.push(Routes.CREATE);
+    } else if ((address && !isOwned(address)) || !address) {
       router.push(Routes.CAST + "?address=" + castrAddress);
+    } else {
+      setIsLoading(false);
     }
   }, [address, isOwned]);
 

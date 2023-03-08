@@ -1,18 +1,19 @@
 import type { NextPage } from "next";
-import { CreateContextProvider } from "context/createContext";
+import CastComponent from "components/Cast/CastComponent";
+import AddressRoute from "components/Elements/Routes/AddressRoute";
 import ProtectedRoute from "components/Elements/Routes/ProtectedRoute";
-import CreateRoute from "components/Elements/Routes/CreateRoute";
+import CastRoute from "components/Elements/Routes/CastRoute";
 
-const Create: NextPage = () => {
+const Cast: NextPage = () => {
   return (
-    <CreateContextProvider>
-      <ProtectedRoute>
-        <CreateRoute>
-          loading
-        </CreateRoute>
-      </ProtectedRoute>
-    </CreateContextProvider>
+    <ProtectedRoute>
+      <AddressRoute>
+        <CastRoute>
+          <CastComponent />
+        </CastRoute>
+      </AddressRoute>
+    </ProtectedRoute>
   );
 };
 
-export default Create;
+export default Cast;

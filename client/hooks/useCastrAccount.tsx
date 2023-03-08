@@ -21,9 +21,9 @@ const useCastrAccount = () => {
       if (readData.length > 0) {
         setCastrAddress(readData[0]);
       }
+      setLoadingComplete(true);
     }
-    setLoadingComplete(true);
-  }, [isSuccess]);
+  }, [isSuccess, isError, data]);
 
   const isOwned = (address: string) => {
     const readData = data as string[];

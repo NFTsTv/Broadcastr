@@ -14,7 +14,7 @@ const CreateRoute = ({ children }: { children: ReactNode }) => {
     } else if (loadingComplete) {
       setIsLoading(false);
     }
-  }, [castrAddress]);
+  }, [castrAddress, loadingComplete]);
 
   if (isLoading) return <IsLoading />;
 
