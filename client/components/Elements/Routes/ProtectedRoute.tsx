@@ -3,11 +3,11 @@ import { useAccount, useContractRead, Address } from "wagmi";
 import Login from "components/Elements/Login";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
-  const { isConnected, isConnecting } = useAccount();
+  const { isConnected, isConnecting, isDisconnected } = useAccount();
 
+ 
 
-
-  if (!isConnected && !isConnecting) return <Login />;
+  if ( isDisconnected) return <Login />;
 
   return <>{children}</>;
 };

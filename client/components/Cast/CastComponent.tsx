@@ -4,7 +4,6 @@ import ViewOnPlatform from "components/Buttons/ViewOnPlatform";
 import ShareButton from "components/Share/Button";
 import NFTEmbed from "components/Elements/NFTEmbed";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Button from "components/Buttons/Button";
 
 const CastComponent = () => {
   return (

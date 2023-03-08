@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useStream, useStreamSessions } from "@livepeer/react";
 import { useContractRead } from "wagmi";
 import CastrFactoryABI from "contracts/CastrFactory-abi";
@@ -49,11 +49,13 @@ const useCastr = (address: string) => {
     streamId: properties.streamId,
   });
 
-  return {
-    sessions,
-    stream,
-    CastrData,
-  };
+  return useMemo(() => {
+    return {
+      stream,
+      sessions,
+      CastrData,
+    };
+  }, [stream, sessions, CastrData]);
 };
 
 export default useCastr;
