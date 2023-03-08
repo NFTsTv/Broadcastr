@@ -16,4 +16,5 @@ export enum Network {
   Opensea = "https://opensea.io/assets/matic",
   Rarible = "https://rarible.com/token/polygon",
   NFTScan = "https://polygon.nftscan.com",
+  Broadcastr = "https://app.broadcastr.xyz/watch",
 }

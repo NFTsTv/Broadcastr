@@ -14,6 +14,16 @@ const Link = ({ href, children }: { href: string; children: ReactNode }) => {
   );
 };
 
+export const ViewOnBroadcastr = ({ address }: { address: string }) => {
+  return (
+    <Link href={`${Network.Broadcastr}?address=${address}`}>
+      <Button styles={"text-white flex-row flex btn-md"}>
+        <p className="mr-1">View on Broadcastr</p>
+      </Button>
+    </Link>
+  );
+};
+
 export const ViewOnOpensea = ({ address }: { address: string }) => {
   return (
     <Link href={`${Network.Opensea}/${address}/1`}>
@@ -96,6 +106,8 @@ const ViewOnPlatform = () => {
     setIsOpen(true);
     setModalContent(
       <div className="flex flex-col space-y-3">
+        <ViewOnBroadcastr address={address} />
+
         <ViewOnOpensea address={address} />
         <ViewOnRarible address={address} />
         <ViewOnNftScan address={address} />

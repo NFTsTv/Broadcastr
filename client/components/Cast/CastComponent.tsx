@@ -13,7 +13,7 @@ const CastComponent = () => {
         <ShareButton />
           <ConnectButton
             accountStatus={{
-              smallScreen: "avatar",
+              smallScreen: "full",
               largeScreen: "full",
             }}
             showBalance={false}
@@ -21,7 +21,7 @@ const CastComponent = () => {
       </Navbar>
       <div className="flex h-full lg:flex-row flex-col-reverse">
         <ControlSideBar />
-        <NFTEmbed chat={false} />
+        <NFTEmbed chat={true} />
       </div>
     </>
   );

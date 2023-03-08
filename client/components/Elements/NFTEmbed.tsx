@@ -5,9 +5,17 @@ import useAddressContext from "hooks/useAddressContext";
 const NFTEmbed = ({ chat }: { chat: boolean }) => {
   const { address } = useAddressContext();
   const { stream } = useCastr(address);
+  const constructURL = () => {
+    if (!chat) {
+      return PlayerURL + stream?.id + "&chat=false";
+    } else {
+      return PlayerURL + stream?.id;
+    }
+  };
+
   return (
     <iframe
-      src={PlayerURL + stream?.id + "&chat=" + chat}
+      src={constructURL() }
       className="min-h-[250px] w-full h-full"
     />
   );

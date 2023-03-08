@@ -14,7 +14,7 @@ const WatchComponent = () => {
         <ShareButton />
         <ConnectButton
           accountStatus={{
-            smallScreen: "avatar",
+            smallScreen: "full",
             largeScreen: "full",
           }}
           showBalance={false}
