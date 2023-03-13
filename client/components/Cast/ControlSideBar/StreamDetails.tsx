@@ -35,19 +35,23 @@ const StreamDetails = ({
   return (
     <div className="flex flex-col w-full rounded-xl">
       <div className="flex flex-col space-y-4 text-center">
-        <div className="flex flex-row lg:flex-col xl:flex-row w-full max-w-full text-white justify-center">
-          <DetailBox
-            title="Subscription price"
-            text={formatEther(details.price) + " MATIC"}
-          />
-
-          <DetailBox title="Subscribers" text={Number(formatUnits(details.currentSubs, 0)) - 1} />
+        <div className="flex flex-col lg:flex-row xl:flex-row text-white">
+          <div className="flex flex-col space-y-4 lg:w-full xl:h-1/2">
+            <DetailBox title="Subscribers" text={Number(formatUnits(details.currentSubs, 0)) - 1} />
+            <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
+              <WithdrawalButton address={address} />
+            </DetailBox>
+          </div>
+          <div className="flex flex-col space-y-4 lg:w-full xl:h-1/2">
+            <DetailBox
+              title="Subscription price"
+              text={formatEther(details.price) + " MATIC"}
+            />
+          </div>
         </div>
-        <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
-          <WithdrawalButton address={address} />
-        </DetailBox>
       </div>
     </div>
+
   );
 };
 
