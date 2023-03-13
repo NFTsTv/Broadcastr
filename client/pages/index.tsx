@@ -1,14 +1,19 @@
-import { NextPage } from "next";
-import { ViewContextProvider } from "context/viewContext";
-import WatchComponent from "components/Watch";
-const Home: NextPage = () => {
-  const address = "0x8140c9647779034efef6d492f3ecccde66a6191d";
+import type { NextPage } from "next";
+import CastComponent from "components/Cast/CastComponent";
+import AddressRoute from "components/Elements/Routes/AddressRoute";
+import ProtectedRoute from "components/Elements/Routes/ProtectedRoute";
+import CastRoute from "components/Elements/Routes/CastRoute";
 
+const Cast: NextPage = () => {
   return (
-    <ViewContextProvider address={address}>
-      <WatchComponent />
-    </ViewContextProvider>
+    <ProtectedRoute>
+      <AddressRoute>
+        <CastRoute>
+          <CastComponent />
+        </CastRoute>
+      </AddressRoute>
+    </ProtectedRoute>
   );
 };
 
-export default Home;
+export default Cast;

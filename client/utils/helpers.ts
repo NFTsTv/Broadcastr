@@ -4,7 +4,6 @@ export const createMetadata = ({
   name,
   description,
   CastrId,
-  playbackUrl,
   address,
   streamId,
 }: {
@@ -21,7 +20,7 @@ export const createMetadata = ({
     description: description,
     animation_url: url,
     external_url: url,
-    image: url,
+    image: "https://app.broadcastr.xyz/images/logo-NoText.png",
     properties: {
       creator_address: address,
       CastrId: CastrId,

@@ -4,8 +4,6 @@ import {
   TwitterShareButton,
   TwitterIcon,
 } from "react-share";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { Routes } from "utils/constants";
 interface Props {
   title: string;
 }

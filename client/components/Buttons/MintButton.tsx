@@ -7,7 +7,7 @@ import IsConnectedButton from "./IsConnected";
 
 const MintButton = ({ address }: { address: string }) => {
   const [mintLoading, setMintLoading] = useState(false);
-  const { address: userAddress } = useAccount();
+  const { address: userAddress, isConnected } = useAccount();
   const { data } = useContractRead({
     address: address as Address,
     abi: CastrABI,
@@ -30,6 +30,7 @@ const MintButton = ({ address }: { address: string }) => {
   });
 
   const onMintClick = async () => {
+    if (!isConnected) alert("Please connect your wallet");
     try {
       const tx = await mint();
       const receipt = await tx.wait();
@@ -41,19 +42,17 @@ const MintButton = ({ address }: { address: string }) => {
   };
 
   return (
-    <IsConnectedButton>
-      <Button
-        styles={"btn-primary"}
-        onClick={onMintClick}
-        isLoading={mintLoading}
-      >
-        <span className="md:hidden">SUBSCRIBE</span>
-        <span className="hidden md:block">
-          SUBSCRIBE for {ethers.utils.formatEther(mintPrice ? mintPrice : 0)}{" "}
-          MATIC
-        </span>
-      </Button>
-    </IsConnectedButton>
+    <Button
+      styles={"btn-primary"}
+      onClick={onMintClick}
+      isLoading={mintLoading}
+    >
+      <span className="md:hidden">SUBSCRIBE</span>
+      <span className="hidden md:block">
+        SUBSCRIBE for {ethers.utils.formatEther(mintPrice ? mintPrice : 0)}{" "}
+        MATIC
+      </span>
+    </Button>
   );
 };
 

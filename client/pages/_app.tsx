@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
+import { Analytics } from '@vercel/analytics/react';
 import {
   LivepeerConfig,
   createReactClient,
@@ -9,10 +10,9 @@ import {
 } from "@livepeer/react";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { polygon } from "@wagmi/core/chains";
+import { polygon, polygonMumbai } from "@wagmi/core/chains";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
-import Router from "components/Elements/Router";
 import { ModalContextProvider } from "context/modalContext";
 import { Layout } from "components/Elements/Layout";
 
@@ -47,13 +47,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       <WagmiConfig client={wagmiClient}>
         <Head> broadcastr </Head>
         <RainbowKitProvider chains={chains}>
-          <Router>
-            <ModalContextProvider>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </ModalContextProvider>
-          </Router>
+          <ModalContextProvider>
+            <Layout>
+              <Component {...pageProps} />
+              <Analytics />
+            </Layout>
+          </ModalContextProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     </LivepeerConfig>

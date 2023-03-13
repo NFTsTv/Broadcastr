@@ -1,12 +1,11 @@
-import ViewOnPlatform from "components/Buttons/ViewOnPlatform";
-import Button from "components/Buttons/Button";
-import ShareButton from "components/Share/Button";
 import Image from "next/image";
 import Logo from "public/logo.png";
-const Navbar = ({ address }: { address: string }) => {
+import { ReactNode } from "react";
+
+const Navbar = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="navbar bg-base-100">
-      <div className="navbar-start">
+    <div className="navbar bg-base-100 max-h-20">
+      <div className="navbar-start h-full">
         <a href="https://broadcastr.xyz">
           <Image
             src={Logo}
@@ -17,16 +16,9 @@ const Navbar = ({ address }: { address: string }) => {
           />
         </a>
       </div>
-
       <div className="navbar-end">
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 space-x-1">
-            <ViewOnPlatform address={address} />
-            <ShareButton />
-            <Button styles="btn-info">
-              <a className="text-black no-underline">Know more</a>
-            </Button>
-          </ul>
+        <div className="navbar-center hidden lg:flex h-full">
+          <ul className="menu menu-horizontal px-1 space-x-1">{children}</ul>
         </div>
         <div className="dropdown dropdown-left dropdown-bottom">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -49,11 +41,7 @@ const Navbar = ({ address }: { address: string }) => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 lg:hidden space-y-2"
           >
-            <ViewOnPlatform address={address} />
-            <ShareButton />
-            <Button styles="btn-info">
-              <a className="text-black no-underline">Know more</a>
-            </Button>
+            {children}
           </ul>
         </div>
       </div>

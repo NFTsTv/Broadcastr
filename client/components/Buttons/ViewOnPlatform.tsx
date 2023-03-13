@@ -4,12 +4,23 @@ import NFTScan from "public/nftscan.png";
 import Image from "next/image";
 import { Network } from "utils/constants";
 import useModalContext from "hooks/useModalContext";
+import useAddressContext from "hooks/useAddressContext";
 
 const Link = ({ href, children }: { href: string; children: ReactNode }) => {
   return (
     <a target="_blank" rel="noreferrer" className="no-underline" href={href}>
       {children}
     </a>
+  );
+};
+
+export const ViewOnBroadcastr = ({ address }: { address: string }) => {
+  return (
+    <Link href={`${Network.Broadcastr}?address=${address}`}>
+      <Button styles={"text-white flex-row flex btn-md"}>
+        <p className="mr-1">View on Broadcastr</p>
+      </Button>
+    </Link>
   );
 };
 
@@ -87,13 +98,16 @@ export const ViewOnNftScan = ({ address }: { address: string }) => {
   );
 };
 
-const ViewOnPlatform = ({ address }: { address: string }) => {
+const ViewOnPlatform = () => {
   const { setIsOpen, setModalContent } = useModalContext();
+  const { address } = useAddressContext();
 
   const handleClick = () => {
     setIsOpen(true);
     setModalContent(
       <div className="flex flex-col space-y-3">
+        <ViewOnBroadcastr address={address} />
+
         <ViewOnOpensea address={address} />
         <ViewOnRarible address={address} />
         <ViewOnNftScan address={address} />
