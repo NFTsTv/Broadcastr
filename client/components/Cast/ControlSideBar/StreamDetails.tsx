@@ -1,5 +1,5 @@
 import { Castr } from "types/general";
-import { formatEther } from "ethers/lib/utils";
+import { formatEther, formatUnits } from "ethers/lib/utils";
 import { useBalance, Address } from "wagmi";
 import WithdrawalButton from "components/Buttons/WithdrawalButton";
 
@@ -40,11 +40,12 @@ const StreamDetails = ({
             title="Subscription price"
             text={formatEther(details.price) + " MATIC"}
           />
-          <DetailBox title="Subscribers" text={""} />
-          <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
-            <WithdrawalButton address={address} />
-          </DetailBox>
+
+          <DetailBox title="Subscribers" text={Number(formatUnits(details.currentSubs, 0)) - 1} />
         </div>
+        <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
+          <WithdrawalButton address={address} />
+        </DetailBox>
       </div>
     </div>
   );

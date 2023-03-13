@@ -19,6 +19,7 @@ const useCastr = (address: string) => {
     functionName: "getMetadata",
     args: [address],
   });
+  console.log("data", data);
 
   useEffect(() => {
     if (data) {

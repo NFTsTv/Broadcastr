@@ -36,6 +36,7 @@ export const parseParams = (params: Castr[keyof Castr][]): Castr => {
     limitedSupply: params[3] as Castr["limitedSupply"],
     totalSupply: params[4] as Castr["totalSupply"],
     price: params[5] as Castr["price"],
+    currentSubs: params[6] as Castr["currentSubs"],
   };
 };
 

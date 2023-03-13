@@ -17,7 +17,7 @@ import { ModalContextProvider } from "context/modalContext";
 import { Layout } from "components/Elements/Layout";
 
 const { chains, provider } = configureChains(
-  [polygon],
+  [polygonMumbai],
   [
     infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY ?? "" }),
     publicProvider(),
