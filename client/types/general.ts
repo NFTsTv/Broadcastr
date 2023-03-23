@@ -21,8 +21,9 @@ export type Castr = {
   description: string;
   price: BigNumberish;
   limitedSupply: boolean;
-  totalSupply: Number;
+  totalSupply: number;
   baseUri: string;
+  currentSubs: BigNumberish;
 };
 
 export interface CastrMetadata {
