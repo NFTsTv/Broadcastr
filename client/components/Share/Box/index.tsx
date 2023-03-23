@@ -4,17 +4,15 @@ import {
   TwitterShareButton,
   TwitterIcon,
 } from "react-share";
+import { Routes } from "utils/constants";
 interface Props {
   title: string;
+  address: string;
 }
 
-export function ShareBox({ title }: Props) {
-  const url = window.location.href;
-  // replace cast with view
-  const shareUrl  = url.includes("cast") ? url.replace("cast?", "watch?") :
-
-
-  url.replace("golive", "view");
+export function ShareBox({ title, address }: Props) {
+  console.log(window.location)
+  const shareUrl = `${window.location.host}${Routes.WATCH}?address=${address}`;
 
   return (
     <div className="space-y-4">
@@ -29,7 +27,7 @@ export function ShareBox({ title }: Props) {
           Twitter
         </TwitterShareButton>
         <div
-          className="flex flex-col items-center space-x-2"
+          className="flex flex-col items-center space-x-2 cursor-pointer"
           onClick={() => {
             navigator.clipboard.writeText(shareUrl);
           }}

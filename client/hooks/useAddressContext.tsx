@@ -5,7 +5,7 @@ const useAddressContext = () => {
   const context = useContext(AddressContext);
   if (!context)
     throw new Error(
-      "useModalContext must be used within a AddressContextProvider"
+      "useAddressContext must be used within a AddressContextProvider"
     );
   return context;
 };
