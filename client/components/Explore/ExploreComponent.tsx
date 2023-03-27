@@ -20,9 +20,9 @@ const ExploreComponent = () => {
           showBalance={false}
         />
       </Navbar>
-      <div className="bg-base-300 p-5">
-        <h1 className="m-5">Explore all available livestreams</h1>
-        <div className="flex h-full lg:flex-row  flex-wrap justify-center overflow-auto">
+      <div className="bg-base-300 p-2 sm:p-4">
+        <h1 className="m-5 rainbow_text_animated">Explore all available livestreams</h1>
+        <div className="flex h-full flex-col sm:flex-row  flex-wrap justify-center overflow-auto">
           {castrChannels.map((channel) => (
             <CastrExploreCard address={channel} />
           ))}
