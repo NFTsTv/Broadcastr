@@ -6,6 +6,23 @@ import test from "test.json";
 
 const useCastrChannels = () => {
   const [castrChannels, setCastrChannels] = useState<string[]>(test);
+  const [liveAddress, setLiveAddress] = useState<string[]>([]);
+
+  const updateLiveAddress = (address: string) => {
+    if (!liveAddress.includes(address)) {
+      setLiveAddress([...liveAddress, address]);
+    }
+  };
+
+
+  useEffect(() => {
+    console.log("liveAddress", liveAddress);
+    //put liveaddress at the top of castchannels and remove duplicates
+    const orderedCastrChannels = [...castrChannels.filter((channel) => !liveAddress.includes(channel))];
+
+    setCastrChannels([...liveAddress, ...orderedCastrChannels]);
+  }, [liveAddress]);
+
   // const { data, isLoading, isError } = useContractRead({
   //   abi: factoryContract,
   //   address: ContractAddress(),
@@ -20,6 +37,7 @@ const useCastrChannels = () => {
 
   return {
     castrChannels,
+    updateLiveAddress
   }
 };
 

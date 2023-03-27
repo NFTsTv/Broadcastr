@@ -4,9 +4,8 @@ import Navbar from "components/Elements/Navbar";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import GoToChannel from "components/Buttons/GoToChannel";
 const ExploreComponent = () => {
-  const { castrChannels } = useCastrChannels();
-  // if (isLoading) return <div>Loading...</div>;
-
+  const { castrChannels, updateLiveAddress } = useCastrChannels();
+  
   return (
     <>
       <Navbar>
@@ -20,10 +19,12 @@ const ExploreComponent = () => {
         />
       </Navbar>
       <div className="p-2 sm:p-4">
-        <h1 className="m-5 rainbow_text_animated">Explore all available livestreams</h1>
+        <h1 className="m-5 rainbow_text_animated ">
+          Explore all available livestreams
+        </h1>
         <div className="flex h-full flex-col sm:flex-row  flex-wrap justify-center overflow-auto">
           {castrChannels.map((channel) => (
-            <CastrExploreCard address={channel} />
+            <CastrExploreCard address={channel} updateLiveAddress={updateLiveAddress} />
           ))}
         </div>
       </div>
