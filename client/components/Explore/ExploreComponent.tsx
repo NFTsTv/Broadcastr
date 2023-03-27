@@ -1,10 +1,8 @@
 import useCastrChannels from "hooks/useCastrChannels";
 import CastrExploreCard from "./CastrExploreCard";
 import Navbar from "components/Elements/Navbar";
-import ViewOnPlatform from "components/Buttons/ViewOnPlatform";
-import ShareButton from "components/Share/Button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-
+import GoToChannel from "components/Buttons/GoToChannel";
 const ExploreComponent = () => {
   const { castrChannels } = useCastrChannels();
   // if (isLoading) return <div>Loading...</div>;
@@ -12,6 +10,7 @@ const ExploreComponent = () => {
   return (
     <>
       <Navbar>
+        <GoToChannel />
         <ConnectButton
           accountStatus={{
             smallScreen: "full",
@@ -20,7 +19,7 @@ const ExploreComponent = () => {
           showBalance={false}
         />
       </Navbar>
-      <div className="bg-base-300 p-2 sm:p-4">
+      <div className="p-2 sm:p-4">
         <h1 className="m-5 rainbow_text_animated">Explore all available livestreams</h1>
         <div className="flex h-full flex-col sm:flex-row  flex-wrap justify-center overflow-auto">
           {castrChannels.map((channel) => (

@@ -4,19 +4,17 @@ import { ReactNode } from "react";
 
 const Navbar = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="navbar bg-base-100 max-h-20">
-      <div className="navbar-start h-full">
-        <a href="https://broadcastr.xyz">
+    <div className="navbar bg-base-100 max-h-10">
+      <div className="navbar-start h-full m-auto">
           <Image
             src={Logo}
             alt="Logo"
-            height={30}
-            width={200}
             objectFit={"contain"}
+            width={250}
+            height={50}
           />
-        </a>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end"> 
         <div className="navbar-center hidden lg:flex h-full">
           <ul className="menu menu-horizontal px-1 space-x-1">{children}</ul>
         </div>
