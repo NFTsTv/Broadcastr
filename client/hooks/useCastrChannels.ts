@@ -2,33 +2,25 @@ import { useState, useEffect } from "react";
 import { useContractRead } from "wagmi";
 import factoryContract from "contracts/CastrFactory-abi";
 import { ContractAddress } from "utils/constants";
-
-interface CastrChannel {
-  uri: string;
-  name: string;
-  description: string;
-  limitedSupply: boolean;
-  totalSupply: number;
-  mintPrice: number;
-}
+import test from "test.json";
 
 const useCastrChannels = () => {
-  const [castrChannels, setCastrChannels] = useState<CastrChannel[]>([]);
+  const [castrChannels, setCastrChannels] = useState<string[]>(test);
+  // const { data, isLoading, isError } = useContractRead({
+  //   abi: factoryContract,
+  //   address: ContractAddress(),
+  //   functionName: "getAllCastrs",
+  // });
 
-  const { data } = useContractRead({
-    abi: factoryContract,
-    address: ContractAddress(),
-    functionName: "Castrs",
-    args: ["0"],
-  });
+  // useEffect(() => {
+  //   if (data) {
+  //     //setCastrChannels(data as string[]);
+  //   }
+  // }, [data]);
 
-  useEffect(() => {
-    if (data) {
-      console.log("data", data);
-    }
-  });
-
-  return castrChannels;
+  return {
+    castrChannels,
+  }
 };
 
 export default useCastrChannels;
