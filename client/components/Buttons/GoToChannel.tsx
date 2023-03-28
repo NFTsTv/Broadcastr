@@ -5,12 +5,15 @@ import { Routes } from "utils/constants";
 import useCastrAccount from "hooks/useCastrAccount";
 const GoToChannel = () => {
   const { castrAddress, loadingComplete } = useCastrAccount();
-  console.log(castrAddress, loadingComplete); 
 
   const onClick = () => {
-    Router.push(Routes.CAST);
+    if (!castrAddress) {
+      Router.push(Routes.CREATE);
+    } else {
+      Router.push(Routes.CAST);
+
+    }
   };
-  if ( !castrAddress || !loadingComplete) return null;
 
   return <Button styles={"btn-accent btn-sm"} onClick={onClick}>Go to channel</Button>;
 };

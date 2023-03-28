@@ -1,8 +1,16 @@
 import { useState } from "react";
 import { Stream } from "@livepeer/react";
 import Button from "components/Buttons/Button";
-const UseObs = ({ stream }: { stream: Stream }) => {
+import useModalContext from "hooks/useModalContext";
+const UseObs = ({
+  stream,
+  setShowTutorial,
+}: {
+  stream: Stream;
+  setShowTutorial: (value: boolean) => void;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { setModalContent, setIsOpen: setModalIsOpen } = useModalContext();
 
   return (
     <>
@@ -10,12 +18,16 @@ const UseObs = ({ stream }: { stream: Stream }) => {
         <div className="flex flex-col m-auto space-y-4 absolute bg-base-100 p-5 h-full top-0 w-full left-0 z-20">
           <h1 className="mb-2">Streaming details</h1>
           <p>
-            You can use obs, or any other livestreaming software to go live.
-            Check out the{" "}
-            <a href="https://docs.livepeer.org/guides/developing/stream-via-obs">
-              livepeer documentation
-            </a>{" "}
-            on how to use OBS to start livestreaming.
+            You need to use a livestreaming software to go live on your Castr.
+            We recomend <a href="https://obsproject.com/">OBS</a> or{" "}
+            <a href="https://streamyard.com/">Streamyard</a>.
+            <br />
+            <br />
+            <Button onClick={() => setShowTutorial(true)} styles="btn-xs btn-accent">
+              Watch
+            </Button>
+            {` `}
+            the following video to see how to use OBS to go live on your Castr.
           </p>
           <h2>Stream details</h2>
           <div className="form-control space-y-2">

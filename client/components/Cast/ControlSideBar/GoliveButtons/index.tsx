@@ -10,10 +10,12 @@ export const GoLive = ({
   CastrData,
   stream,
   address,
+  setShowTutorial,
 }: {
   CastrData: Castr;
   stream: Stream;
   address: string;
+  setShowTutorial: (value: boolean) => void;
 }) => {
   return (
     <>
@@ -26,9 +28,9 @@ export const GoLive = ({
             Stream directly into your Castr using the follwing method:
           </p>
           <div className="flex flex-col">
-            <UseObs stream={stream} />
+            <UseObs stream={stream} setShowTutorial={setShowTutorial} />
             {/* <UseWebcam address={address as string} /> */}
-            <UseTestStream stream={stream} />
+            {/* <UseTestStream stream={stream} /> */}
           </div>
         </>
       )}
