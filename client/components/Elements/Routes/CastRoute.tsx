@@ -11,7 +11,6 @@ const CastRoute = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { address } = useAddressContext();
   useEffect(() => {
-    console.log(!castrAddress, loadingComplete);
     if (loadingComplete && !castrAddress) {
       router.push(Routes.CREATE);
     } else if (!isOwned(address) && castrAddress) {

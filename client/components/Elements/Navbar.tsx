@@ -4,8 +4,8 @@ import { ReactNode } from "react";
 
 const Navbar = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="navbar bg-base-100 max-h-10">
-      <div className="navbar-start h-full m-auto">
+    <div className="navbar bg-base-100">
+      <a className="navbar-start h-full m-auto" href="/">
           <Image
             src={Logo}
             alt="Logo"
@@ -13,7 +13,7 @@ const Navbar = ({ children }: { children: ReactNode }) => {
             width={250}
             height={50}
           />
-      </div>
+      </a>
       <div className="navbar-end"> 
         <div className="navbar-center hidden lg:flex h-full">
           <ul className="menu menu-horizontal px-1 space-x-1">{children}</ul>

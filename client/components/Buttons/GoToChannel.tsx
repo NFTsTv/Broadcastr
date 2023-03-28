@@ -12,7 +12,7 @@ const GoToChannel = () => {
   };
   if ( !castrAddress || !loadingComplete) return null;
 
-  return <Button styles={"btn-accent"} onClick={onClick}>Go to channel</Button>;
+  return <Button styles={"btn-accent btn-sm"} onClick={onClick}>Go to channel</Button>;
 };
 
 export default GoToChannel;

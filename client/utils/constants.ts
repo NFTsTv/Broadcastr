@@ -5,7 +5,7 @@ import { polygon, polygonMumbai } from "@wagmi/core/chains";
 export enum Routes {
   HOME = "/",
   CREATE = "/create",
-  CAST = "/",
+  CAST = "/cast",
   WATCH = "/watch",
 }
 
