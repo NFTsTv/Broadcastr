@@ -14,7 +14,7 @@ const ControlSideBar = ({
   const { stream, CastrData } = useCastr(address);
 
   return (
-    <div className="flex flex-col p-5 space-y-5 lg:W-2/5 xl:w-1/5 relative overflow-auto  xl:min-w-[400px]">
+    <div className="flex flex-col h-full p-5 space-y-5 lg:W-2/5 xl:w-1/5 relative overflow-auto  xl:min-w-[400px]">
       {!(stream && CastrData) ? (
         <>
           <LoadingSkeleton />

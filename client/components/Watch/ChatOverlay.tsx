@@ -9,7 +9,7 @@ const ChatOverlay = () => {
 console.log(stream?.id)
   return(
     <iframe
-    className="absolute top-0 z-60 w-full h-1/3"
+    className="absolute top-0 z-60 w-full h-1/3 overflow-hidden"
     src={`https://stingray-app-u9f8x.ondigitalocean.app/${stream?.id}?isCastr=true`}
   />
   )

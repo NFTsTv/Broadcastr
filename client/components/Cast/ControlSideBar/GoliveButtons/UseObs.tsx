@@ -8,9 +8,11 @@ import { AlertType } from "context/alertContext";
 const UseObs = ({
   stream,
   setShowTutorial,
+  setShowWebcam,
 }: {
   stream: Stream;
   setShowTutorial: (value: boolean) => void;
+  setShowWebcam: (value: boolean) => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const context = useAlertContext();
@@ -90,7 +92,12 @@ const UseObs = ({
           setIsOpen(true);
         }}
       >
-        <button className="btn btn-primary w-full mb-4">Use software</button>
+        <button
+          onClick={() => setShowWebcam(false)}
+          className="btn btn-primary w-full mb-4"
+        >
+          Use software
+        </button>
       </div>
     </>
   );

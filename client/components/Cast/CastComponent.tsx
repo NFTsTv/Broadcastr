@@ -6,6 +6,7 @@ import NFTEmbed from "components/Elements/NFTEmbed";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useState } from "react";
 import WebcamView from "components/Webcam";
+import ChatOverlay from "components/Watch/ChatOverlay";
 const TutorialVideo = ({
   setIsDone,
 }: {
@@ -67,12 +68,11 @@ const CastComponent = () => {
           showBalance={false}
         />
       </Navbar>
-      <div className="flex h-full lg:flex-row flex-col-reverse">
+      <div className="flex h-full lg:flex-row flex-col-reverse relative">
         <ControlSideBar
           setShowTutorial={setShowTutorial}
           setShowWebcam={setShowWebcam}
         />
-
         <PlayerArea
           showTutorial={showTutorial}
           showWebcam={showWebcam}
