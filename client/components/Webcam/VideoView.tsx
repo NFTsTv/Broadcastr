@@ -79,11 +79,9 @@ const VideoView = forwardRef<VideoViewHandle>((_, ref) => {
       autoPlay
       playsInline
       muted
+      className="w-full h-full object-cover"
       style={{
         transform: "rotateY(180deg)",
-        width: "100%",
-        height: "100%",
-        objectFit: "contain",
       }}
     />
   );

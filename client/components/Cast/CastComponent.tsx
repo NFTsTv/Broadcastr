@@ -16,7 +16,7 @@ const TutorialVideo = ({
   };
 
   return (
-    <video controls className="w-full h-full" onEnded={handleVideoEnd}>
+    <video controls className="w-full lg:h-full" onEnded={handleVideoEnd}>
       <source
         src="https://lp-playback.com/hls/b095xdn4do0nxnv3/1080p0/ebbdcbhe_1080p0.mp4"
         type="video/mp4"
@@ -72,6 +72,7 @@ const CastComponent = () => {
           setShowTutorial={setShowTutorial}
           setShowWebcam={setShowWebcam}
         />
+
         <PlayerArea
           showTutorial={showTutorial}
           showWebcam={showWebcam}
