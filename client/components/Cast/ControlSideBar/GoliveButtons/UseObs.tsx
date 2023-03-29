@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Stream } from "@livepeer/react";
 import Button from "components/Buttons/Button";
-import useModalContext from "hooks/useModalContext";
+import SendTestSignal from "./UseTestSignal";
+import useAlertContext from "hooks/useAlertContext";
+import { AlertType } from "context/alertContext";
+
 const UseObs = ({
   stream,
   setShowTutorial,
@@ -10,7 +13,8 @@ const UseObs = ({
   setShowTutorial: (value: boolean) => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { setModalContent, setIsOpen: setModalIsOpen } = useModalContext();
+  const context = useAlertContext();
+  const { setAlert } = context;
 
   return (
     <>
@@ -23,13 +27,24 @@ const UseObs = ({
             <a href="https://streamyard.com/">Streamyard</a>.
             <br />
             <br />
-            <Button onClick={() => setShowTutorial(true)} styles="btn-xs btn-accent">
+            <Button
+              onClick={() => setShowTutorial(true)}
+              styles="btn-xs btn-accent"
+            >
               Watch
             </Button>
             {` `}
             the following video to see how to use OBS to go live on your Castr.
           </p>
-          <h2>Stream details</h2>
+          <br />
+          <p>
+            <SendTestSignal stream={stream} /> a test 10 minute livestream to
+            see how you castr looks like when you go live.
+          </p>
+
+          <p>
+            Once you are ready to go live, use the following details to stream:
+          </p>
           <div className="form-control space-y-2">
             <>
               <label className="label">
@@ -41,7 +56,9 @@ const UseObs = ({
                 className="input input-bordered w-full"
                 value="rtmp://rtmp.livepeer.com/live"
                 onClick={(e) => {
-                  console.log(stream);
+                  navigator.clipboard.writeText(
+                    "rtmp://rtmp.livepeer.com/live"
+                  );
                 }}
               />
             </>
@@ -50,12 +67,17 @@ const UseObs = ({
                 <span className="label-text">Streamkey</span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="Type here"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full cursor-pointer"
                 value={stream?.streamKey}
                 onClick={(e) => {
-                  console.log(stream);
+                  navigator.clipboard.writeText(stream?.streamKey).then(() => {
+                    setAlert({
+                      type: AlertType.info,
+                      content: "Copied to clipboard",
+                    });
+                  });
                 }}
               />
             </>
@@ -68,7 +90,7 @@ const UseObs = ({
           setIsOpen(true);
         }}
       >
-        <button className="btn btn-primary w-full mb-4">Use Stream key</button>
+        <button className="btn btn-primary w-full mb-4">Use software</button>
       </div>
     </>
   );

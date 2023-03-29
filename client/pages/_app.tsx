@@ -13,6 +13,7 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
 import { ModalContextProvider } from "context/modalContext";
+import { AlertContextProvider } from "context/alertContext";
 import { Layout } from "components/Elements/Layout";
 import { currentChain } from "utils/constants";
 
@@ -47,12 +48,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       <WagmiConfig client={wagmiClient}>
         <Head> broadcastr </Head>
         <RainbowKitProvider chains={chains}>
-          <ModalContextProvider>
-            <Layout>
-              <Component {...pageProps} />
-              <Analytics />
-            </Layout>
-          </ModalContextProvider>
+          <AlertContextProvider>
+            <ModalContextProvider>
+              <Layout>
+                <Component {...pageProps} />
+                <Analytics />
+              </Layout>
+            </ModalContextProvider>
+          </AlertContextProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     </LivepeerConfig>

@@ -29,7 +29,7 @@ export const GoLive = ({
           </p>
           <div className="flex flex-col">
             <UseObs stream={stream} setShowTutorial={setShowTutorial} />
-            {/* <UseWebcam address={address as string} /> */}
+            <UseWebcam address={address as string} />
             {/* <UseTestStream stream={stream} /> */}
           </div>
         </>
