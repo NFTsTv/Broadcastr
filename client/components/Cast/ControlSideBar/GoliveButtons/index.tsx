@@ -1,21 +1,19 @@
 import { Castr } from "types/general";
 import { Stream } from "@livepeer/react";
 import UseObs from "./UseObs";
-import UseTestStream from "./UseTestSignal";
-
-// In the works...
-import UseWebcam from "./UseWebcam";
+import Button from "components/Buttons/Button";
 
 export const GoLive = ({
   CastrData,
   stream,
-  address,
   setShowTutorial,
+  setShowWebcam,
 }: {
   CastrData: Castr;
   stream: Stream;
   address: string;
   setShowTutorial: (value: boolean) => void;
+  setShowWebcam: (value: boolean) => void;
 }) => {
   return (
     <>
@@ -24,13 +22,12 @@ export const GoLive = ({
       ) : (
         <>
           <h1>Go live on {CastrData.name}!</h1>
-          <p>
-            Stream directly into your Castr using the follwing method:
-          </p>
+          <p>Stream directly into your Castr using the follwing method:</p>
           <div className="flex flex-col">
             <UseObs stream={stream} setShowTutorial={setShowTutorial} />
-            <UseWebcam address={address as string} />
-            {/* <UseTestStream stream={stream} /> */}
+            <Button onClick={() => setShowWebcam(true)}>
+              Use webcam (beta)
+            </Button>
           </div>
         </>
       )}

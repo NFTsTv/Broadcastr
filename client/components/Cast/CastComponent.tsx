@@ -33,9 +33,27 @@ const TutorialVideo = ({
   );
 };
 
+const PlayerArea = ({
+  showTutorial,
+  showWebcam,
+  setShowTutorial,
+}: {
+  showTutorial: boolean;
+  showWebcam: boolean;
+  setShowTutorial: (value: boolean) => void;
+}) => {
+  if (showTutorial) {
+    return <TutorialVideo setIsDone={setShowTutorial} />;
+  } else if (showWebcam) {
+    return <WebcamView />;
+  } else {
+    return <NFTEmbed chat={true} />;
+  }
+};
+
 const CastComponent = () => {
   const [showTutorial, setShowTutorial] = useState(false);
-
+  const [showWebcam, setShowWebcam] = useState(false);
   return (
     <>
       <Navbar>
@@ -50,13 +68,15 @@ const CastComponent = () => {
         />
       </Navbar>
       <div className="flex h-full lg:flex-row flex-col-reverse">
-        <ControlSideBar setShowTutorial={setShowTutorial} />
-        {/* {showTutorial ? (
-          <TutorialVideo setIsDone={setShowTutorial} />
-        ) : (
-          <NFTEmbed chat={true} />
-        )} */}
-        <WebcamView />
+        <ControlSideBar
+          setShowTutorial={setShowTutorial}
+          setShowWebcam={setShowWebcam}
+        />
+        <PlayerArea
+          showTutorial={showTutorial}
+          showWebcam={showWebcam}
+          setShowTutorial={setShowTutorial}
+        />
       </div>
     </>
   );
