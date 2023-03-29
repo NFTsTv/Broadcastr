@@ -1,68 +1,76 @@
 import { useRef, forwardRef, useEffect, useImperativeHandle } from "react";
 
-export type VideoViewHanlde = {
+export type VideoViewHandle = {
   getMediaStream: () => MediaStream | null;
   switchCamera: () => void;
   disableVideo: () => void;
+  shareScreen: () => void;
 };
 
-const VideoView = forwardRef<VideoViewHanlde>((props, ref) => {
+const VideoView = forwardRef<VideoViewHandle>((_, ref) => {
   const videoEl = useRef<HTMLVideoElement | null>(null);
   const stream = useRef<MediaStream | null>(null);
+
   useEffect(() => {
-    (async () => {
+    const initializeStream = async () => {
       if (!videoEl.current) {
         console.log("no video element");
         return;
       }
-      if (!stream.current) {
-        videoEl.current.volume = 0;
+
+      videoEl.current.volume = 0;
+
+      try {
         stream.current = await navigator.mediaDevices.getUserMedia({
           video: true,
           audio: { echoCancellation: true, noiseSuppression: true },
         });
-      }
-      videoEl.current.srcObject = stream.current;
-      videoEl.current.play();
-    })();
-  }, [stream]);
 
-  // Expose the methods to the parent component using useImperativeHandle
-  useImperativeHandle(ref, () => ({
-    getMediaStream: () => {
-      return stream.current;
-    },
-    switchCamera: () => {
-      if (!stream.current) {
-        return;
+        videoEl.current.srcObject = stream.current;
+        videoEl.current.play();
+      } catch (error) {
+        console.error("Error accessing camera:", error);
       }
+    };
 
-      const track = stream.current.getVideoTracks()[0];
-      if (!track) {
-        return;
-      }
+    initializeStream();
+  }, []);
 
-      const settings = track.getSettings();
-      if (!settings) {
-        return;
-      }
-
-      track.applyConstraints({
-        facingMode: settings.facingMode === "user" ? "environment" : "user",
+  const shareScreen = async () => {
+    try {
+      const screenStream = await navigator.mediaDevices.getDisplayMedia({
+        video: true,
+        audio: { echoCancellation: true, noiseSuppression: true },
       });
+
+      if (videoEl.current) {
+        videoEl.current.srcObject = screenStream;
+        stream.current = screenStream;
+      }
+    } catch (error) {
+      console.error("Error sharing screen:", error);
+    }
+  };
+
+  useImperativeHandle(ref, () => ({
+    getMediaStream: () => stream.current,
+    switchCamera: () => {
+      const track = stream.current?.getVideoTracks()[0];
+
+      if (track) {
+        const settings = track.getSettings();
+        const newFacingMode = settings.facingMode === "user" ? "environment" : "user";
+        track.applyConstraints({ facingMode: newFacingMode });
+      }
     },
     disableVideo: () => {
-      if (!stream.current) {
-        return;
-      }
+      const track = stream.current?.getVideoTracks()[0];
 
-      const track = stream.current.getVideoTracks()[0];
-      if (!track) {
-        return;
+      if (track) {
+        track.enabled = !track.enabled;
       }
-
-      track.enabled = !track.enabled;
     },
+    shareScreen,
   }));
 
   return (
@@ -75,7 +83,7 @@ const VideoView = forwardRef<VideoViewHanlde>((props, ref) => {
         transform: "rotateY(180deg)",
         width: "100%",
         height: "100%",
-        objectFit: "cover",
+        objectFit: "contain",
       }}
     />
   );

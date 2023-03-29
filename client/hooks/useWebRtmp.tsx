@@ -1,100 +1,85 @@
-import { MutableRefObject, useEffect, useReducer, useState } from "react";
-import { CastSession, Client } from "@livepeer/webrtmp-sdk";
-import { VideoViewHanlde } from "components/Webcam/VideoView";
+// useWebRtmp.js
+import { useState, useEffect, useRef, MutableRefObject } from "react";
+import { Client } from "@livepeer/webrtmp-sdk";
+import { VideoViewHandle } from "components/Webcam/VideoView";
 
-export type State = {
-  state: "loading" | "error" | "live" | "idle";
-};
-
-type Action =
-  | { type: "LOADING" }
-  | { type: "ERROR" }
-  | { type: "LIVE" }
-  | { type: "STOP" };
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case "LOADING":
-      return { state: "loading" };
-    case "ERROR":
-      return { state: "error" };
-    case "LIVE":
-      return { state: "live" };
-    case "STOP":
-      return { state: "idle" };
-  }
+interface State {
+  isStreaming: boolean;
+  streamError: string | null;
 }
 
-export const useWebRtmp = (
-  videoView: MutableRefObject<VideoViewHanlde | null>,
+function useWebRtmp(
+  videoView: MutableRefObject<VideoViewHandle | null>,
   streamKey: string | undefined
-) => {
-  const [state, dispatch] = useReducer(reducer, { state: "idle" });
-  const [session, setSession] = useState<CastSession | null>(null);
-  const client = new Client({ transport: "auto" });
+) {
+  const [state, setState] = useState<State>({
+    isStreaming: false,
+    streamError: null,
+  });
+  const clientRef = useRef<Client | null>(null);
 
   useEffect(() => {
-    if (session) {
-      session.on("open", () => {
-        console.log("Stream started; visit Livepeer Dashboard.");
-        dispatch({ type: "LIVE" });
-      });
+    clientRef.current = new Client({
+      transport: "wrtc",
+    });
+    // return () => {
+    //   if (clientRef.current && state.isStreaming) {
+    //     stopStream();
+    //   }
+    // };
+  }, []);
 
-      session.on("close", () => {
-        console.log("Stream stopped.");
-        dispatch({ type: "STOP" });
-      });
-
-      session.on("error", (err) => {
-        alert("Stream error." + err.message);
-        dispatch({ type: "ERROR" });
-      });
-    }
-
-    return () => {
-      if (session) {
-        session.close();
-      }
-    };
-  }, [session]);
-
-  const onStart = () => {
-    // Start livestreaming code here...
+  const startStream = async () => {
     if (!videoView.current) {
-      alert("Video stream was not started.");
+      alert("Video view not initialized.");
       return;
     }
 
     const mediaStream = videoView.current.getMediaStream();
-
     if (!mediaStream) {
-      alert("no media stream");
+      alert("Video stream was not started.");
       return;
     }
 
     if (!streamKey) {
-      alert("Video stream was not started.");
-
+      alert("Invalid streamKey.");
       return;
     }
 
-    const session = client.cast(mediaStream, streamKey);
-    console.log(session);
-    setSession(session);
+    if (!clientRef.current) {
+      alert("Client not initialized.");
+      return;
+    }
+
+    const session = clientRef.current.cast(mediaStream, streamKey);
+
+    session.on("open", () => {
+      console.log("Stream started.");
+      alert("Stream started; visit Livepeer Dashboard.");
+      setState({ isStreaming: true, streamError: null });
+    });
+
+    session.on("close", () => {
+      console.log("Stream stopped.");
+      setState({ isStreaming: false, streamError: null });
+    });
+
+    session.on("error", (err) => {
+      console.log("Stream error.", err.message);
+      setState({ isStreaming: false, streamError: err.message });
+    });
   };
 
-  const onStop = () => {
-    if (session) {
-      session.close();
-    }
-  };
+  // const stopStream = () => {
+  //   if (clientRef.current) {
+  //     clientRef.current.stop();
+  //   }
+  // };
 
   return {
     state,
-    onStart,
-    onStop
-  }
-};
-
+    startStream,
+  };
+}
 
 export default useWebRtmp;

@@ -5,7 +5,7 @@ import ShareButton from "components/Share/Button";
 import NFTEmbed from "components/Elements/NFTEmbed";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useState } from "react";
-
+import WebcamView from "components/Webcam";
 const TutorialVideo = ({
   setIsDone,
 }: {
@@ -51,11 +51,12 @@ const CastComponent = () => {
       </Navbar>
       <div className="flex h-full lg:flex-row flex-col-reverse">
         <ControlSideBar setShowTutorial={setShowTutorial} />
-        {showTutorial ? (
+        {/* {showTutorial ? (
           <TutorialVideo setIsDone={setShowTutorial} />
         ) : (
           <NFTEmbed chat={true} />
-        )}
+        )} */}
+        <WebcamView />
       </div>
     </>
   );
