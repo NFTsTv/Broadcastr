@@ -16,7 +16,7 @@ const Controls: React.FC<ControlsProps> = ({
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <div className="absolute bottom-0">
+    <div className="absolute bottom-0 left-0 right-0 flex flex-col justify-center items-center">
       <Button onClick={() => setIsOpen(!isOpen)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@ const Controls: React.FC<ControlsProps> = ({
       </Button>
 
       {isOpen && (
-        <div className="flex flex-row space-x-2 space-y-2 flex-wrap justify-center items-center">
+        <div className="flex flex-row justify-center items-center space-x-2 mt-2 mb-4">
           <Button styles="btn-sm" onClick={startStream}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -65,9 +65,9 @@ const Controls: React.FC<ControlsProps> = ({
             {/* Replace with an icon for switching the camera */}
             Switch Camera
           </Button>
-        </div>
+        </div >
       )}
-    </div>
+    </div >
   );
 };
 
