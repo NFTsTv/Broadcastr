@@ -16,7 +16,7 @@ const Controls: React.FC<ControlsProps> = ({
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 flex flex-col justify-center items-center">
+    <div className="absolute bottom-2 left-0 right-0 flex flex-col justify-center items-center">
       <Button onClick={() => setIsOpen(!isOpen)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
