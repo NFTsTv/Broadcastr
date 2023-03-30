@@ -9,19 +9,19 @@ const UseWebcam = ({ address }: { address: string }) => {
   return (
     <>
       {isOpen && (
-          <div className="flex flex-col m-auto">
-            <h1 className="mb-2">Warning!</h1>
-            <p>
-              You can use your webcam to stream directly into the Live NFT, but
-              this feature is still in development and might not work at all.
-              For the best experience posible, we recomend using chrome.
-            </p>
-            <Link href={Routes.WATCH + `?address=${address}`}>
-              <button className="btn mt-4 text-white">
-                Take me to the webcam
-              </button>
-            </Link>
-          </div>
+        <div className="flex flex-col m-auto">
+          <h1 className="mb-2">Warning!</h1>
+          <p>
+            You can use your webcam to stream directly into the Live NFT, but
+            this feature is still in development and might not work at all. For
+            the best experience posible, we recommend using chrome.
+          </p>
+          <Link href={Routes.WATCH + `?address=${address}`}>
+            <button className="btn mt-4 text-white">
+              Take me to the webcam
+            </button>
+          </Link>
+        </div>
       )}
       <div
         onClick={() => {

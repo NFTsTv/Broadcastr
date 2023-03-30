@@ -25,7 +25,7 @@ const UseObs = ({
           <h1 className="mb-2">Streaming details</h1>
           <p>
             You need to use a livestreaming software to go live on your Castr.
-            We recomend <a href="https://obsproject.com/">OBS</a> or{" "}
+            We recommend <a href="https://obsproject.com/">OBS</a> or{" "}
             <a href="https://streamyard.com/">Streamyard</a>.
             <br />
             <br />

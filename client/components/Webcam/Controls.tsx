@@ -32,7 +32,7 @@ const Controls: React.FC<ControlsProps> = ({
 
       {isOpen && (
         <div className="flex flex-row space-x-2 space-y-2 flex-wrap justify-center items-center">
-          <Button onClick={startStream}>
+          <Button styles="btn-sm" onClick={startStream}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ const Controls: React.FC<ControlsProps> = ({
             </svg>
             {state === "playing" ? "Streaming" : "Start Stream"}
           </Button>
-          <Button onClick={() => videoView.current?.disableVideo()}>
+          <Button styles="btn-sm" onClick={() => videoView.current?.disableVideo()}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -57,11 +57,11 @@ const Controls: React.FC<ControlsProps> = ({
             </svg>
             Disable Video
           </Button>
-          <Button onClick={() => videoView.current?.shareScreen()}>
+          <Button styles="btn-sm" onClick={() => videoView.current?.shareScreen()}>
             {/* Replace with an icon for sharing the screen */}
             Share Screen
           </Button>
-          <Button onClick={() => videoView.current?.switchCamera()}>
+          <Button styles="btn-sm" onClick={() => videoView.current?.switchCamera()}>
             {/* Replace with an icon for switching the camera */}
             Switch Camera
           </Button>
