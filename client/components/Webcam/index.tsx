@@ -1,38 +1,29 @@
 import { useRef } from "react";
 import useCastr from "hooks/useCastr";
 import useWebRtmp from "hooks/useWebRtmp";
-import VideoView, { VideoViewHanlde } from "./VideoView";
-import WebcamControl from "./webCamControl";
+import VideoView, { VideoViewHandle } from "./VideoView";
+import useAddressContext from "hooks/useAddressContext";
+import Controls from "./Controls";
+import ChatOverlay from "components/Watch/ChatOverlay";
+const WebcamView = () => {
+  const { address: userAddress } = useAddressContext();
 
-const WebcamView = ({ address }: { address: string }) => {
-  const videoView = useRef<VideoViewHanlde | null>(null);
-  const { stream } = useCastr(address as string);
-  const { onStart, state } = useWebRtmp(videoView, stream?.streamKey);
+  const videoView = useRef<VideoViewHandle>(null);
+  const { stream } = useCastr(userAddress);
+  const { state, startStream } = useWebRtmp(videoView, stream?.streamKey);
 
-  if (!address) {
+  if (!userAddress) {
     return <div>Loading</div>;
   }
 
-  const disableVideo = () => {
-    if (videoView.current) {
-      videoView.current.disableVideo();
-    }
-  };
-
-  const switchCamera = () => {
-    if (videoView.current) {
-      videoView.current.switchCamera();
-    }
-  };
-
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col w-full absolute h-screen z-50 lg:relative ">
       <VideoView ref={videoView} />
-      <WebcamControl
-        goLive={onStart}
-        disableVideo={disableVideo}
-        switchCamera={switchCamera}
-        status={state.state}
+      <ChatOverlay />
+      <Controls
+        videoView={videoView}
+        startStream={startStream}
+        state={state.isStreaming ? "live" : "idle"}
       />
     </div>
   );

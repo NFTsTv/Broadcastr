@@ -13,9 +13,9 @@ const DetailBox = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <div className="flex flex-col mx-auto space-y-2">
+    <div className="flex flex-col space-y-2 p-4 box-border w-44">
       <div className="stat-title">{title}</div>
-      <div className="text-2xl font-medium">{text}</div>
+      <div className="text-xl font-medium">{text}</div>
       {children}
     </div>
   );
@@ -33,25 +33,20 @@ const StreamDetails = ({
     watch: true,
   });
   return (
-    <div className="flex flex-col w-full rounded-xl">
-      <div className="flex flex-col space-y-4 text-center">
-        <div className="flex flex-col lg:flex-row xl:flex-row text-white">
-          <div className="flex flex-col space-y-4 lg:w-full xl:h-1/2">
-            <DetailBox title="Subscribers" text={Number(formatUnits(details.currentSubs, 0)) - 1} />
-            <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
-              <WithdrawalButton address={address} />
-            </DetailBox>
-          </div>
-          <div className="flex flex-col space-y-4 lg:w-full xl:h-1/2">
-            <DetailBox
-              title="Subscription price"
-              text={formatEther(details.price) + " MATIC"}
-            />
-          </div>
-        </div>
-      </div>
+    <div className="flex flex-row text-white flex-wrap text-center justify-center  ">
+      <DetailBox
+        title="Subscribers"
+        text={Number(formatUnits(details.currentSubs, 0)) - 1}
+      />
+      <DetailBox
+        title="Subscription price"
+        text={formatEther(details.price) + " MATIC"}
+      />
+      <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
+        <WithdrawalButton address={address} />
+      </DetailBox>
+      <DetailBox title="Dontations" text="0"/>
     </div>
-
   );
 };
 

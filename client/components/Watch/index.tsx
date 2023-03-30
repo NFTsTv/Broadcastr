@@ -5,11 +5,12 @@ import NFTEmbed from "components/Elements/NFTEmbed";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import BottomControlBar from "./BottomControlBar";
 import ChatBar from "./ChatBar";
-
+import GoToChannel from "components/Buttons/GoToChannel";
 const WatchComponent = () => {
   return (
     <>
       <Navbar>
+        <GoToChannel />
         <ViewOnPlatform />
         <ShareButton />
         <ConnectButton

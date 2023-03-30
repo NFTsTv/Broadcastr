@@ -12,7 +12,7 @@ const WithdrawalButton = ({ address }: { address: string }) => {
   });
   const { write } = useContractWrite(config);
   return (
-    <Button styles="btn-info" onClick={() => write?.()}>
+    <Button styles="btn-info btn-sm" onClick={() => write?.()}>
       Withdrawal
     </Button>
   );

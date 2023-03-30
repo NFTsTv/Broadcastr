@@ -1,8 +1,22 @@
 import { useState } from "react";
 import { Stream } from "@livepeer/react";
 import Button from "components/Buttons/Button";
-const UseObs = ({ stream }: { stream: Stream }) => {
+import SendTestSignal from "./UseTestSignal";
+import useAlertContext from "hooks/useAlertContext";
+import { AlertType } from "context/alertContext";
+
+const UseObs = ({
+  stream,
+  setShowTutorial,
+  setShowWebcam,
+}: {
+  stream: Stream;
+  setShowTutorial: (value: boolean) => void;
+  setShowWebcam: (value: boolean) => void;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const context = useAlertContext();
+  const { setAlert } = context;
 
   return (
     <>
@@ -10,14 +24,29 @@ const UseObs = ({ stream }: { stream: Stream }) => {
         <div className="flex flex-col m-auto space-y-4 absolute bg-base-100 p-5 h-full top-0 w-full left-0 z-20">
           <h1 className="mb-2">Streaming details</h1>
           <p>
-            You can use obs, or any other livestreaming software to go live.
-            Check out the{" "}
-            <a href="https://docs.livepeer.org/guides/developing/stream-via-obs">
-              livepeer documentation
-            </a>{" "}
-            on how to use OBS to start livestreaming.
+            You need to use a livestreaming software to go live on your Castr.
+            We recommend <a href="https://obsproject.com/">OBS</a> or{" "}
+            <a href="https://streamyard.com/">Streamyard</a>.
+            <br />
+            <br />
+            <Button
+              onClick={() => setShowTutorial(true)}
+              styles="btn-xs btn-accent"
+            >
+              Watch
+            </Button>
+            {` `}
+            the following video to see how to use OBS to go live on your Castr.
           </p>
-          <h2>Stream details</h2>
+          <br />
+          <p>
+            <SendTestSignal stream={stream} /> a test 10 minute livestream to
+            see how you castr looks like when you go live.
+          </p>
+
+          <p>
+            Once you are ready to go live, use the following details to stream:
+          </p>
           <div className="form-control space-y-2">
             <>
               <label className="label">
@@ -29,7 +58,9 @@ const UseObs = ({ stream }: { stream: Stream }) => {
                 className="input input-bordered w-full"
                 value="rtmp://rtmp.livepeer.com/live"
                 onClick={(e) => {
-                  console.log(stream);
+                  navigator.clipboard.writeText(
+                    "rtmp://rtmp.livepeer.com/live"
+                  );
                 }}
               />
             </>
@@ -38,12 +69,17 @@ const UseObs = ({ stream }: { stream: Stream }) => {
                 <span className="label-text">Streamkey</span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="Type here"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full cursor-pointer"
                 value={stream?.streamKey}
                 onClick={(e) => {
-                  console.log(stream);
+                  navigator.clipboard.writeText(stream?.streamKey).then(() => {
+                    setAlert({
+                      type: AlertType.info,
+                      content: "Copied to clipboard",
+                    });
+                  });
                 }}
               />
             </>
@@ -56,7 +92,12 @@ const UseObs = ({ stream }: { stream: Stream }) => {
           setIsOpen(true);
         }}
       >
-        <button className="btn btn-primary w-full mb-4">Use Stream key</button>
+        <button
+          onClick={() => setShowWebcam(false)}
+          className="btn btn-primary w-full mb-4"
+        >
+          Use software
+        </button>
       </div>
     </>
   );

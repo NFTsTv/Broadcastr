@@ -16,7 +16,7 @@ const Link = ({ href, children }: { href: string; children: ReactNode }) => {
 
 export const ViewOnBroadcastr = ({ address }: { address: string }) => {
   return (
-    <Link href={`${Network.Broadcastr}?address=${address}`}>
+    <Link href={`/watch?address=${address}`}>
       <Button styles={"text-white flex-row flex btn-md"}>
         <p className="mr-1">View on Broadcastr</p>
       </Button>
@@ -115,7 +115,7 @@ const ViewOnPlatform = () => {
     );
   };
 
-  return <Button onClick={handleClick}>View</Button>;
+  return <Button styles="btn-sm" onClick={handleClick}>View</Button>;
 };
 
 export default ViewOnPlatform;

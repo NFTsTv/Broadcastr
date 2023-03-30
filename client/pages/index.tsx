@@ -1,19 +1,7 @@
-import type { NextPage } from "next";
-import CastComponent from "components/Cast/CastComponent";
-import AddressRoute from "components/Elements/Routes/AddressRoute";
-import ProtectedRoute from "components/Elements/Routes/ProtectedRoute";
-import CastRoute from "components/Elements/Routes/CastRoute";
+import ExploreComponent from "components/Explore/ExploreComponent";
 
-const Cast: NextPage = () => {
-  return (
-    <ProtectedRoute>
-      <AddressRoute>
-        <CastRoute>
-          <CastComponent />
-        </CastRoute>
-      </AddressRoute>
-    </ProtectedRoute>
-  );
+const Explore = () => {
+  return <ExploreComponent />;
 };
 
-export default Cast;
+export default Explore;

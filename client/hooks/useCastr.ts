@@ -9,6 +9,7 @@ import { ContractAddress } from "utils/constants";
 
 const useCastr = (address: string) => {
   const [CastrData, setCastrData] = useState<Castr | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [properties, setProperties] = useState({
     streamId: "",
     ownerAddress: "",
@@ -19,7 +20,6 @@ const useCastr = (address: string) => {
     functionName: "getMetadata",
     args: [address],
   });
-  console.log("data", data);
 
   useEffect(() => {
     if (data) {
@@ -37,6 +37,7 @@ const useCastr = (address: string) => {
             ownerAddress: response.properties.creator_address,
           });
         }
+        setIsLoading(false);
       });
     }
   }, [data]);
@@ -55,6 +56,7 @@ const useCastr = (address: string) => {
       stream,
       sessions,
       CastrData,
+      isLoading
     };
   }, [stream, sessions, CastrData]);
 };

@@ -5,7 +5,7 @@ import { polygon, polygonMumbai } from "@wagmi/core/chains";
 export enum Routes {
   HOME = "/",
   CREATE = "/create",
-  CAST = "/",
+  CAST = "/cast",
   WATCH = "/watch",
 }
 
@@ -26,4 +26,4 @@ export enum Network {
   Broadcastr = "https://app.broadcastr.xyz/watch",
 }
 
-export const currentChain = process.env.NODE_ENV === "production" ? polygon : polygonMumbai
+export const currentChain = process.env.NODE_ENV === "production" ? polygon : polygon

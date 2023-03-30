@@ -3,12 +3,18 @@ import StreamDetails from "./StreamDetails";
 import useAddressContext from "hooks/useAddressContext";
 import useCastr from "hooks/useCastr";
 import LoadingSkeleton from "components/Elements/LoadingSkeleton";
-const ControlSideBar = () => {
+const ControlSideBar = ({
+  setShowTutorial,
+  setShowWebcam,
+}: {
+  setShowTutorial: (value: boolean) => void;
+  setShowWebcam: (value: boolean) => void;
+}) => {
   const { address } = useAddressContext();
   const { stream, CastrData } = useCastr(address);
 
   return (
-    <div className="flex flex-col p-5 space-y-5 h-2/3 lg:h-full lg:W-2/5 xl:w-1/5 relative overflow-auto bg-base-200 min-w-[400px]">
+    <div className="flex flex-col h-full p-5 space-y-5 lg:W-2/5 xl:w-1/5 relative overflow-auto  xl:min-w-[400px]">
       {!(stream && CastrData) ? (
         <>
           <LoadingSkeleton />
@@ -16,7 +22,13 @@ const ControlSideBar = () => {
         </>
       ) : (
         <>
-          <GoLive address={address} stream={stream} CastrData={CastrData} />
+          <GoLive
+            address={address}
+            stream={stream}
+            CastrData={CastrData}
+            setShowTutorial={setShowTutorial}
+            setShowWebcam={setShowWebcam}
+          />
           <StreamDetails address={address} details={CastrData} />
         </>
       )}

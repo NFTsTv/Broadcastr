@@ -1,12 +1,7 @@
-import { useContext } from "react";
 import GoBackButton from "components/Buttons/GoBackButton";
-import { ModalContext } from "context/modalContext";
-
+import useModalContext from "hooks/useModalContext";
 const Modal = () => {
-  const context = useContext(ModalContext);
-  if (!context)
-    throw new Error("Modal must be used within a ModalContextProvider");
-
+  const context = useModalContext();
   const { isOpen, setIsOpen, modalContent } = context;
 
   if (!isOpen) return null;
