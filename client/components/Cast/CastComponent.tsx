@@ -7,6 +7,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useState } from "react";
 import WebcamView from "components/Webcam";
 import ChatOverlay from "components/Watch/ChatOverlay";
+
 const TutorialVideo = ({
   setIsDone,
 }: {
@@ -17,20 +18,22 @@ const TutorialVideo = ({
   };
 
   return (
-    <video controls className="w-full lg:h-full" onEnded={handleVideoEnd}>
-      <source
-        src="https://lp-playback.com/hls/b095xdn4do0nxnv3/1080p0/ebbdcbhe_1080p0.mp4"
-        type="video/mp4"
-      ></source>
-      <source
-        src="https://lp-playback.com/hls/b095xdn4do0nxnv3/720p0/ebbdcbhe_720p0.mp4"
-        type="video/mp4"
-      ></source>
-      <source
-        src="https://lp-playback.com/hls/b095xdn4do0nxnv3/360p0/ebbdcbhe_360p0.mp4"
-        type="video/mp4"
-      ></source>
-    </video>
+    <div className="relative w-full aspect-w-16 aspect-h-9 overflow-hidden">
+      <video controls className="absolute left-0 w-full h-full object-contain" onEnded={handleVideoEnd}>
+        <source
+          src="https://lp-playback.com/hls/b095xdn4do0nxnv3/1080p0/ebbdcbhe_1080p0.mp4"
+          type="video/mp4"
+        ></source>
+        <source
+          src="https://lp-playback.com/hls/b095xdn4do0nxnv3/720p0/ebbdcbhe_720p0.mp4"
+          type="video/mp4"
+        ></source>
+        <source
+          src="https://lp-playback.com/hls/b095xdn4do0nxnv3/360p0/ebbdcbhe_360p0.mp4"
+          type="video/mp4"
+        ></source>
+      </video>
+    </div>
   );
 };
 
