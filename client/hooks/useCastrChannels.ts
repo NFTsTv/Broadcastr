@@ -5,7 +5,7 @@ import { ContractAddress } from "utils/constants";
 import test from "test.json";
 
 const useCastrChannels = () => {
-  const [castrChannels, setCastrChannels] = useState<string[]>(test);
+  const [castrChannels, setCastrChannels] = useState<string[]>([]);
   const [liveAddress, setLiveAddress] = useState<string[]>([]);
 
   const updateLiveAddress = (address: string) => {
@@ -23,17 +23,18 @@ const useCastrChannels = () => {
     setCastrChannels([...liveAddress, ...orderedCastrChannels]);
   }, [liveAddress]);
 
-  // const { data, isLoading, isError } = useContractRead({
-  //   abi: factoryContract,
-  //   address: ContractAddress(),
-  //   functionName: "getAllCastrs",
-  // });
+  const { data, isLoading, isError } = useContractRead({
+    abi: factoryContract,
+    address: ContractAddress(),
+    functionName: "getAllCastrs",
+  });
 
-  // useEffect(() => {
-  //   if (data) {
-  //     //setCastrChannels(data as string[]);
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    console.log(data)
+    if (data) {
+      setCastrChannels(data as string[]);
+    }
+  }, [data]);
 
   return {
     castrChannels,

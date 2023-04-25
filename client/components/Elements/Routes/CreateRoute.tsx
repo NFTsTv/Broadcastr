@@ -8,13 +8,13 @@ import { ReactNode } from "react";
 const CreateRoute = ({ children }: { children: ReactNode }) => {
   const { castrAddress, loadingComplete } = useCastrAccount();
   const [isLoading, setIsLoading] = useState(false);
-  // useEffect(() => {
-  //   if (castrAddress) {
-  //     router.push(Routes.CAST + "?address=" + castrAddress);
-  //   } else if (loadingComplete) {
-  //     setIsLoading(false);
-  //   }
-  // }, [castrAddress, loadingComplete]);
+  useEffect(() => {
+    if (castrAddress) {
+      router.push(Routes.CAST + "?address=" + castrAddress);
+    } else if (loadingComplete) {
+      setIsLoading(false);
+    }
+  }, [castrAddress, loadingComplete]);
 
   if (isLoading) return <IsLoading />;
 

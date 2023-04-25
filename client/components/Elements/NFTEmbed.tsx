@@ -16,7 +16,7 @@ const NFTEmbed = ({ chat }: { chat: boolean }) => {
   return (
     <iframe
       src={constructURL() }
-      className="min-h-[250px] w-full lg:h-full"
+      className="min-h-[250px] w-full lg:h-full aspect-video"
     />
   );
 };

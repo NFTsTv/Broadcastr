@@ -22,7 +22,7 @@ const CastrFactoryABI = [
     inputs: [
       {
         internalType: "string",
-        name: "_baseTokenURI",
+        name: "_uri",
         type: "string",
       },
       {
@@ -41,14 +41,14 @@ const CastrFactoryABI = [
         type: "bool",
       },
       {
-        internalType: "uint64",
+        internalType: "uint256",
         name: "_totalSupply",
-        type: "uint64",
+        type: "uint256",
       },
       {
-        internalType: "uint16",
+        internalType: "uint256",
         name: "_mintPrice",
-        type: "uint16",
+        type: "uint256",
       },
     ],
     name: "createCastr",

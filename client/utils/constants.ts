@@ -26,4 +26,4 @@ export enum Network {
   Broadcastr = "https://app.broadcastr.xyz/watch",
 }
 
-export const currentChain = process.env.NODE_ENV === "production" ? polygon : polygon
+export const currentChain = process.env.NODE_ENV === "production" ? polygon : polygon;

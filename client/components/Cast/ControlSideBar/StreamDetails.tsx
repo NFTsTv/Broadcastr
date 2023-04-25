@@ -45,7 +45,7 @@ const StreamDetails = ({
       <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
         <WithdrawalButton address={address} />
       </DetailBox>
-      <DetailBox title="Dontations" text="0"/>
+      <DetailBox title="Donations" text="0" />
     </div>
   );
 };
