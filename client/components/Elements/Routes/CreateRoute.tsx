@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 
 const CreateRoute = ({ children }: { children: ReactNode }) => {
   const { castrAddress, loadingComplete } = useCastrAccount();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     if (castrAddress) {
       router.push(Routes.CAST + "?address=" + castrAddress);
