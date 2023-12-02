@@ -6,7 +6,6 @@ import NFTEmbed from "components/Elements/NFTEmbed";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useState } from "react";
 import WebcamView from "components/Webcam";
-import ChatOverlay from "components/Watch/ChatOverlay";
 
 const TutorialVideo = ({
   setIsDone,
