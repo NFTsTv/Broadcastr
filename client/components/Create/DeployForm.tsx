@@ -49,7 +49,7 @@ const DeployLNFT = () => {
           </>
         )}
 
-        <Button onClick={deployContract} isLoading={isLoading}>
+        <Button disabled={!deployContract} onClick={() => deployContract?.()} isLoading={isLoading}>
           Deploy
         </Button>
         {formError && <div>An error occurred: {formError}</div>}

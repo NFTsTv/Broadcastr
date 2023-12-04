@@ -31,22 +31,21 @@ const useCreateCastr = () => {
     error: createStreamError,
   } = useCreateStream({ name: Castr.name, record: true });
 
-  const { config, isSuccess: prepareContractWriteSuccess } =
-    usePrepareContractWrite({
-      address: ContractAddress(),
-      abi: [...CastrFactoryABI],
-      functionName: "createCastr",
-      args: validateFormData()
-        ? [
-            Castr.baseUri,
-            Castr.name,
-            Castr.description,
-            Castr.limitedSupply,
-            Number(Castr.totalSupply),
-            parseEther(Castr.price),
-          ]
-        : [],
-    });
+  const { config } = usePrepareContractWrite({
+    address: ContractAddress(),
+    abi: [...CastrFactoryABI],
+    functionName: "createCastr",
+    args: validateFormData()
+      ? [
+          Castr.baseUri,
+          Castr.name,
+          Castr.description,
+          Castr.limitedSupply,
+          Number(Castr.totalSupply),
+          parseEther(Castr.price),
+        ]
+      : [],
+  });
 
   const {
     data,
@@ -68,8 +67,8 @@ const useCreateCastr = () => {
         name: Castr.name,
         description: Castr.description,
         CastrId: assetData.id,
-        streamId: assetData?.id,
-        playbackUrl: assetData?.playbackUrl,
+        streamId: assetData.id,
+        playbackUrl: assetData.playbackId,
         address: address ?? "",
       });
       post("/api/collection/uploadMetadata", metadata).then((res) => {
@@ -103,18 +102,9 @@ const useCreateCastr = () => {
     }
   };
 
-  const deployContract = () => {
-    if (validateFormData()) {
-      write?.();
-    } else {
-      setError("wrong formdata");
-    }
-  };
-
   return {
-    prepareContractWriteSuccess,
     handleCreateStream,
-    deployContract,
+    deployContract: write,
     error: createError,
     isLoading:
       isLoading ||

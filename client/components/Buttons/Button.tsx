@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 interface props {
+  disabled?: boolean;
   onClick?: () => void;
   isLoading?: boolean;
   children: ReactNode;
@@ -13,6 +14,7 @@ const Button = ({ ...props }: props) => {
   if (props.isLoading) {
     return (
       <button
+        disabled={props.disabled}
         type="button"
         className={`btn ${props.styles} transition ease-in-out duration-150 cursor-not-allowed`}
       >

@@ -9,22 +9,22 @@ error MintPriceNotPaid(string message);
 error NonExistentTokenURI(string message);
 error WithdrawTransfer(string message);
 
-contract LiveNFT is ERC721, Ownable {
+contract Castr is ERC721, Ownable(msg.sender) {
     using Strings for uint256;
 
     uint256 public currentTokenId;
     bool public isInitialized = false;
 
-    string public LNFTname;
+    string public CastrName;
     string public baseTokenURI;
     string public description;
     bool public limitedSupply;
     uint256 public totalSupply;
     uint256 public mintPrice;
 
-    address[] public emitterAddresses;
+    address[] public castrAddresses;
 
-    constructor() ERC721("LiveNFT", "LNFT") {}
+    constructor() ERC721("Broadcastr", "CASTR") {}
 
     function initialize(
         string memory _baseTokenURI,
@@ -33,13 +33,11 @@ contract LiveNFT is ERC721, Ownable {
         bool _limitedSupply,
         uint256 _totalSupply,
         uint256 _mintPrice
-    )
-        external
-    {
+    ) external {
         require(!isInitialized, "Contract is already initialized!");
         isInitialized = true;
         baseTokenURI = _baseTokenURI;
-        LNFTname = _name;
+        CastrName = _name;
         description = _description;
         limitedSupply = _limitedSupply;
         totalSupply = _totalSupply;
@@ -50,24 +48,38 @@ contract LiveNFT is ERC721, Ownable {
     // @param: _newEmitter: address of the new emitter
     // @return: void
     function addEmitterAddress(address _newEmitter) public onlyOwner {
-        emitterAddresses.push(_newEmitter);
+        castrAddresses.push(_newEmitter);
     }
 
-    function setTokenURI(string memory _baseTokenURI) public onlyOwner {
-        baseTokenURI = _baseTokenURI;
-    }
-
-    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+    function tokenURI(
+        uint256 tokenId
+    ) public view override returns (string memory) {
         if (!_exists(tokenId)) {
             revert NonExistentTokenURI("Token URI does not exist");
         }
         return baseTokenURI;
     }
 
+    function setTokenURI(string memory _baseTokenURI) public onlyOwner {
+        baseTokenURI = _baseTokenURI;
+    }
+
+    function setName(string memory _name) public onlyOwner {
+        CastrName = _name;
+    }
+
+    function setDescription(string memory _description) public onlyOwner {
+        description = _description;
+    }
+
+    function setSubscriptionPrice(uint256 _mintPrice) public onlyOwner {
+        mintPrice = _mintPrice;
+    }
+
     // @dev: This function is used to mint a new token paying the mint price or free if the caller is the owner
     // @param: recipient: address of the recipient
     // @return: newTokenId: id of the new token
-    function mintTo(address recipient) public payable returns (uint256) {
+    function subscribe(address recipient) public payable returns (uint256) {
         if (limitedSupply) {
             require(currentTokenId < totalSupply, "No more tokens available");
         }
@@ -90,15 +102,35 @@ contract LiveNFT is ERC721, Ownable {
     // @dev: This function is used to withdraw the payments from the contract
     // @param: payee: address of the payee
     // @return: void
-    function withdrawPayments(address payable payee) external onlyOwner {
+    function withdrawPayments(address payable recipient) external onlyOwner {
         uint256 balance = address(this).balance;
-        (bool transferTx,) = payee.call{value: balance}("");
+        (bool transferTx, ) = recipient.call{value: balance}("");
         if (!transferTx) {
             revert WithdrawTransfer("Transfer failed");
         }
     }
 
-    function getMetadata() public view returns (string memory, string memory, string memory, bool, uint256, uint256) {
-        return (baseTokenURI, LNFTname, description, limitedSupply, totalSupply, mintPrice);
+    function getMetadata()
+        public
+        view
+        returns (
+            string memory,
+            string memory,
+            string memory,
+            bool,
+            uint256,
+            uint256,
+            uint256
+        )
+    {
+        return (
+            baseTokenURI,
+            CastrName,
+            description,
+            limitedSupply,
+            totalSupply,
+            mintPrice,
+            currentTokenId
+        );
     }
 }
