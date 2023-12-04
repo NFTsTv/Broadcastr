@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import Button from "components/Buttons/Button";
 const NetworkDropdown = ({ children }: { children: ReactNode }) => {
-  
   return (
     <div className="dropdown dropdown-down">
       <Button tabIndex={0}>Markets</Button>

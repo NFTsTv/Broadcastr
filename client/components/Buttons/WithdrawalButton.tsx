@@ -1,4 +1,9 @@
-import { usePrepareContractWrite, useContractWrite, useAccount, Address } from "wagmi";
+import {
+  usePrepareContractWrite,
+  useContractWrite,
+  useAccount,
+  Address,
+} from "wagmi";
 import CastrABI from "contracts/Castr-abi";
 import Button from "./Button";
 

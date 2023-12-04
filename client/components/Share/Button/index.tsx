@@ -10,7 +10,11 @@ const ShareButton = () => {
     setModalContent(<ShareBox title="Share your stream" address={address} />);
   };
 
-  return <Button styles="btn-sm" onClick={handleClick}>Share</Button>;
+  return (
+    <Button styles="btn-sm" onClick={handleClick}>
+      Share
+    </Button>
+  );
 };
 
 export default ShareButton;

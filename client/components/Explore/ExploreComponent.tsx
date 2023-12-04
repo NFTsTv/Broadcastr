@@ -24,7 +24,7 @@ const ExploreComponent = () => {
         </h1>
         <div className="flex h-full flex-col sm:flex-row  flex-wrap justify-center overflow-auto">
           {castrChannels.map((channel) => (
-            <CastrExploreCard address={channel} updateLiveAddress={updateLiveAddress} />
+            <CastrExploreCard key={channel} address={channel} updateLiveAddress={updateLiveAddress} />
           ))}
         </div>
       </div>

@@ -35,7 +35,7 @@ const CastrExploreCard = ({
                 {!stream?.isActive ? (
                   <OfflineView />
                 ) : (
-                  <HLSFirstFrame url={stream?.playbackUrl} />
+                  <HLSFirstFrame url={stream?.playbackId} />
                 )}
               </figure>
               <div className=" items-center text-center p-2">

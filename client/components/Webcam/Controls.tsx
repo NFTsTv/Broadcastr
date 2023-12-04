@@ -44,7 +44,10 @@ const Controls: React.FC<ControlsProps> = ({
             </svg>
             {state === "playing" ? "Streaming" : "Start Stream"}
           </Button>
-          <Button styles="btn-sm" onClick={() => videoView.current?.disableVideo()}>
+          <Button
+            styles="btn-sm"
+            onClick={() => videoView.current?.disableVideo()}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -56,17 +59,23 @@ const Controls: React.FC<ControlsProps> = ({
             </svg>
             Disable Video
           </Button>
-          <Button styles="btn-sm" onClick={() => videoView.current?.shareScreen()}>
+          <Button
+            styles="btn-sm"
+            onClick={() => videoView.current?.shareScreen()}
+          >
             {/* Replace with an icon for sharing the screen */}
             Share Screen
           </Button>
-          <Button styles="btn-sm" onClick={() => videoView.current?.switchCamera()}>
+          <Button
+            styles="btn-sm"
+            onClick={() => videoView.current?.switchCamera()}
+          >
             {/* Replace with an icon for switching the camera */}
             Switch Camera
           </Button>
-        </div >
+        </div>
       )}
-    </div >
+    </div>
   );
 };
 

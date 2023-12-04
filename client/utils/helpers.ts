@@ -20,7 +20,8 @@ export const createMetadata = ({
     description: description,
     animation_url: url,
     external_url: url,
-    image: "https://app.broadcastr.xyz/images/logo-NoText.png",
+    image:
+      "https://cdn.pixabay.com/photo/2014/06/03/19/38/road-sign-361514_960_720.png",
     properties: {
       creator_address: address,
       CastrId: CastrId,

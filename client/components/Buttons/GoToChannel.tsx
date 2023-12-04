@@ -11,11 +11,14 @@ const GoToChannel = () => {
       Router.push(Routes.CREATE);
     } else {
       Router.push(Routes.CAST);
-
     }
   };
 
-  return <Button styles={"btn-accent btn-sm"} onClick={onClick}>Go to channel</Button>;
+  return (
+    <Button styles={"btn-accent btn-sm"} onClick={onClick}>
+      Go to channel
+    </Button>
+  );
 };
 
 export default GoToChannel;

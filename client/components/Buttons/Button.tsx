@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-interface props {
+interface ButtonProps {
   disabled?: boolean;
   onClick?: () => void;
   isLoading?: boolean;
@@ -10,7 +10,7 @@ interface props {
   tabIndex?: number;
 }
 
-const Button = ({ ...props }: props) => {
+const Button = (props: ButtonProps) => { 
   if (props.isLoading) {
     return (
       <button

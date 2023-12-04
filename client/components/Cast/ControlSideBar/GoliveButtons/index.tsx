@@ -22,9 +22,15 @@ export const GoLive = ({
       ) : (
         <>
           <h1>Go live on {CastrData.name}!</h1>
-          <p>Stream directly into your Castr using one of the follwing methods:</p>
+          <p>
+            Stream directly into your Castr using one of the follwing methods:
+          </p>
           <div className="flex flex-col">
-            <UseObs stream={stream} setShowTutorial={setShowTutorial} setShowWebcam={setShowWebcam} />
+            <UseObs
+              stream={stream}
+              setShowTutorial={setShowTutorial}
+              setShowWebcam={setShowWebcam}
+            />
             <Button onClick={() => setShowWebcam(true)}>
               Use webcam (beta)
             </Button>

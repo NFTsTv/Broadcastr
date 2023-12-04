@@ -6,7 +6,9 @@ const ChatBar = () => {
   const { address } = useAddressContext();
   const { stream } = useCastr(address);
   const { isDisconnected, address: userAddress } = useAccount();
-  const { data, isError, isLoading } = useEnsName(userAddress);
+  const { data, isError, isLoading } = useEnsName({
+    address: userAddress
+  });
 
   if (isLoading) {
     return <div>Loading</div>;

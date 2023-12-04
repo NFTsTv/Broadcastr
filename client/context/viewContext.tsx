@@ -30,8 +30,8 @@ export function ViewContextProvider(props: Props) {
   const [activeSrc, setActiveSrc] = useState<string | undefined>();
 
   useEffect(() => {
-    if (stream && stream.isActive && stream.playbackUrl !== activeSrc) {
-      setActiveSrc(stream.playbackUrl);
+    if (stream && stream.isActive && stream.playbackId !== activeSrc) {
+      setActiveSrc(stream.playbackId);
     }
   }, [stream]);
 

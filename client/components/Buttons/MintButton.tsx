@@ -3,7 +3,6 @@ import Button from "./Button";
 import { useContractRead, useContractWrite, useAccount, Address } from "wagmi";
 import { ethers } from "ethers";
 import CastrABI from "contracts/Castr-abi";
-import IsConnectedButton from "./IsConnected";
 
 const MintButton = ({ address }: { address: string }) => {
   const [mintLoading, setMintLoading] = useState(false);
@@ -20,20 +19,13 @@ const MintButton = ({ address }: { address: string }) => {
     address: address as Address,
     abi: CastrABI,
     functionName: "subscribe",
-    mode: "recklesslyUnprepared",
-    args: [
-      userAddress,
-      {
-        value: mintPrice,
-      },
-    ],
+    args: [userAddress],
   });
 
   const onMintClick = async () => {
     if (!isConnected) alert("Please connect your wallet");
     try {
       const tx = await mint();
-      const receipt = await tx.wait();
     } catch (error) {
       console.error(error);
     } finally {

@@ -115,7 +115,11 @@ const ViewOnPlatform = () => {
     );
   };
 
-  return <Button styles="btn-sm" onClick={handleClick}>View</Button>;
+  return (
+    <Button styles="btn-sm" onClick={handleClick}>
+      View
+    </Button>
+  );
 };
 
 export default ViewOnPlatform;

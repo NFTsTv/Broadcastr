@@ -31,7 +31,12 @@ const DeployLNFT = () => {
 
         <label className="label">
           <span>Want a limited number of subscribers?</span>
-          <input type={"checkbox"} checked={Castr.limitedSupply} className="toggle toggle-success" onChange={(e) => handleSetData("limitedSupply", e.target.checked)} />
+          <input
+            type={"checkbox"}
+            checked={Castr.limitedSupply}
+            className="toggle toggle-success"
+            onChange={(e) => handleSetData("limitedSupply", e.target.checked)}
+          />
         </label>
 
         {Castr.limitedSupply && (
@@ -49,7 +54,11 @@ const DeployLNFT = () => {
           </>
         )}
 
-        <Button disabled={!deployContract} onClick={() => deployContract?.()} isLoading={isLoading}>
+        <Button
+          disabled={!deployContract}
+          onClick={() => deployContract?.()}
+          isLoading={isLoading}
+        >
           Deploy
         </Button>
         {formError && <div>An error occurred: {formError}</div>}
