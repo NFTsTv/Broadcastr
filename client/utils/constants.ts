@@ -1,6 +1,5 @@
 import { Address } from "wagmi";
-import { getNetwork } from "@wagmi/core";
-import { polygon, polygonMumbai, baseGoerli } from "@wagmi/core/chains";
+import { base } from "@wagmi/core/chains";
 
 export enum Routes {
   HOME = "/",
@@ -20,10 +19,10 @@ export const NFTMarketAddress = "https://opensea.io/assets/polygon";
 export const PlayerURL = "https://player-generator.vercel.app/iframe?streamid=";
 
 export enum Network {
-  Opensea = "https://opensea.io/assets/matic",
-  Rarible = "https://rarible.com/token/polygon",
-  NFTScan = "https://polygon.nftscan.com",
+  Opensea = "https://opensea.io/assets/base",
+  Rarible = "https://rarible.com/token/base",
+  NFTScan = "https://base.nftscan.com",
   Broadcastr = "https://app.broadcastr.xyz/watch",
 }
 
-export const currentChain = process.env.NODE_ENV === "production" ? baseGoerli : baseGoerli;
+export const currentChain = process.env.NODE_ENV === "production" ? base : base;
