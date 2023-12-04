@@ -16,7 +16,7 @@ import { currentChain } from "utils/constants";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { infuraProvider } from "wagmi/providers/infura";
+import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
 if (
@@ -28,7 +28,10 @@ if (
 
 const { chains, publicClient } = configureChains(
   [currentChain],
-  [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY }), publicProvider()]
+  [
+    alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY }),
+    publicProvider(),
+  ]
 );
 
 const { connectors } = getDefaultWallets({
@@ -40,8 +43,8 @@ const { connectors } = getDefaultWallets({
 const wagmiConfig = createConfig({
   autoConnect: true,
   connectors,
-  publicClient
-})
+  publicClient,
+});
 
 const client = createReactClient({
   provider: studioProvider({
