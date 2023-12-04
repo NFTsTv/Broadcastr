@@ -9,7 +9,7 @@ const CreateRoute = ({ children }: { children: ReactNode }) => {
   const { castrAddress, loadingComplete } = useCastrAccount();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    if (false) {
+    if (castrAddress) {
       router.push(Routes.CAST + "?address=" + castrAddress);
     } else if (loadingComplete) {
       setIsLoading(false);
