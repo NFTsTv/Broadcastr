@@ -91,6 +91,7 @@ contract Castr is ERC721, Ownable(msg.sender) {
         if (msg.sender == owner()) {
             uint256 newTokenId = ++currentTokenId;
             _safeMint(recipient, newTokenId);
+            hasMinted[recipient] = true;
             return newTokenId;
         }
 
@@ -99,10 +100,9 @@ contract Castr is ERC721, Ownable(msg.sender) {
         } else {
             uint256 newTokenId = ++currentTokenId;
             _safeMint(recipient, newTokenId);
+            hasMinted[recipient] = true;
             return newTokenId;
         }
-
-        hasMinted[recipient] = true;
     }
 
     // @dev: This function is used to withdraw the payments from the contract
