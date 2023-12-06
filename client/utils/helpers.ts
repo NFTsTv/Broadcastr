@@ -21,7 +21,7 @@ export const createMetadata = ({
     animation_url: url,
     external_url: url,
     image:
-      "https://cdn.pixabay.com/photo/2014/06/03/19/38/road-sign-361514_960_720.png",
+      "https://raw.githubusercontent.com/NFTsTv/Broadcastr/main/client/public/logo-NoText.png",
     properties: {
       creator_address: address,
       CastrId: CastrId,

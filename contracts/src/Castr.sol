@@ -54,11 +54,8 @@ contract Castr is ERC721, Ownable(msg.sender) {
     }
 
     function tokenURI(
-        uint256 tokenId
+        uint256 
     ) public view override returns (string memory) {
-        if (!_exists(tokenId)) {
-            revert NonExistentTokenURI("Token URI does not exist");
-        }
         return baseTokenURI;
     }
 
@@ -91,6 +88,7 @@ contract Castr is ERC721, Ownable(msg.sender) {
         if (msg.sender == owner()) {
             uint256 newTokenId = ++currentTokenId;
             _safeMint(recipient, newTokenId);
+            hasMinted[recipient] = true;
             return newTokenId;
         }
 
@@ -99,6 +97,7 @@ contract Castr is ERC721, Ownable(msg.sender) {
         } else {
             uint256 newTokenId = ++currentTokenId;
             _safeMint(recipient, newTokenId);
+            hasMinted[recipient] = true;
             return newTokenId;
         }
 
