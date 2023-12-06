@@ -24,6 +24,8 @@ contract Castr is ERC721, Ownable(msg.sender) {
 
     address[] public castrAddresses;
 
+    mapping(address => bool) public hasMinted;
+
     constructor() ERC721("Broadcastr", "CASTR") {}
 
     function initialize(
@@ -80,6 +82,8 @@ contract Castr is ERC721, Ownable(msg.sender) {
     // @param: recipient: address of the recipient
     // @return: newTokenId: id of the new token
     function subscribe(address recipient) public payable returns (uint256) {
+        require(!hasMinted[recipient], "User has already Minted");
+
         if (limitedSupply) {
             require(currentTokenId < totalSupply, "No more tokens available");
         }
@@ -97,6 +101,8 @@ contract Castr is ERC721, Ownable(msg.sender) {
             _safeMint(recipient, newTokenId);
             return newTokenId;
         }
+
+        hasMinted[recipient] = true;
     }
 
     // @dev: This function is used to withdraw the payments from the contract
